@@ -1,48 +1,50 @@
 {
-  description = "A very basic flake";
+  description = "DPigeon's nix config";
 
   inputs = {
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
-    nixos-hardware.url = "github:nixos/nixos-hardware/master";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    hardware.url = "github:nixos/nixos-hardware";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixos-hardware, home-manager}: {
-    nixosConfigurations = {
-      DPigeon-MacOS = nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
-        specialArgs = 
-          let init = pkg : import pkg {
-            inherit system;
-            config.allowUnfree = true; 
-          }; 
-        in {
-          pkgs-unstable = init nixpkgs-unstable; 
-          pkgs = init nixpkgs;
-        };
-        modules = [
-          ./hardware-configuration.nix
-          ./configuration.nix
-          nixos-hardware.nixosModules.asus-zephyrus-ga502
-          home-manager.nixosModules.home-manager{
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.dpigeon = import ./users/dpigeon-home.nix;
-            home-manager.extraSpecialArgs = 
-              let init = pkg : import pkg {
-                inherit system;
-                config.allowUnfree = true; 
-              }; 
-              in {
-                pkgs-unstable = init nixpkgs-unstable; 
-                pkgs = init nixpkgs;
-              };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      inherit (self) outputs;
+    in
+    {
+      packages = import ./pkgs nixpkgs.legacyPackages.x86_64-linux;
 
-          }
-        ];
+      overlays = import ./overlays { inherit inputs; };
+
+      nixosModules = import ./modules/nixos;
+
+      homeManagerModules = import ./modules/home-manager;
+
+      nixosConfigurations = {
+        DPigeon-MacOS = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [ ./host/DPigeon-MacOS/configuration.nix ];
+        };
       };
+
+      homeConfigurations = {
+        "dpigeon@DPigeon-MacOS" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [ ./home/dpigeon/home.nix ];
+        };
+      };
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
     };
-  };
 }
