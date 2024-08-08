@@ -7,9 +7,7 @@
   ...
 }:
 {
-  imports = [
-    # ./nvim.nix
-  ];
+  imports = [ ./nvim.nix ];
 
   nixpkgs = {
     overlays = [
@@ -37,6 +35,7 @@
       rofi
       maple-mono-NF
       tor-browser
+      kdePackages.kdeconnect-kde
     ];
   };
 
@@ -237,12 +236,6 @@
       };
     };
   };
-  services.kdeconnect = {
-    enable = true;
-    indicator = true;
-  };
-
-  programs.neovim.enable = true;
 
   programs.git.enable = true;
 
@@ -250,6 +243,13 @@
     "$mod" = "SUPER";
     bind = [ "$mod, F, exec, firefox" ];
   };
+
+  services.kdeconnect = {
+    enable = true;
+    package = pkgs.kdePackages.kdeconnect-kde;
+  };
+
+  services.caffeine.enable = true;
 
   systemd.user.startServices = "sd-switch";
 
