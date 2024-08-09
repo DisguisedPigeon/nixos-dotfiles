@@ -90,10 +90,11 @@
   programs.zsh.enable = true;
 
   environment = {
-    systemPackages = [
-      pkgs.neovim
-      pkgs.git
-      pkgs.home-manager
+    systemPackages = with pkgs; [
+      neovim
+      git
+      home-manager
+      ntfs3g
     ];
     variables = {
       EDITOR = "nvim";
