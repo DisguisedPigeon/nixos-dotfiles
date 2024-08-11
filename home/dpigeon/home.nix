@@ -26,7 +26,33 @@
     };
   };
 
+  gtk = {
+    enable = true;
+
+    theme = {
+      package = pkgs.tokyonight-gtk-theme;
+      name = "TokyoNight";
+    };
+
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus";
+    };
+
+    font = {
+      name = "Sans";
+      size = 11;
+    };
+  };
+
   home = {
+    pointerCursor = {
+      gtk.enable = true;
+      # x11.enable = true;
+      package = pkgs.banana-cursor;
+      name = "Banana cursor";
+      size = 16;
+    };
     username = "dpigeon";
     homeDirectory = "/home/dpigeon";
     packages = with pkgs; [

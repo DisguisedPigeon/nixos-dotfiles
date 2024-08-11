@@ -6,6 +6,10 @@
     hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -13,6 +17,7 @@
       self,
       nixpkgs,
       home-manager,
+      nixos-cosmic,
       ...
     }@inputs:
     let
@@ -32,7 +37,17 @@
           specialArgs = {
             inherit inputs outputs;
           };
-          modules = [ ./host/DPigeon-MacOS/configuration.nix ];
+          modules = [
+            {
+              nix.settings = {
+                substituters = [ "https://cosmic.cachix.org/" ];
+                trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+              };
+            }
+            nixos-cosmic.nixosModules.default
+
+            ./host/DPigeon-MacOS/configuration.nix
+          ];
         };
       };
 
