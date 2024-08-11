@@ -82,14 +82,24 @@
 
     libinput.enable = true;
 
-		#displayManager.cosmic-greeter.enable = true;
-		#desktopManager.cosmic.enable = true;
+    #displayManager.cosmic-greeter.enable = true;
+    #desktopManager.cosmic.enable = true;
     displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
     xserver.windowManager.awesome.enable = true;
   };
   programs.hyprland.enable = true;
   programs.zsh.enable = true;
+  security.pam.u2f = {
+    enable = true;
+    settings.cue = true;
+    control = "sufficient";
+  };
+  programs.light.enable = true;
+
+  security.pam.services.hyprlock = {
+    u2fAuth = true;
+  };
 
   environment = {
     systemPackages = with pkgs; [
@@ -101,8 +111,13 @@
     ];
     variables = {
       EDITOR = "nvim";
-      pathsToLink = [ "/share/zsh" ];
+
     };
+    pathsToLink = [
+      "/share/zsh"
+      "/share/xdg-desktop-portal"
+      "/share/applications"
+    ];
   };
 
   users.users = {

@@ -8,17 +8,31 @@
 }:
 let
   config = {
-    browser = "firefox";
+    browser = "floorp";
     terminal = "kitty";
+    runner = "rofi -show drun -modi run,drun,ssh -scroll-method 0 -drun-match-fields all -drun-display-format '{name}' -no-drun-show-actions -terminal kitty -kb-cancel Alt-F1 -theme '$HOME'/.config/rofi/launcher.rasi";
+    powermenu = "$HOME/.config/rofi/powermenu.sh";
   };
 in
 {
+  imports = [ ./rofi.nix ];
+
+  home.packages = with pkgs; [
+    networkmanagerapplet
+    dunst
+    hyprlock
+    pavucontrol
+    grim
+    slurp
+    wl-clipboard
+  ];
+
   programs.waybar = {
     enable = true;
     settings = {
       mainBar = {
         modules-left = [
-          "sway/workspaces"
+          "hyprland/workspaces"
           "sway/mode"
         ];
         modules-center = [
@@ -27,13 +41,29 @@ in
         ];
         modules-right = [
           "tray"
-          "custom/scratchpad-indicator"
           "pulseaudio"
-          "custom/power"
         ];
 
         "sway/mode" = {
           format = "<span style=\"italic\">{}</span>";
+        };
+        "hyprland/workspaces" = {
+          format = "{icon}";
+          format-icons = {
+            "default" = "";
+            "empty" = "";
+          };
+          persistent-workspaces = {
+            "1" = [ ];
+            "2" = [ ];
+            "3" = [ ];
+            "4" = [ ];
+            "5" = [ ];
+            "6" = [ ];
+            "7" = [ ];
+            "8" = [ ];
+            "9" = [ ];
+          };
         };
         network = {
           format-wifi = "{essid} ({signalStrength}%) ";
@@ -82,106 +112,152 @@ in
         };
       };
     };
-    style = ''
-      * {
-          border: none;
-          font-family: Font Awesome, Roboto, Arial, sans-serif;
-          font-size: 13px;
-          color: #ffffff;
-          border-radius: 20px;
-      }
-
-      window {
-      	/*font-weight: bold;*/
-      }
-      window#waybar {
-          background: rgba(0, 0, 0, 0);
-      }
-      /*-----module groups----*/
-      .modules-right {
-      	background-color: rgba(0,43,51,0.85);
-          margin: 2px 10px 0 0;
-      }
-      .modules-center {
-      	background-color: rgba(0,43,51,0.85);
-          margin: 2px 0 0 0;
-      }
-      .modules-left {
-          margin: 2px 0 0 5px;
-      	background-color: rgba(0,119,179,0.6);
-      }
-      /*-----modules indv----*/
-      #workspaces button {
-          padding: 1px 5px;
-          background-color: transparent;
-      }
-      #workspaces button:hover {
-          box-shadow: inherit;
-      	background-color: rgba(0,153,153,1);
-      }
-
-      #workspaces button.focused {
-      	background-color: rgba(0,43,51,0.85);
-      }
-
-      #clock,
-      #battery,
-      #cpu,
-      #memory,
-      #temperature,
-      #network,
-      #pulseaudio,
-      #custom-media,
-      #tray,
-      #mode,
-      #custom-power,
-      #custom-menu,
-      #idle_inhibitor {
-          padding: 0 10px;
-      }
-      #mode {
-          color: #cc3436;
-          font-weight: bold;
-      }
-      #custom-power {
-          background-color: rgba(0,119,179,0.6);
-          border-radius: 100px;
-          margin: 5px 5px;
-          padding: 1px 1px 1px 6px;
-      }
-      /*-----Indicators----*/
-      #idle_inhibitor.activated {
-          color: #2dcc36;
-      }
-      #pulseaudio.muted {
-          color: #cc3436;
-      }
-      #battery.charging {
-          color: #2dcc36;
-      }
-      #battery.warning:not(.charging) {
-      	color: #e6e600;
-      }
-      #battery.critical:not(.charging) {
-          color: #cc3436;
-      }
-      #temperature.critical {
-          color: #cc3436;
-      }
-      /*-----Colors----*/
-      /*
-       *rgba(0,85,102,1),#005566 --> Indigo(dye)
-       *rgba(0,43,51,1),#002B33 --> Dark Green 
-       *rgba(0,153,153,1),#009999 --> Persian Green 
-       *
-       */
-    '';
+    style = ./waybar-style.css;
   };
+
+  services.hyprpaper = {
+    enable = true;
+
+    settings = {
+      ipc = "on";
+      splash = false;
+      splash_offset = 2.0;
+
+      preload = [ "~/Imaxes/wallpapers/Random/Paisaje_Rosa.png" ];
+      wallpaper = [ ",~/Imaxes/wallpapers/Random/Paisaje_Rosa.png" ];
+    };
+  };
+
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      general = {
+        grace = 300;
+      };
+
+      background = [
+        {
+          path = "screenshot";
+          blur_passes = 2;
+          blur_size = 10;
+          vibrancy = 0;
+        }
+      ];
+
+      input-field = [
+        {
+          size = "200, 50";
+          position = "0, -80";
+          monitor = "";
+          dots_center = true;
+          fade_on_empty = false;
+          font_color = "rgb(0, 0, 0)";
+          inner_color = "rgb(8fbfbf)";
+          outer_color = "rgb(8fbfbf)";
+          outline_thickness = 1;
+          placeholder_text = "Password: ";
+          fail_text = "Failed, $ATTEMPTS left";
+        }
+      ];
+    };
+  };
+
   wayland.windowManager.hyprland = {
-    plugins = [ inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars ];
+    enable = true;
     settings = {
       "$mod" = "SUPER";
-      bind = [ "$mod, F, exec, ${config.browser}" ];
+
+      exec-once = [
+        "dunst"
+        "nm-applet &"
+        "hyprpaper"
+        "waybar"
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+      ];
+
+      general = {
+        gaps_in = 5;
+        gaps_out = 10;
+
+        border_size = 1;
+
+        layout = "master";
+
+        "col.inactive_border" = "rgb(3f3f7f)";
+        "col.active_border" = "rgb(00ffff)";
+      };
+
+      decoration = {
+        rounding = 5;
+        inactive_opacity = 0.6;
+        drop_shadow = true;
+
+        blur = {
+          enabled = true;
+          vibrancy = 0;
+          size = 10;
+          passes = 2;
+        };
+      };
+
+      input = {
+        kb_layout = "es";
+        follow_mouse = 1;
+        touchpad.natural_scroll = true;
+      };
+
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
+      gestures.workspace_swipe = true;
+      bindm = [
+        "$mod,mouse:272,movewindow"
+        "$mod,mouse:273,resizewindow"
+      ];
+
+      bind =
+        [
+          "$mod, F, exec, ${config.browser}"
+          "$mod, return, exec, ${config.terminal}"
+          "$mod, escape, exit"
+          "$mod, W, killactive"
+          "$mod, R, exec, ${config.runner}"
+          "$mod shift, P, exec, ${config.powermenu}"
+          "$mod, V, togglefloating"
+          "$mod, m, fullscreen"
+
+          "$mod, h, movefocus, l"
+          "$mod, l, movefocus, r"
+          "$mod, k, movefocus, u"
+          "$mod, j, movefocus, d"
+
+          "$mod shift, h, movewindow, l"
+          "$mod shift, l, movewindow, r"
+          "$mod shift, k, movewindow, u"
+          "$mod shift, j, movewindow, d"
+
+          "$mod shift, down, exec, light -U 30"
+          "$mod shift, up, exec, light -A 30"
+
+          "shift, Print, exec, grim -g \"$(slurp -d)\" - | wl-copy"
+        ]
+        ++ (builtins.concatLists (
+          builtins.genList (
+            x:
+            let
+              ws =
+                let
+                  c = (x + 1) / 10;
+                in
+                builtins.toString (x + 1 - (c * 10));
+            in
+            [
+              "$mod, ${ws}, workspace, ${toString (x + 1)}"
+              "$mod shift, ${ws}, movetoworkspace, ${toString (x + 1)}"
+            ]
+          ) 10
+        ));
     };
   };
 }

@@ -44,6 +44,7 @@
       size = 11;
     };
   };
+  xdg.enable = true;
 
   home = {
     pointerCursor = {
@@ -64,7 +65,6 @@
       syncplay
       inkscape
       vlc
-      rofi
       maple-mono-NF
       tor-browser
       kdePackages.kdeconnect-kde
@@ -74,6 +74,8 @@
   };
 
   programs.git.enable = true;
+
+  programs.yazi.enable = true;
 
   services.kdeconnect = {
     enable = true;
