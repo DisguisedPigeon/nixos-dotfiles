@@ -94,6 +94,7 @@
       neovim
       git
       home-manager
+      caffeine-ng
       ntfs3g
     ];
     variables = {

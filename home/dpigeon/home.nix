@@ -44,7 +44,6 @@
       kdePackages.kdeconnect-kde
       spotify
       youtube-music
-      caffeine-ng
     ];
   };
 
