@@ -53,6 +53,13 @@
           };
           modules = [ ./home/dpigeon/home.nix ];
         };
+        "test@DPigeon-MacOS" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+          modules = [ ./home/test/home.nix ];
+        };
       };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
     };

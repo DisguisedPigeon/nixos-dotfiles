@@ -127,6 +127,11 @@
       isNormalUser = true;
       extraGroups = [ "wheel" ];
     };
+    test = {
+      shell = pkgs.zsh;
+      initialPassword = "ligma";
+      isNormalUser = true;
+    };
   };
 
 }
