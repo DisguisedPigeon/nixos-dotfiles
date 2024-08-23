@@ -112,54 +112,6 @@ in
         };
       };
     };
-    style = ./waybar-style.css;
-  };
-
-  services.hyprpaper = {
-    enable = true;
-
-    settings = {
-      ipc = "on";
-      splash = false;
-      splash_offset = 2.0;
-
-      preload = [ "~/Imaxes/wallpapers/Random/Paisaje_Rosa.png" ];
-      wallpaper = [ ",~/Imaxes/wallpapers/Random/Paisaje_Rosa.png" ];
-    };
-  };
-
-  programs.hyprlock = {
-    enable = true;
-    settings = {
-      general = {
-        grace = 300;
-      };
-
-      background = [
-        {
-          path = "screenshot";
-          blur_passes = 2;
-          blur_size = 10;
-          vibrancy = 0;
-        }
-      ];
-
-      input-field = [
-        {
-          size = "200, 50";
-          position = "0, -80";
-          monitor = "";
-          dots_center = true;
-          fade_on_empty = false;
-          font_color = "rgb(0, 0, 0)";
-          inner_color = "rgb(8fbfbf)";
-          outer_color = "rgb(8fbfbf)";
-          outline_thickness = 1;
-          placeholder_text = "Password: ";
-          fail_text = "Failed, $ATTEMPTS left";
-        }
-      ];
-    };
   };
 
   wayland.windowManager.hyprland = {

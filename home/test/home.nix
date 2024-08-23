@@ -15,6 +15,35 @@
     ./starship.nix
   ];
 
+  stylix = {
+    enable = true;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-storm.yaml";
+    image = ./configs/wallpaper.png;
+    cursor.package = pkgs.rose-pine-cursor;
+    cursor.name = "BreezeX-RoséPine";
+    fonts = {
+      monospace = {
+        package = pkgs.maple-mono-NF;
+        name = "Maple Mono NF";
+      };
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+    };
+    opacity = {
+      applications = 1.0;
+      terminal = 0.8;
+      desktop = 1.0;
+      popups = 1.0;
+    };
+    polarity = "dark";
+  };
+
   nixpkgs = {
     overlays = [
       outputs.overlays.additions
@@ -27,35 +56,17 @@
   };
 
   gtk = {
-    enable = true;
-
-    theme = {
-      package = pkgs.tokyonight-gtk-theme;
-      name = "TokyoNight";
-    };
 
     iconTheme = {
       package = pkgs.papirus-icon-theme;
       name = "Papirus";
     };
-
-    font = {
-      name = "Sans";
-      size = 11;
-    };
   };
   xdg.enable = true;
 
   home = {
-    pointerCursor = {
-      gtk.enable = true;
-      # x11.enable = true;
-      package = pkgs.banana-cursor;
-      name = "Banana cursor";
-      size = 16;
-    };
-    username = "dpigeon";
-    homeDirectory = "/home/dpigeon";
+    username = "test";
+    homeDirectory = "/home/test";
     packages = with pkgs; [
       steam
       floorp

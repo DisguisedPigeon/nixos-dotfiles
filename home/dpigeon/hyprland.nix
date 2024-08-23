@@ -115,6 +115,12 @@ in
     style = ./waybar-style.css;
   };
 
+  home.file.wallpaper = {
+    enable = true;
+    source = ./configs/wallpaper.png;
+    target = ".wallpaper";
+  };
+
   services.hyprpaper = {
     enable = true;
 
@@ -123,8 +129,8 @@ in
       splash = false;
       splash_offset = 2.0;
 
-      preload = [ "~/Imaxes/wallpapers/Random/Paisaje_Rosa.png" ];
-      wallpaper = [ ",~/Imaxes/wallpapers/Random/Paisaje_Rosa.png" ];
+      preload = [ "~/.wallpaper.png" ];
+      wallpaper = [ ",~/.wallpaper.png" ];
     };
   };
 

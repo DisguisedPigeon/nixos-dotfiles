@@ -6,6 +6,7 @@
     hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    stylix.url = "github:danth/stylix";
   };
 
   outputs =
@@ -13,6 +14,7 @@
       self,
       nixpkgs,
       home-manager,
+      stylix,
       ...
     }@inputs:
     let
@@ -33,6 +35,7 @@
             inherit inputs outputs;
           };
           modules = [
+
             {
               nix.settings = {
                 substituters = [ "https://cosmic.cachix.org/" ];
@@ -58,7 +61,10 @@
           extraSpecialArgs = {
             inherit inputs outputs;
           };
-          modules = [ ./home/test/home.nix ];
+          modules = [
+            stylix.homeManagerModules.stylix
+            ./home/test/home.nix
+          ];
         };
       };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;

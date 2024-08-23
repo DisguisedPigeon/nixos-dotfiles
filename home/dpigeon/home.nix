@@ -1,11 +1,4 @@
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ outputs, pkgs, ... }:
 {
   imports = [
     ./zsh.nix
@@ -49,7 +42,7 @@
   home = {
     pointerCursor = {
       gtk.enable = true;
-      # x11.enable = true;
+      x11.enable = true;
       package = pkgs.banana-cursor;
       name = "Banana cursor";
       size = 16;

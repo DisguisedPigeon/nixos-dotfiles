@@ -13,9 +13,7 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = {
-      hupdate = "home-manager --flake .#dpigeon@DPigeon-MacOS switch";
-      nupdate = "sudo nixos-rebuild --flake .#DPigeon-MacOS switch";
-      fupdate = "sudo nixos-rebuild --flake .#DPigeon-MacOS switch";
+      hupdate = "home-manager --flake .#test@DPigeon-MacOS switch";
       ":q" = "exit";
       ll = "ls -lah";
       ga = "git add .";

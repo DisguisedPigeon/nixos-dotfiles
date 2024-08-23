@@ -120,17 +120,23 @@
     ];
   };
 
+  users.groups.configEditor.gid = 69420;
+
   users.users = {
     dpigeon = {
       shell = pkgs.zsh;
       initialPassword = "ligma";
       isNormalUser = true;
-      extraGroups = [ "wheel" ];
+      extraGroups = [
+        "wheel"
+        "configEditor"
+      ];
     };
     test = {
       shell = pkgs.zsh;
       initialPassword = "ligma";
       isNormalUser = true;
+      extraGroups = [ "configEditor" ];
     };
   };
 
