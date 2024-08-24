@@ -6,6 +6,11 @@
     hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    plasma-manager.url = "github:nix-community/plasma-manager";
+    plasma-manager.inputs = {
+      nixpkgs.follows = "nixpkgs";
+      home-manager.follows = "home-manager";
+    };
     stylix.url = "github:danth/stylix";
   };
 
@@ -15,6 +20,7 @@
       nixpkgs,
       home-manager,
       stylix,
+      plasma-manager,
       ...
     }@inputs:
     let
@@ -35,7 +41,7 @@
             inherit inputs outputs;
           };
           modules = [
-
+            stylix.nixosModules.stylix
             {
               nix.settings = {
                 substituters = [ "https://cosmic.cachix.org/" ];
@@ -64,6 +70,7 @@
           modules = [
             stylix.homeManagerModules.stylix
             ./home/test/home.nix
+            plasma-manager.homeManagerModules.plasma-manager
           ];
         };
       };

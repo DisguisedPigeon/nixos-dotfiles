@@ -1,11 +1,4 @@
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ outputs, pkgs, ... }:
 {
   imports = [
     ./zsh.nix
@@ -13,14 +6,26 @@
     ./kitty.nix
     ./hyprland.nix
     ./starship.nix
+		./plasma.nix
   ];
+
+  nixpkgs = {
+    overlays = [
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      # neovim-nightly-overlay.overlays.default
+    ];
+    config = {
+      allowUnfree = true;
+    };
+  };
 
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-storm.yaml";
     image = ./configs/wallpaper.png;
-    cursor.package = pkgs.rose-pine-cursor;
-    cursor.name = "BreezeX-RoséPine";
+    cursor.package = pkgs.bibata-cursors;
+    cursor.name = "Bibata-Modern-Ice";
     fonts = {
       monospace = {
         package = pkgs.maple-mono-NF;
@@ -44,24 +49,10 @@
     polarity = "dark";
   };
 
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      # neovim-nightly-overlay.overlays.default
-    ];
-    config = {
-      allowUnfree = true;
-    };
-  };
+  gtk.enable = true;
+  gtk.iconTheme.package = pkgs.papirus-icon-theme;
+  gtk.iconTheme.name = "Papirus";
 
-  gtk = {
-
-    iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus";
-    };
-  };
   xdg.enable = true;
 
   home = {
@@ -76,7 +67,6 @@
       syncplay
       inkscape
       vlc
-      maple-mono-NF
       tor-browser
       kdePackages.kdeconnect-kde
       spotify
@@ -84,7 +74,12 @@
     ];
   };
 
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+		extraConfig = {
+			safe.directory = "/home/.nixos-config";
+		};
+  };
 
   programs.yazi.enable = true;
 

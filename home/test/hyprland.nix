@@ -31,13 +31,13 @@ in
     enable = true;
     settings = {
       mainBar = {
+				spacing = 10;
         modules-left = [
           "hyprland/workspaces"
           "sway/mode"
         ];
         modules-center = [
           "clock"
-          "idle_inhibitor"
         ];
         modules-right = [
           "tray"
@@ -65,31 +65,16 @@ in
             "9" = [ ];
           };
         };
-        network = {
-          format-wifi = "{essid} ({signalStrength}%) ";
-          format-ethernet = "{ifname} ";
-          format-disconnected = "";
-          max-length = 50;
-          on-click = "kitty -e 'nmtui'";
-        };
-        idle_inhibitor = {
-          format = "{icon}";
-          format-icons = {
-            activated = "";
-            deactivated = "";
-          };
-          on-click = "bash /home/dg/.local/bin/toggleRemote";
-        };
         tray = {
-          icon-size = 15;
+          icon-size = 10;
           spacing = 10;
         };
         clock = {
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          # format-alt= "{:%Y-%m-%d}"
+          tooltip-format = "<big>{calendar}</big>";
+          format-alt= "{:%d / %m / %Y}";
         };
         pulseaudio = {
-          format = "{volume}% {icon} ";
+          format = "{volume}%  {icon}  ";
           format-bluetooth = "{volume}% {icon} {format_source}";
           format-bluetooth-muted = " {icon} {format_source}";
           format-muted = "0% {icon} ";
@@ -134,9 +119,6 @@ in
         border_size = 1;
 
         layout = "master";
-
-        "col.inactive_border" = "rgb(3f3f7f)";
-        "col.active_border" = "rgb(00ffff)";
       };
 
       decoration = {

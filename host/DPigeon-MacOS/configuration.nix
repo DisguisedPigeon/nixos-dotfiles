@@ -11,6 +11,7 @@
     inputs.hardware.nixosModules.asus-zephyrus-ga502
     # ./users.nix
     ./hardware-configuration.nix
+    ./stylix.nix
   ];
 
   nixpkgs = {
@@ -82,8 +83,6 @@
 
     libinput.enable = true;
 
-    #displayManager.cosmic-greeter.enable = true;
-    #desktopManager.cosmic.enable = true;
     displayManager.sddm.enable = true;
     desktopManager.plasma6.enable = true;
     xserver.windowManager.awesome.enable = true;
@@ -96,10 +95,6 @@
     control = "sufficient";
   };
   programs.light.enable = true;
-
-  security.pam.services.hyprlock = {
-    u2fAuth = true;
-  };
 
   environment = {
     systemPackages = with pkgs; [
