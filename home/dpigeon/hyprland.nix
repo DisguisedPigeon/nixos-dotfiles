@@ -31,14 +31,12 @@ in
     enable = true;
     settings = {
       mainBar = {
+        spacing = 10;
         modules-left = [
           "hyprland/workspaces"
           "sway/mode"
         ];
-        modules-center = [
-          "clock"
-          "idle_inhibitor"
-        ];
+        modules-center = [ "clock" ];
         modules-right = [
           "tray"
           "pulseaudio"
@@ -65,31 +63,16 @@ in
             "9" = [ ];
           };
         };
-        network = {
-          format-wifi = "{essid} ({signalStrength}%) ";
-          format-ethernet = "{ifname} ";
-          format-disconnected = "";
-          max-length = 50;
-          on-click = "kitty -e 'nmtui'";
-        };
-        idle_inhibitor = {
-          format = "{icon}";
-          format-icons = {
-            activated = "";
-            deactivated = "";
-          };
-          on-click = "bash /home/dg/.local/bin/toggleRemote";
-        };
         tray = {
-          icon-size = 15;
+          icon-size = 10;
           spacing = 10;
         };
         clock = {
-          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          # format-alt= "{:%Y-%m-%d}"
+          tooltip-format = "<big>{calendar}</big>";
+          format-alt = "{:%d / %m / %Y}";
         };
         pulseaudio = {
-          format = "{volume}% {icon} ";
+          format = "{volume}%  {icon}  ";
           format-bluetooth = "{volume}% {icon} {format_source}";
           format-bluetooth-muted = " {icon} {format_source}";
           format-muted = "0% {icon} ";
@@ -111,60 +94,6 @@ in
           on-click = "pavucontrol";
         };
       };
-    };
-    style = ./waybar-style.css;
-  };
-
-  home.file.wallpaper = {
-    enable = true;
-    source = ./configs/wallpaper.png;
-    target = ".wallpaper";
-  };
-
-  services.hyprpaper = {
-    enable = true;
-
-    settings = {
-      ipc = "on";
-      splash = false;
-      splash_offset = 2.0;
-
-      preload = [ "~/.wallpaper.png" ];
-      wallpaper = [ ",~/.wallpaper.png" ];
-    };
-  };
-
-  programs.hyprlock = {
-    enable = true;
-    settings = {
-      general = {
-        grace = 300;
-      };
-
-      background = [
-        {
-          path = "screenshot";
-          blur_passes = 2;
-          blur_size = 10;
-          vibrancy = 0;
-        }
-      ];
-
-      input-field = [
-        {
-          size = "200, 50";
-          position = "0, -80";
-          monitor = "";
-          dots_center = true;
-          fade_on_empty = false;
-          font_color = "rgb(0, 0, 0)";
-          inner_color = "rgb(8fbfbf)";
-          outer_color = "rgb(8fbfbf)";
-          outline_thickness = 1;
-          placeholder_text = "Password: ";
-          fail_text = "Failed, $ATTEMPTS left";
-        }
-      ];
     };
   };
 
@@ -188,9 +117,6 @@ in
         border_size = 1;
 
         layout = "master";
-
-        "col.inactive_border" = "rgb(3f3f7f)";
-        "col.active_border" = "rgb(00ffff)";
       };
 
       decoration = {

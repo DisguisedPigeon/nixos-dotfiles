@@ -36,7 +36,7 @@
       nvim-dap
       nvim-dap-ui
       cmp-nvim-lsp
-      #tokyonight-nvim
+      tokyonight-nvim
     ];
   };
 

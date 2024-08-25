@@ -31,14 +31,12 @@ in
     enable = true;
     settings = {
       mainBar = {
-				spacing = 10;
+        spacing = 10;
         modules-left = [
           "hyprland/workspaces"
           "sway/mode"
         ];
-        modules-center = [
-          "clock"
-        ];
+        modules-center = [ "clock" ];
         modules-right = [
           "tray"
           "pulseaudio"
@@ -71,7 +69,7 @@ in
         };
         clock = {
           tooltip-format = "<big>{calendar}</big>";
-          format-alt= "{:%d / %m / %Y}";
+          format-alt = "{:%d / %m / %Y}";
         };
         pulseaudio = {
           format = "{volume}%  {icon}  ";

@@ -1,4 +1,9 @@
-{ outputs, pkgs, ... }:
+{
+  outputs,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
     ./zsh.nix
@@ -6,6 +11,7 @@
     ./kitty.nix
     ./hyprland.nix
     ./starship.nix
+    ./plasma.nix
   ];
 
   nixpkgs = {
@@ -19,33 +25,43 @@
     };
   };
 
-  gtk = {
+  stylix = {
     enable = true;
-
-    theme = {
-      package = pkgs.tokyonight-gtk-theme;
-      name = "TokyoNight";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyodark-terminal.yaml";
+    image = ./configs/wallpaper.png;
+    cursor.package = pkgs.bibata-cursors;
+    cursor.name = "Bibata-Modern-Ice";
+    cursor.size = 16;
+    fonts = {
+      monospace = {
+        package = pkgs.maple-mono-NF;
+        name = "Maple Mono NF";
+      };
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
     };
-
-    iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus";
+    opacity = {
+      terminal = 0.8;
     };
-
-    font = {
-      name = "Sans";
-      size = 11;
-    };
+    polarity = "dark";
   };
+
+  gtk.enable = true;
+  gtk.iconTheme.package = pkgs.papirus-icon-theme;
+  gtk.iconTheme.name = "Papirus";
+
   xdg.enable = true;
 
   home = {
     pointerCursor = {
       gtk.enable = true;
       x11.enable = true;
-      package = pkgs.banana-cursor;
-      name = "Banana cursor";
-      size = 16;
     };
     username = "dpigeon";
     homeDirectory = "/home/dpigeon";
@@ -58,7 +74,6 @@
       syncplay
       inkscape
       vlc
-      maple-mono-NF
       tor-browser
       kdePackages.kdeconnect-kde
       spotify
@@ -66,7 +81,12 @@
     ];
   };
 
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    extraConfig = {
+      safe.directory = "/home/.nixos-config";
+    };
+  };
 
   programs.yazi.enable = true;
 

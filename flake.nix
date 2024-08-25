@@ -60,7 +60,11 @@
           extraSpecialArgs = {
             inherit inputs outputs;
           };
-          modules = [ ./home/dpigeon/home.nix ];
+          modules = [
+            stylix.homeManagerModules.stylix
+            plasma-manager.homeManagerModules.plasma-manager
+            ./home/dpigeon/home.nix
+          ];
         };
         "test@DPigeon-MacOS" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
@@ -69,8 +73,8 @@
           };
           modules = [
             stylix.homeManagerModules.stylix
-            ./home/test/home.nix
             plasma-manager.homeManagerModules.plasma-manager
+            ./home/test/home.nix
           ];
         };
       };

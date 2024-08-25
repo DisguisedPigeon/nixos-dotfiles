@@ -1,4 +1,9 @@
-{ outputs, pkgs, inputs, ... }:
+{
+  outputs,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   imports = [
     ./zsh.nix
@@ -6,7 +11,7 @@
     ./kitty.nix
     ./hyprland.nix
     ./starship.nix
-		./plasma.nix
+    ./plasma.nix
   ];
 
   nixpkgs = {
@@ -73,9 +78,9 @@
 
   programs.git = {
     enable = true;
-		extraConfig = {
-			safe.directory = "/home/.nixos-config";
-		};
+    extraConfig = {
+      safe.directory = "/home/.nixos-config";
+    };
   };
 
   programs.yazi.enable = true;
