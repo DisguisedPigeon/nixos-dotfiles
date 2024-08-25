@@ -1,4 +1,4 @@
-{ outputs, pkgs, ... }:
+{ outputs, pkgs, inputs, ... }:
 {
   imports = [
     ./zsh.nix
@@ -22,7 +22,7 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-storm.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyodark-terminal.yaml";
     image = ./configs/wallpaper.png;
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
@@ -41,10 +41,7 @@
       };
     };
     opacity = {
-      applications = 1.0;
       terminal = 0.8;
-      desktop = 1.0;
-      popups = 1.0;
     };
     polarity = "dark";
   };
