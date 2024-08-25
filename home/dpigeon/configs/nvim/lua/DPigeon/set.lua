@@ -1,29 +1,34 @@
-vim.o.hlsearch = false
-vim.wo.number = true
-vim.o.mouse = 'a'
-vim.o.clipboard = 'unnamedplus'
+vim.opt.hlsearch = false
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.mouse = "a"
+vim.opt.clipboard = "unnamedplus"
 
-vim.o.breakindent = true
+vim.opt.breakindent = true
 
-vim.o.undofile = true
+vim.opt.undofile = true
 
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
-vim.o.updatetime = 250
-vim.o.timeoutlen = 300
+vim.opt.updatetime = 250
+vim.opt.timeoutlen = 300
 
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = "menuone,noselect"
 
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 
-local highlight = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-    callback = function()
-        vim.highlight.on_yank()
-    end,
-    group = highlight,
-    pattern = '*',
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+
+local highlight = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight,
+	pattern = "*",
 })

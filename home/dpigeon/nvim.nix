@@ -15,7 +15,9 @@
     withPython3 = true;
     withRuby = true;
     plugins = with pkgs.vimPlugins; [
-      harpoon
+			nvim-web-devicons
+      harpoon2
+			todo-comments-nvim
       undotree
       luasnip
       vim-fugitive
@@ -29,6 +31,7 @@
       comment-nvim
       telescope-nvim
       telescope-fzf-native-nvim
+			telescope-ui-select-nvim
       nvim-treesitter
       nvim-treesitter.withAllGrammars
       nvim-treesitter-textobjects

@@ -1,6 +1,6 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-require('plugins')
-require('DPigeon.set')
-require('DPigeon.remap')
+require("plugins")
+require("DPigeon.set")
+require("DPigeon.remap")

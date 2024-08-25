@@ -1,4 +1,4 @@
-vim.cmd.colorscheme('tokyonight-storm')
+vim.cmd.colorscheme("tokyonight-storm")
 -- vim.cmd.colorscheme('catppuccin-mocha')
 -- vim.cmd.colorscheme('rose-pine-moon')
 -- vim.cmd.colorscheme('kanagawa')

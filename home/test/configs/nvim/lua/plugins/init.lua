@@ -1,5 +1,5 @@
-require "plugins.general"
+require("plugins.general")
 
-require "plugins.colors"
-require "plugins.lsp"
-require "plugins.debug"
+require("plugins.colors")
+require("plugins.lsp")
+require("plugins.debug")
