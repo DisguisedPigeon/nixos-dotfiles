@@ -81,6 +81,14 @@
     ];
   };
 
+	programs.chromium = {
+		enable = true;
+		extensions = [
+			"epcnnfbjfcgphgdmggkamkmgojdagdnn" # ublock
+			"eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark reader
+		];
+	};
+
   programs.git = {
     enable = true;
     extraConfig = {
