@@ -107,7 +107,9 @@ M.servers = {
 	rust_analyzer = {},
 	tsserver = {},
 	nil_ls = {},
-
+	elixirls = {
+		cmd = "elixir-ls"
+	},
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },

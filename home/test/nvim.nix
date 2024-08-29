@@ -37,6 +37,8 @@
       nvim-dap-ui
       cmp-nvim-lsp
       tokyonight-nvim
+			rose-pine
+			catppuccin-nvim
     ];
   };
 

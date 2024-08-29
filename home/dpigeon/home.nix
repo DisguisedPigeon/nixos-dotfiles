@@ -67,6 +67,7 @@
     homeDirectory = "/home/dpigeon";
     packages = with pkgs; [
       steam
+			gimp
       floorp
       discord
       amule

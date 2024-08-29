@@ -13,6 +13,7 @@
     ./hardware-configuration.nix
     ./stylix.nix
   ];
+	virtualisation.docker.enable = true;
 
   nixpkgs = {
     overlays = [
@@ -125,6 +126,7 @@
       extraGroups = [
         "wheel"
         "configEditor"
+				"docker"
       ];
     };
     test = {
