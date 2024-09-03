@@ -53,7 +53,6 @@
 
   system.stateVersion = "24.05";
   # system.copySystemConfiguration = true;
-	hardware.nvidia.open = true;
 
   boot.loader.grub = {
     enable = true;
