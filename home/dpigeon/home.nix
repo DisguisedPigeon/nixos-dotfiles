@@ -56,7 +56,29 @@
   gtk.iconTheme.package = pkgs.papirus-icon-theme;
   gtk.iconTheme.name = "Papirus";
 
-  xdg.enable = true;
+  xdg = {
+    enable = true;
+    portal = {
+      enable = true;
+			xdgOpenUsePortal = true;
+      configPackages = with pkgs; [
+        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
+      ];
+      config = {
+        common = {
+          default = [ "gtk" ];
+        };
+        hyprland = {
+          default = [
+            "hyprland"
+            "gtk"
+          ];
+        };
+      };
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    };
+  };
 
   home = {
     pointerCursor = {
@@ -66,8 +88,10 @@
     username = "dpigeon";
     homeDirectory = "/home/dpigeon";
     packages = with pkgs; [
+      obs-studio
+      vesktop
       steam
-			gimp
+      gimp
       floorp
       discord
       amule
@@ -82,15 +106,15 @@
     ];
   };
 
-	programs.qutebrowser.enable = true;
+  programs.qutebrowser.enable = true;
 
-	programs.chromium = {
-		enable = true;
-		extensions = [
-			"epcnnfbjfcgphgdmggkamkmgojdagdnn" # ublock
-			"eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark reader
-		];
-	};
+  programs.chromium = {
+    enable = true;
+    extensions = [
+      "epcnnfbjfcgphgdmggkamkmgojdagdnn" # ublock
+      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark reader
+    ];
+  };
 
   programs.git = {
     enable = true;

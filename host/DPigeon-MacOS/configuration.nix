@@ -13,7 +13,7 @@
     ./hardware-configuration.nix
     ./stylix.nix
   ];
-	virtualisation.docker.enable = true;
+  virtualisation.docker.enable = true;
 
   nixpkgs = {
     overlays = [
@@ -88,7 +88,10 @@
     desktopManager.plasma6.enable = true;
     xserver.windowManager.awesome.enable = true;
   };
-  programs.hyprland.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
   programs.zsh.enable = true;
   security.pam.u2f = {
     enable = true;
@@ -126,7 +129,7 @@
       extraGroups = [
         "wheel"
         "configEditor"
-				"docker"
+        "docker"
       ];
     };
     test = {

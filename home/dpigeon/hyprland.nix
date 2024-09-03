@@ -18,6 +18,8 @@ in
   imports = [ ./rofi.nix ];
 
   home.packages = with pkgs; [
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
     networkmanagerapplet
     dunst
     hyprlock
@@ -99,6 +101,7 @@ in
 
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
     settings = {
       "$mod" = "SUPER";
 

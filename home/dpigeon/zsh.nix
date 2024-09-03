@@ -1,16 +1,16 @@
 { config, pkgs, ... }:
 {
-	programs.direnv = {
-		enable = true;
-		nix-direnv.enable = true;
-	};
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-		plugins = [
-			{
+    plugins = [
+      {
         name = "zsh-nix-shell";
         file = "nix-shell.plugin.zsh";
         src = pkgs.fetchFromGitHub {
@@ -20,7 +20,7 @@
           sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
         };
       }
-		];
+    ];
     shellAliases = {
       hupdate = "home-manager --flake .#dpigeon@DPigeon-MacOS switch";
       nupdate = "sudo nixos-rebuild --flake .#DPigeon-MacOS switch";
