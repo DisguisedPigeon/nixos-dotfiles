@@ -2,7 +2,7 @@
 > Cuestionable code quality ahead.
 
 # Disguised Pigeon's NixOS Dotfiles
-Flake-based franken-nix(?) with unstable and stable channels. Usable enough for me.
+Flake-based with unstable channels. Usable enough for me.
 
 ### System Info:
 - OS: NixOS (duh)
