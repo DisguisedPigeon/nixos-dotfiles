@@ -108,12 +108,33 @@ M.servers = {
 	tsserver = {},
 	nil_ls = {},
 	elixirls = {
-		cmd = "elixir-ls"
+		cmd = {"elixir-ls"},
+		elixirLS = {
+			autoBuild = true,
+			dialyzerEnabled = true,
+			incrementalDialyzer = true,
+			dialyzerWarnOpts = true,
+			dialyzerFormat = true,
+			envVariables = true,
+			mixEnv = true,
+			mixTarget = true,
+			projectDir = true,
+			fetchDeps = true,
+			suggestSpecs = true,
+			trace = { server = true },
+			autoInsertRequiredAlias = true,
+			signatureAfterComplete = true,
+			enableTestLenses = true,
+			additionalWatchedExtensions = true,
+			languageServerOverridePath = true
+		}
 	},
 	lua_ls = {
-		Lua = {
-			workspace = { checkThirdParty = false },
-			telemetry = { enable = false },
+		settings = {
+			Lua = {
+				workspace = { checkThirdParty = false },
+				telemetry = { enable = false },
+			},
 		},
 	},
 }

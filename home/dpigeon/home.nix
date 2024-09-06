@@ -31,7 +31,7 @@
     image = ./configs/wallpaper.png;
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 16;
+    cursor.size = 32;
     fonts = {
       monospace = {
         package = pkgs.maple-mono-NF;
@@ -60,7 +60,7 @@
     enable = true;
     portal = {
       enable = true;
-			xdgOpenUsePortal = true;
+      xdgOpenUsePortal = true;
       configPackages = with pkgs; [
         xdg-desktop-portal-hyprland
         xdg-desktop-portal-gtk

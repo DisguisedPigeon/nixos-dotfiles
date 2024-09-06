@@ -18,6 +18,8 @@ in
   imports = [ ./rofi.nix ];
 
   home.packages = with pkgs; [
+    pcmanfm
+    gvfs
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
     networkmanagerapplet
@@ -66,7 +68,7 @@ in
           };
         };
         tray = {
-          icon-size = 10;
+          icon-size = 20;
           spacing = 10;
         };
         clock = {
@@ -112,6 +114,11 @@ in
         "waybar"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       ];
+
+			monitor = [
+				"eDP1, highres, auto, 1"
+				", preferred, auto, 1"
+			];
 
       general = {
         gaps_in = 5;

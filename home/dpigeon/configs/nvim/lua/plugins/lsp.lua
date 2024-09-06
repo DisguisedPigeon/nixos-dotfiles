@@ -1,24 +1,30 @@
 local on_attach = require("DPigeon.functions").lsp_on_attach
 local servers = require("DPigeon.tables").servers
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+if not table.unpack then
+	table.unpack = unpack
+end
+
+local function merge_tables(t1, t2)
+	local result = {}
+	for k, v in pairs(t1) do
+		result[k] = v
+	end
+	for k, v in pairs(t2) do
+		result[k] = v
+	end
+	return result
+end
 
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 for k, v in pairs(servers) do
-	if k == "elixirls" then
-		require("lspconfig")[k].setup {
-			cmd = {"elixir-ls"},
-			capabilities = capabilities,
-			on_attach = on_attach,
-			settings = v,
-		}
-		goto continue
-	end
-	require("lspconfig")[k].setup({
-		capabilities = capabilities,
-		on_attach = on_attach,
-		settings = v,
-	})
-	::continue::
+	require("lspconfig")[k].setup(
+		merge_tables(
+			{ capabilities = capabilities, on_attach = on_attach },
+			v
+		))
 end
 
 local cmp = require("cmp")

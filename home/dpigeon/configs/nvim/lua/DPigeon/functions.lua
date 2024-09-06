@@ -41,7 +41,12 @@ M.ibl_config = function()
 	})
 end
 
-M.lsp_on_attach = function(_, bufnr)
+M.lsp_on_attach = function(client, bufnr)
+	if client.server_capabilities.inlayHintProvider then
+		vim.lsp.inlay_hint.enable()
+	else
+		print("no inlay hints available")
+	end
 	local nmap = function(keys, func, desc)
 		if desc then
 			desc = "[L]SP: " .. desc
