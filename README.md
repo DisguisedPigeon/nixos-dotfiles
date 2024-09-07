@@ -3,6 +3,8 @@
 
 # Disguised Pigeon's NixOS Dotfiles
 Flake-based with unstable channels. Usable enough for me.
+> [!WARNING]
+> README not up-to-date
 
 ### System Info:
 - OS: NixOS (duh)
