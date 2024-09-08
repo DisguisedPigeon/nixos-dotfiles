@@ -31,6 +31,8 @@ in
     wl-clipboard
   ];
 
+	services.dunst.enable = true;
+
   programs.waybar = {
     enable = true;
     settings = {
@@ -116,8 +118,9 @@ in
       ];
 
 			monitor = [
-				"eDP1, highres, auto, 1"
-				", preferred, auto, 1"
+				"HDMI-A-1, highres, 0x0, 1"
+				"eDP-1, highres, 1920x0, 1.5"
+				", preferred, auto-right, 1"
 			];
 
       general = {
