@@ -31,3 +31,4 @@ require("lualine").setup({
 		section_separators = "",
 	},
 })
+require("render-markdown").setup {}

@@ -113,6 +113,8 @@
     extensions = [
       "epcnnfbjfcgphgdmggkamkmgojdagdnn" # ublock
       "eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark reader
+			"cfemcmeknmapecneeeaajnbhhgfgkfhp" # darkpdf
+			"enpfonmmpgoinjpglildebkaphbhndek" # Tokyonight-ish
     ];
   };
 

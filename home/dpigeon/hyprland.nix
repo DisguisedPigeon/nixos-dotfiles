@@ -45,6 +45,7 @@ in
         modules-center = [ "clock" ];
         modules-right = [
           "tray"
+					"battery"
           "pulseaudio"
         ];
 
@@ -70,32 +71,26 @@ in
           };
         };
         tray = {
-          icon-size = 20;
+          icon-size = 10;
           spacing = 10;
         };
         clock = {
           tooltip-format = "<big>{calendar}</big>";
           format-alt = "{:%d / %m / %Y}";
         };
+				battery = {
+					format = "{icon}";
+					format-icons = ["󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂂" "󰁹"];
+				};
         pulseaudio = {
-          format = "{volume}%  {icon}  ";
+          format = "{volume}% {icon} ";
           format-bluetooth = "{volume}% {icon} {format_source}";
           format-bluetooth-muted = " {icon} {format_source}";
           format-muted = "0% {icon} ";
           format-source = "{volume}% ";
           format-source-muted = "";
           format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
-            default = [
-              ""
-              ""
-              ""
-            ];
+            default = "󰕾";
           };
           on-click = "pavucontrol";
         };
@@ -181,6 +176,7 @@ in
           "$mod shift, l, movewindow, r"
           "$mod shift, k, movewindow, u"
           "$mod shift, j, movewindow, d"
+					"$mod control, s, swapactiveworkspaces, 0 1"
 
           "$mod shift, down, exec, light -U 30"
           "$mod shift, up, exec, light -A 30"

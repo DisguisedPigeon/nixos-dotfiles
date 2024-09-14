@@ -41,6 +41,8 @@
       cmp-nvim-lsp
       tokyonight-nvim
       none-ls-nvim
+			nightfox-nvim
+			render-markdown-nvim
     ];
   };
 
