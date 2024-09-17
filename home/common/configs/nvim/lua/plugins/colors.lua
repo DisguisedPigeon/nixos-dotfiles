@@ -1,0 +1,6 @@
+vim.cmd.colorscheme("tokyonight-storm")
+vim.cmd.colorscheme("duskfox")
+-- vim.cmd.colorscheme('catppuccin-mocha')
+-- vim.cmd.colorscheme('rose-pine-moon')
+-- vim.cmd.colorscheme('kanagawa')
+-- vim.cmd.colorscheme('kanagawa-dragon')
