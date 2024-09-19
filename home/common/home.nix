@@ -6,9 +6,11 @@
 {
   imports = [
     ./nvim.nix
+		./zsh.nix
     ./kitty.nix
     ./hyprland.nix
     ./plasma.nix
+		./terminal.nix
   ];
 
   nixpkgs = {

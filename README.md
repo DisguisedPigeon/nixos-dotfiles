@@ -3,51 +3,63 @@
 
 # Disguised Pigeon's NixOS Dotfiles
 Flake-based with unstable channels. Usable enough for me.
-> [!WARNING]
-> README not up-to-date
 
 ### System Info:
 - OS: NixOS (duh)
-- DE: KDE plasma (stock), Hyprland (incomplete atm), awesomewm (incomplete atm)
-- Shell: ZSH (for user)
+- DE: Hyprland, KDE plasma (Basic config), awesomewm (unconfigured)
+- Shell: ZSH
 - Terminal: Kitty/Konsole
-- Editor: NeoVim BTW
+- Editor: Neovim BTW
 
 ### Repo structure (might change)
-- flake.nix: flake definition (describes the libraries and sourcefiles to be built)
-- flake.lock: versions for the variables in te flake.nix
-- configuration.nix: system-wide configs
-- users/: user-specific configs (with home manager)
+- flake.nix: flake definition (Describes channels to get packages from and sources configurations)
+- hosts/: System-wide configs. This includes user creation
+- home/: User-specific configs (with home manager).
 
 ### Instalation instructinos
 #### 0. Prerequisites
  - Functioning NixOS installation.
- - flakes and nix-command enabled (view [Configuration.nix](configuration.nix#L5), line 5).
- - git must be installed (package `git`).
+ - flakes and nix-command enabled (view [configuration.nix](./hosts/DPigeon-MacOS/configuration.nix#L36), `nix.settings.experimental-features`).
 
 #### 1. Installation
 ```sh
-git clone https://github.com/DisguisedPigeon/nixos-dotfiles.git $HOME/nixos-dotfiles
-cd $HOME/nixos-dotfiles
+git clone https://github.com/DisguisedPigeon/nixos-dotfiles.git /home/.nixos-dotfiles #This is where I store it.
+cd /home/.nixos-dotfiles
 ```
-at this point you can delete the .git folder if you want, this is now your config.
+at this point, this is now your config.
 
 > [!WARNING]
-> Before applying,you should probably switch the [hardware configuration](hardware-configuration.nix) with your own and remove every reference to the nixos-hardware repo in the [flake](flake.nix), as these are hardware-specific.
+> Before applying, you should switch:
+> - [hardware-configuration.nix](./hosts/DPigeon-MacOS/hardware-configuration.nix) with your own 
+> - Switch the references to the nixos-hardware repo in the [configuration.nix](./hosts/DPigeon/configuration.nix)
+> These are machine-specific
 
 > [!NOTE]
-> As I'm a comedy genius, I called my host DPigeon-MacOS, you may change it to whatever you prefer in the [flake](flake.nix#L14), line 14 and in the [configuration file](configuration.nix#L27), line 27.
-> The only defined user atm is dpigeon, you can also change it in the [flake](flake.nix#L32), the [config file](configuration.nix#L55) and the [per-user config](users/dpigeon-home.nix#L3-L4) 
+> As I'm a comedy genius, I called my NixOS host DPigeon-MacOS, you may change it to whatever you prefer in the [flake](flake.nix), the system-wide folder andthe [configuration file](./hosts/DPigeon-MacOS/configuration.nix#L27).
+> There are two users defined atm, dpigeon and test. You can also create new ones or their names in the [flake](flake.nix), the [config file](./hosts/DPigeon-MacOS/configuration.nix) and the [per-user config](home/dpigeon/home.nix).
+>
+> The users should be reflected in all the files mentioned because of home-manager.
 
-Here you should switch DPigeon-MacOS with whatever hostname you set **in the flake.nix**
+Here you should switch DPigeon-MacOS with your hostname (as defined in [flake.nix](flake.nix)). I also have defined an alias for dpigeon to apply nixos config (`nupdate`) and update the flake (`fupdate`) and another for both users to apply home manager config (`hupdate`)
+
+###### System update
 ```sh
 sudo nixos-rebuild --flake .#DPigeon-MacOS switch
 ```
+###### User home update
+```sh
+home-manager --flake .#dpigeon@DPigeon-MacOS switch
+```
+
+###### Flake update
+```sh
+sudo nixos-rebuild --flake --upgrade .#DPigeon-MacOS switch
+```
 
 ### Aditional notes
-- This is a permanent WIP, do not expect stability from anything I make. I've deleted my nvim config and re-wrote it like 3 times. Also, I often forget to push stuff. Oopsie.
+- This is a permanent WIP, do not expect stability from anything I make. I've deleted my nvim config and re-wrote it like 3 times in the past. Also, I often forget to push stuff. Oopsie.
 - I use NixOS BTW
-- I will probably forget updating this readme, so the specific line numbers will probably be wrong.
-- Unless in the future I update this, there probably are programs with incomplete configurations (also see first item). At the time of writing this, at least Hyprland and Nvim (the second probably will be rewritten with NixVim)
+- I will probably forget updating this readme (LAST UPDATE: 19/9/2024), so success rate will probably get worse with time
+- Unless in the future I update this (I did, but awesomewm is still not done), there probably are programs with incomplete configurations (also see first item). At the time of writing this, awesomewm is not configured at all.
 - I use NeoVim BTW
 - I don't expect nobody to use this, so if somebody is reading, I'm sorry for giving you the impression that installing this is a good idea. it's probably better for you to use another config (haven't tried it, but everything rxyhn makes is cool AF, so [rxyhn's yuki](https://github.com/rxyhn/yuki)).
