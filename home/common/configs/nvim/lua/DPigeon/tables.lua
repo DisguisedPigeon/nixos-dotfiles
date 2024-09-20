@@ -101,6 +101,7 @@ M.servers = {
 	rust_analyzer = {},
 	tsserver = {},
 	nil_ls = {},
+	gleam = {},
 	elixirls = {
 		single_file_support = false,
 		cmd = { "elixir-ls" },
