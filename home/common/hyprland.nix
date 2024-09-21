@@ -81,6 +81,7 @@ in
 				battery = {
 					format = "{icon}";
 					format-icons = ["󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂂" "󰁹"];
+					tooltip-format = "{capacity}% - {timeTo}";
 				};
         pulseaudio = {
           format = "{volume}% {icon} ";
