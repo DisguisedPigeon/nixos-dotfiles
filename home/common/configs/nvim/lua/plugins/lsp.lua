@@ -19,6 +19,7 @@ local function merge_tables(t1, t2)
 end
 
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
 for k, v in pairs(servers) do
 	require("lspconfig")[k].setup(
 		merge_tables(

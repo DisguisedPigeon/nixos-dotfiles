@@ -7,6 +7,7 @@
 	"cmp"
 }
 ]]
+require("lazydev").setup()
 require("fidget").setup()
 require("oil").setup()
 require("glow").setup()

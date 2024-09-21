@@ -43,6 +43,9 @@
       none-ls-nvim
 			nightfox-nvim
 			render-markdown-nvim
+			lazydev-nvim
+			catppuccin-nvim
+			rose-pine
     ];
   };
 
