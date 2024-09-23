@@ -2,10 +2,7 @@ local on_attach = require("DPigeon.functions").lsp_on_attach
 local servers = require("DPigeon.tables").servers
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-if not table.unpack then
-	table.unpack = unpack
-end
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local function merge_tables(t1, t2)
 	local result = {}
@@ -17,8 +14,6 @@ local function merge_tables(t1, t2)
 	end
 	return result
 end
-
-capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 for k, v in pairs(servers) do
 	require("lspconfig")[k].setup(
