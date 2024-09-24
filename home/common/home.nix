@@ -22,6 +22,12 @@
       allowUnfree = true;
     };
   };
+	programs.thunderbird = {
+		enable = true;
+		profiles.dpigeon = {
+			isDefault = true;
+		};
+	};
 
   stylix = {
     enable = true;
