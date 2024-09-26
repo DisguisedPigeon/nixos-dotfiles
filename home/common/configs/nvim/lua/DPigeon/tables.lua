@@ -122,8 +122,8 @@ M.servers = {
 			signatureAfterComplete = true,
 			enableTestLenses = true,
 			additionalWatchedExtensions = true,
-			languageServerOverridePath = true
-		}
+			languageServerOverridePath = true,
+		},
 	},
 	lua_ls = {
 		settings = {

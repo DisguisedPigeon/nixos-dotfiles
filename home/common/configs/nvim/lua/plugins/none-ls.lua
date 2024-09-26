@@ -6,7 +6,7 @@ local sources = {
 	}),
 	none_ls.builtins.formatting.isort,
 	-- elixir
-	none_ls.builtins.diagnostics.credo
+	none_ls.builtins.diagnostics.credo,
 }
 
 none_ls.setup({ sources = sources })

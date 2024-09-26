@@ -16,11 +16,7 @@ local function merge_tables(t1, t2)
 end
 
 for k, v in pairs(servers) do
-	require("lspconfig")[k].setup(
-		merge_tables(
-			{ capabilities = capabilities, on_attach = on_attach },
-			v
-		))
+	require("lspconfig")[k].setup(merge_tables({ capabilities = capabilities, on_attach = on_attach }, v))
 end
 
 local cmp = require("cmp")

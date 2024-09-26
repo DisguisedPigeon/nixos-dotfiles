@@ -4,7 +4,7 @@ vim.opt.relativenumber = true
 vim.opt.mouse = "a"
 vim.opt.clipboard = "unnamedplus"
 
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = "80"
 
 vim.opt.breakindent = true
 
