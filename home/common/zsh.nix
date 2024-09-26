@@ -1,16 +1,16 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 {
-	home.packages = with pkgs; [
-		bat
-		eza
-		zoxide
-		fzf	
-	];
+  home.packages = with pkgs; [
+    bat
+    eza
+    zoxide
+    fzf
+  ];
   programs.zsh = {
     shellAliases = {
-			cat = "bat";
-			ls = "eza";
-			cd = "z";
-		};
-	};
+      cat = "bat";
+      ls = "eza";
+      cd = "z";
+    };
+  };
 }

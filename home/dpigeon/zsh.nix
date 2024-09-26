@@ -36,8 +36,8 @@
       gs = "git status";
       gst = "git stash";
       gsp = "git stash pop";
-			gd = "git diff";
-			gds = "git diff --staged";
+      gd = "git diff";
+      gds = "git diff --staged";
     };
     history = {
       size = 10000;

@@ -1,13 +1,9 @@
-{
-  outputs,
-  pkgs,
-  ...
-}:
+{ outputs, pkgs, ... }:
 {
   imports = [
     ./zsh.nix
     ./starship.nix
-		../common/home.nix
+    ../common/home.nix
   ];
 
   nixpkgs = {
@@ -19,7 +15,6 @@
       allowUnfree = true;
     };
   };
-
 
   home = {
     username = "dpigeon";

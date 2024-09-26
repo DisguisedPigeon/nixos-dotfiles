@@ -31,7 +31,7 @@ in
     wl-clipboard
   ];
 
-	services.dunst.enable = true;
+  services.dunst.enable = true;
 
   programs.waybar = {
     enable = true;
@@ -45,7 +45,7 @@ in
         modules-center = [ "clock" ];
         modules-right = [
           "tray"
-					"battery"
+          "battery"
           "pulseaudio"
         ];
 
@@ -68,6 +68,7 @@ in
             "7" = [ ];
             "8" = [ ];
             "9" = [ ];
+            "0" = [ ];
           };
         };
         tray = {
@@ -78,11 +79,22 @@ in
           tooltip-format = "<big>{calendar}</big>";
           format-alt = "{:%d / %m / %Y}";
         };
-				battery = {
-					format = "{icon}";
-					format-icons = ["󰂃" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂂" "󰁹"];
-					tooltip-format = "{capacity}% - {timeTo}";
-				};
+        battery = {
+          format = "{icon}";
+          format-icons = [
+            "󰂃"
+            "󰁺"
+            "󰁻"
+            "󰁼"
+            "󰁽"
+            "󰁾"
+            "󰁿"
+            "󰂀"
+            "󰂂"
+            "󰁹"
+          ];
+          tooltip-format = "{capacity}% - {timeTo}";
+        };
         pulseaudio = {
           format = "{volume}% {icon} ";
           format-bluetooth = "{volume}% {icon} {format_source}";
@@ -113,11 +125,11 @@ in
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       ];
 
-			monitor = [
-				"HDMI-A-1, highres, 0x0, 1"
-				"eDP-1, highres, 1920x0, 1.5"
-				", preferred, auto-right, 1"
-			];
+      monitor = [
+        "HDMI-A-1, highres, 0x0, 1"
+        "eDP-1, highres, 1920x0, 1.5"
+        ", preferred, auto-right, 1"
+      ];
 
       general = {
         gaps_in = 5;
@@ -177,7 +189,7 @@ in
           "$mod shift, l, movewindow, r"
           "$mod shift, k, movewindow, u"
           "$mod shift, j, movewindow, d"
-					"$mod control, s, swapactiveworkspaces, 0 1"
+          "$mod control, s, swapactiveworkspaces, 0 1"
 
           "$mod shift, down, exec, light -U 30"
           "$mod shift, up, exec, light -A 30"

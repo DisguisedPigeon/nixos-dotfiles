@@ -41,11 +41,11 @@
       cmp-nvim-lsp
       tokyonight-nvim
       none-ls-nvim
-			nightfox-nvim
-			render-markdown-nvim
-			lazydev-nvim
-			catppuccin-nvim
-			rose-pine
+      nightfox-nvim
+      render-markdown-nvim
+      lazydev-nvim
+      catppuccin-nvim
+      rose-pine
     ];
   };
 

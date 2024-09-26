@@ -1,16 +1,12 @@
-{
-  outputs,
-  pkgs,
-  ...
-}:
+{ outputs, pkgs, ... }:
 {
   imports = [
     ./nvim.nix
-		./zsh.nix
+    ./zsh.nix
     ./kitty.nix
     ./hyprland.nix
     ./plasma.nix
-		./terminal.nix
+    ./terminal.nix
   ];
 
   nixpkgs = {
@@ -22,12 +18,12 @@
       allowUnfree = true;
     };
   };
-	programs.thunderbird = {
-		enable = true;
-		profiles.dpigeon = {
-			isDefault = true;
-		};
-	};
+  programs.thunderbird = {
+    enable = true;
+    profiles.dpigeon = {
+      isDefault = true;
+    };
+  };
 
   stylix = {
     enable = true;
@@ -91,8 +87,8 @@
     extensions = [
       "epcnnfbjfcgphgdmggkamkmgojdagdnn" # ublock
       "eimadpbcbfnmbkopoojfekhnkhdbieeh" # dark reader
-			"cfemcmeknmapecneeeaajnbhhgfgkfhp" # darkpdf
-			"enpfonmmpgoinjpglildebkaphbhndek" # Tokyonight-ish
+      "cfemcmeknmapecneeeaajnbhhgfgkfhp" # darkpdf
+      "enpfonmmpgoinjpglildebkaphbhndek" # Tokyonight-ish
     ];
   };
 

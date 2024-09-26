@@ -8,7 +8,7 @@
   imports = [
     ./zsh.nix
     ./starship.nix
-		../common/home.nix
+    ../common/home.nix
   ];
 
   home = {
