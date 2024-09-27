@@ -25,7 +25,7 @@
       gimp
       floorp
       amule
-      transmission_4-qt
+      transmission_4-gtk
       syncplay
       inkscape
       vlc

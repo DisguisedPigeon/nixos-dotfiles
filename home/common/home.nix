@@ -28,10 +28,10 @@
   stylix = {
     enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyodark-terminal.yaml";
-    image = ./configs/wallpaper.png;
+    image = ./configs/wallpaper.jpeg;
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
-    cursor.size = 32;
+    cursor.size = 22;
     fonts = {
       monospace = {
         package = pkgs.maple-mono-NF;
@@ -54,7 +54,8 @@
 
   gtk.enable = true;
   gtk.iconTheme.package = pkgs.papirus-icon-theme;
-  gtk.iconTheme.name = "Papirus";
+  gtk.iconTheme.name = "Papirus-Dark";
+  qt.enable = true;
 
   xdg = {
     enable = true;
