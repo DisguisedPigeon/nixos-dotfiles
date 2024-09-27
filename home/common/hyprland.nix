@@ -142,7 +142,7 @@ in
 
       decoration = {
         rounding = 5;
-        inactive_opacity = 0.6;
+        inactive_opacity = 0.9;
         drop_shadow = true;
 
         blur = {
