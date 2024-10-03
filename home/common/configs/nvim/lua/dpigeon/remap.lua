@@ -1,8 +1,8 @@
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
 vim.keymap.set("n", "<leader>Y", '"+Y')
 
-vim.keymap.set({ "n", "v" }, "<leader>p", '"+p')
-vim.keymap.set({ "n", "v" }, "<leader>P", '"+P')
+vim.keymap.set("v", "<leader>p", '"_dp')
+vim.keymap.set("v", "<leader>P", '"_dP')
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
