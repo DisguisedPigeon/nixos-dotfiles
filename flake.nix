@@ -12,6 +12,7 @@
       home-manager.follows = "home-manager";
     };
     stylix.url = "github:danth/stylix";
+    nvim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =

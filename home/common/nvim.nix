@@ -3,6 +3,15 @@
   ...
 }:
 {
+  programs.neovim = {
+    enable = true;
+    plugins = with pkgs.vimPlugins; [
+      lazy-nvim
+    ];
+    vimAlias = true;
+    vimdiffAlias = true;
+    withNodeJs = true;
+  };
   home.packages = with pkgs; [
     xclip
     ripgrep
