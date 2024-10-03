@@ -11,7 +11,7 @@
     homeDirectory = "/home/dpigeon";
     packages = with pkgs; [
       obs-studio
-      vesktop
+      discord
       gimp
       floorp
       amule
