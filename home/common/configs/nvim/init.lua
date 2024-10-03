@@ -1,55 +1,5 @@
--- Opts
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
-vim.g.have_nerd_font = true
-
-vim.opt.number = true
-vim.opt.relativenumber = true
-
-vim.opt.mouse = 'a'
-
-vim.opt.showmode = false
-
-vim.opt.breakindent = true
-
-vim.opt.undofile = true
-
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
-vim.opt.signcolumn = 'yes'
-
-vim.opt.updatetime = 250
-vim.opt.timeoutlen = 300
-
-vim.opt.splitright = true
-vim.opt.splitbelow = true
-
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
-vim.opt.inccommand = 'split'
-
-vim.opt.colorcolumn = '80'
-vim.opt.cursorline = true
-
-vim.opt.scrolloff = 10
-
--- Remaps
-vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
-vim.keymap.set('n', '<leader>Y', [["+Y]])
-
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
-vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+require 'dpigeon.opts'
+require 'dpigeon.remap'
 
 -- AutoCMDs
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -63,7 +13,14 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Plugins
 require('lazy').setup({
   'tpope/vim-sleuth',
-  { 'stevearc/oil.nvim', opts = {} },
+  {
+    'stevearc/oil.nvim',
+    config = function()
+      local oil = require 'oil'
+      oil.setup()
+      vim.keymap.set('n', '<leader>e', oil.open, { desc = 'Open oil [E]xplorer' })
+    end,
+  },
 
   {
     'lewis6991/gitsigns.nvim',
