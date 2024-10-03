@@ -13,6 +13,7 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
+      outputs.overlays.nvim-nightly
     ];
     config = {
       allowUnfree = true;

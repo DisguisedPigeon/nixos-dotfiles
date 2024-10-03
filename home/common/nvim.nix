@@ -11,6 +11,7 @@
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
+    package = pkgs.neovim;
   };
   home.packages = with pkgs; [
     xclip
