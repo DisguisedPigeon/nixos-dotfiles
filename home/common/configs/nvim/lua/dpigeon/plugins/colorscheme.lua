@@ -30,6 +30,14 @@ return {
   {
     'rose-pine/neovim',
     name = 'rose-pine',
+
+    opts = {
+      palette = {
+        moon = {
+          base = '#27253e',
+        },
+      },
+    },
     priority = 1000,
     -- init = function()
     --   vim.cmd.colorscheme 'rose-pine-moon'
