@@ -16,6 +16,8 @@
     xclip
     ripgrep
 
+    clang
+
     nodePackages.prettier
 
     lua-language-server

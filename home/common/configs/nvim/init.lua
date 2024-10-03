@@ -63,6 +63,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Plugins
 require('lazy').setup({
   'tpope/vim-sleuth',
+  { 'stevearc/oil.nvim', opts = {} },
 
   {
     'lewis6991/gitsigns.nvim',
