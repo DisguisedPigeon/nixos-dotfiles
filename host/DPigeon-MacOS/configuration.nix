@@ -19,7 +19,7 @@
     overlays = [
       outputs.overlays.additions
       outputs.overlays.modifications
-      neovim-nightly-overlay.overlays.default
+      outputs.overlays.nvim-nightly
     ];
 
     config = {
