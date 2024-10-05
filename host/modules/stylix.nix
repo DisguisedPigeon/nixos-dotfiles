@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+# Stylix config (probably not the best way to do this)
+{ pkgs }:
 {
   stylix = {
-    enable = true;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyodark-terminal.yaml";
     image = ./configs/wallpaper.png;
     cursor.package = pkgs.bibata-cursors;
