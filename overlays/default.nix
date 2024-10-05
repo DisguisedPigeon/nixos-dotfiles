@@ -1,12 +1,9 @@
-# This file defines overlays
 { inputs, ... }:
 {
-  # This one brings our custom packages from the 'pkgs' directory
+  nvim-nightly = inputs.neovim-nightly.overlays.default;
+
   additions = final: _prev: import ../pkgs final.pkgs;
 
-  # This one contains whatever you want to overlay
-  # You can change versions, add patches, set compilation flags, anything really.
-  # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
     vimPlugins = prev.vimPlugins // {
       render-markdown-nvim = prev.vimUtils.buildVimPlugin {
@@ -21,8 +18,5 @@
         meta.homepage = "https://github.com/MeanderingProgrammer/render-markdown.nvim/";
       };
     };
-    # example = prev.example.overrideAttrs (oldAttrs: rec {
-    # ...
-    # });
   };
 }

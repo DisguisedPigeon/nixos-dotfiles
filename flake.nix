@@ -12,6 +12,7 @@
       home-manager.follows = "home-manager";
     };
     stylix.url = "github:danth/stylix";
+    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
@@ -25,8 +26,19 @@
     }@inputs:
     let
       inherit (self) outputs;
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
+      devShells.${system}.default = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          statix
+          deadnix
+          nil
+          nixfmt-rfc-style
+        ];
+      };
+
       packages = import ./pkgs nixpkgs.legacyPackages.x86_64-linux;
 
       overlays = import ./overlays { inherit inputs; };
@@ -71,6 +83,6 @@
           ];
         };
       };
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+      formatter.${system} = pkgs.nixfmt-rfc-style;
     };
 }

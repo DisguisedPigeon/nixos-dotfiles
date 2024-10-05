@@ -1,20 +1,10 @@
-{ outputs, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./zsh.nix
     ./starship.nix
     ../common/home.nix
   ];
-
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
-    ];
-    config = {
-      allowUnfree = true;
-    };
-  };
 
   home = {
     username = "dpigeon";
