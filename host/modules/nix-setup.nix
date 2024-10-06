@@ -8,7 +8,7 @@
   ...
 }:
 {
-
+  config = lib.mkIf config.general.enable {
   nixpkgs = {
     overlays = [
       outputs.overlays.nvim-nightly
@@ -43,4 +43,5 @@
       registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
       nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
+  };
 }

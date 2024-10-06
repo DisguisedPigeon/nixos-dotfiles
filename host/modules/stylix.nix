@@ -1,5 +1,5 @@
 # Stylix config (probably not the best way to do this)
-{ pkgs }:
+{ pkgs, ... }:
 {
   stylix = {
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyodark-terminal.yaml";

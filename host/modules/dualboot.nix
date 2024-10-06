@@ -1,4 +1,9 @@
-{ config, lib }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options = {
     dualboot.enable = lib.mkEnableOption "enables dualboot support.";
@@ -15,5 +20,10 @@
         useOSProber = true;
       };
       boot.loader.efi.canTouchEfiVariables = true;
+      environment = {
+        systemPackages = [
+          pkgs.ntfs3g
+        ];
+      };
     };
 }
