@@ -1,24 +1,14 @@
 { inputs, ... }:
 {
   imports = [
-    inputs.hardware.nixosModules.asus-zephyrus-ga502
-    ./hardware-configuration.nix
+    inputs.hardware.nixosModules.raspberry-pi-4
     ../modules/system-setup.nix
   ];
   # --- Custom modules config ---
   dev.enable = true;
   dualboot.enable = true;
-  graphics = {
-    enable = true;
-    desktops = {
-      plasma = true;
-      awesome = true;
-    };
-  };
-  laptop.enable = true;
   stylix.enable = true;
-  test-user.enable = true;
-  general.hostname = "DPigeon-MacOS";
+  general.hostname = "DPigeon-RasPI";
 
   # --- Build-specific ---
   system.stateVersion = "24.05";

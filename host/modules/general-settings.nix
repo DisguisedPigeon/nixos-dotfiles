@@ -12,6 +12,11 @@
 
   options = {
     general.enable = lib.mkEnableOption "sets general configs I don't expect to change";
+    general.hostname = lib.mkOption {
+      default = "nixOS";
+      example = "myHostName";
+      type = lib.types.str;
+    };
   };
 
   config =
@@ -20,7 +25,7 @@
     in
     lib.mkIf opts.enable {
       networking = {
-        hostName = "DPigeon-MacOS";
+        hostName = opts.hostname;
         networkmanager.enable = true;
       };
       time.timeZone = "Europe/Madrid";
