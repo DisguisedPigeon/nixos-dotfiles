@@ -14,6 +14,11 @@
   dualboot.enable = lib.mkDefault false;
   general.enable = lib.mkDefault true;
   graphics.enable = lib.mkDefault false;
+  graphics.desktops = {
+    hyprland = lib.mkDefault true;
+    plasma = lib.mkDefault false;
+    awesome = lib.mkDefault false;
+  };
   laptop.enable = lib.mkDefault false;
   stylix.enable = lib.mkDefault false;
   term.enable = lib.mkDefault true;

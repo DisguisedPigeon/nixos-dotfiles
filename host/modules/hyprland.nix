@@ -1,5 +1,6 @@
-{lib, config,...}:{
-  config = lib.mkIf config.graphic.enable && config.graphic.desktops.hyprland {
+{ lib, config, ... }:
+{
+  config = lib.mkIf (config.graphics.enable && config.graphics.desktops.hyprland) {
     programs.hyprland = {
       enable = true;
       xwayland.enable = true;

@@ -9,16 +9,19 @@
   ];
 
   options = {
-      graphics.enable = lib.mkEnableOption "graphics";
-      graphics.desktops = {
-        hyprland = lib.mkEnableOption "hyprland desktop";
-        plasma = lib.mkEnableOption "plasma desktop";
-        awesome= lib.mkEnableOption "awesome desktop";
-      };
+    graphics.enable = lib.mkEnableOption "graphics";
+    graphics.desktops = {
+      hyprland = lib.mkEnableOption "hyprland desktop";
+      plasma = lib.mkEnableOption "plasma desktop";
+      awesome = lib.mkEnableOption "awesome desktop";
     };
+  };
 
-  config = let
-        opts = config.graphics; in lib.mkIf opts.enable {
+  config =
+    let
+      opts = config.graphics;
+    in
+    lib.mkIf opts.enable {
       services = {
         xserver = {
           enable = true;

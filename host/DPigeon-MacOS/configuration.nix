@@ -1,4 +1,4 @@
-{inputs, ... }:
+{ inputs, ... }:
 {
   imports = [
     inputs.hardware.nixosModules.asus-zephyrus-ga502
@@ -10,10 +10,10 @@
   dualboot.enable = true;
   graphics = {
     enable = true;
-    desktops = [
-      "hyprland"
-      "plasma"
-    ];
+    desktops = {
+      plasma = true;
+      awesome = true;
+    };
   };
   laptop.enable = true;
   stylix.enable = true;

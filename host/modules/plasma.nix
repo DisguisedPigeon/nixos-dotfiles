@@ -1,6 +1,6 @@
-{lib, config,  ... }:
+{ lib, config, ... }:
 {
-  config = lib.mkIf config.graphic.enable && config.graphic.desktops.plasma {
+  config = lib.mkIf (config.graphics.enable && config.graphics.desktops.plasma) {
     services.desktopManager.plasma6.enable = true;
   };
 }
