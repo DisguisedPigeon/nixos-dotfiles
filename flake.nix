@@ -26,32 +26,29 @@
       flake-utils,
       ...
     }@inputs:
-    flake-utils.lib.eachDefaultSystem (
+    flake-utils.lib.eachDefaultSystemPassThrough (
       system:
       let
-        inherit (self) outputs;
+        outputs = self.outputs;
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
-        packages = import ./pkgs pkgs;
-
-        devShells = {
-          default = pkgs.mkShell {
-            buildInputs = with pkgs; [
-              statix
-              deadnix
-              nil
-              nixfmt-rfc-style
-              stylua
-              treefmt
-              jsonfmt
+        devShells.${system}. default = pkgs.mkShell {
+            buildInputs = [
+              pkgs.statix
+              pkgs.deadnix
+              pkgs.nil
+              pkgs.nixfmt-rfc-style
+              pkgs.stylua
+              pkgs.treefmt
             ];
           };
-        };
+
+        # Only in case I'm editing without the devShell
+        formatter.${system} = pkgs.nixfmt-rfc-style;
 
         overlays = import ./overlays { inherit inputs; };
 
-        nixosModules = import ./modules/nixos;
         nixosConfigurations = {
           DPigeon-MacOS = nixpkgs.lib.nixosSystem {
             specialArgs = {
@@ -64,7 +61,6 @@
           };
         };
 
-        homeManagerModules = import ./modules/home-manager;
         homeConfigurations = {
           "dpigeon@DPigeon-MacOS" = home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.x86_64-linux;

@@ -1,35 +1,47 @@
 {
   pkgs,
+  lib,
+  config,
   ...
 }:
 {
-  programs.neovim = {
-    enable = true;
-    plugins = with pkgs.vimPlugins; [
-      lazy-nvim
-    ];
-    vimAlias = true;
-    vimdiffAlias = true;
-    withNodeJs = true;
-    package = pkgs.neovim;
+  opts = {
+    neovim-customization.enable = lib.mkEnableOption "my nvim config";
   };
-  home.packages = with pkgs; [
-    xclip
-    ripgrep
 
-    clang
+  config =
+    let
+      opts = config.neovim-config;
+    in
+    lib.mkIf opts.enable {
+      programs.neovim = {
+        enable = true;
+        plugins = with pkgs.vimPlugins; [
+          lazy-nvim
+        ];
+        vimAlias = true;
+        vimdiffAlias = true;
+        withNodeJs = true;
+        package = pkgs.neovim;
+      };
+      home.packages = with pkgs; [
+        xclip
+        ripgrep
 
-    nodePackages.prettier
+        clang
 
-    lua-language-server
-    lua53Packages.luacheck
-    stylua
+        nodePackages.prettier
 
-  ];
+        lua-language-server
+        lua53Packages.luacheck
+        stylua
 
-  xdg.configFile.nvim = {
-    enable = true;
-    source = ./configs/nvim;
-    recursive = true;
-  };
+      ];
+
+      xdg.configFile.nvim = {
+        enable = true;
+        source = ./configs/nvim;
+        recursive = true;
+      };
+    };
 }
