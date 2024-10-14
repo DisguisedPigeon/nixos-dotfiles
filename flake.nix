@@ -11,6 +11,7 @@
       nixpkgs.follows = "nixpkgs";
       home-manager.follows = "home-manager";
     };
+    flake-utils.url = "github:numtide/flake-utils";
     stylix.url = "github:danth/stylix";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
@@ -22,67 +23,72 @@
       home-manager,
       stylix,
       plasma-manager,
+      flake-utils,
       ...
     }@inputs:
-    let
-      inherit (self) outputs;
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
-    {
-      devShells.${system}.default = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          statix
-          deadnix
-          nil
-          nixfmt-rfc-style
-        ];
-      };
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        inherit (self) outputs;
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        packages = import ./pkgs pkgs;
 
-      packages = import ./pkgs nixpkgs.legacyPackages.x86_64-linux;
-
-      overlays = import ./overlays { inherit inputs; };
-
-      nixosModules = import ./modules/nixos;
-
-      homeManagerModules = import ./modules/home-manager;
-
-      nixosConfigurations = {
-        DPigeon-MacOS = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
+        devShells = {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              statix
+              deadnix
+              nil
+              nixfmt-rfc-style
+              stylua
+              treefmt
+              jsonfmt
+            ];
           };
-          modules = [
-            stylix.nixosModules.stylix
-            ./host/DPigeon-MacOS/configuration.nix
-          ];
         };
-      };
 
-      homeConfigurations = {
-        "dpigeon@DPigeon-MacOS" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = {
-            inherit inputs outputs;
+        overlays = import ./overlays { inherit inputs; };
+
+        nixosModules = import ./modules/nixos;
+        nixosConfigurations = {
+          DPigeon-MacOS = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs outputs;
+            };
+            modules = [
+              stylix.nixosModules.stylix
+              ./host/DPigeon-MacOS/configuration.nix
+            ];
           };
-          modules = [
-            stylix.homeManagerModules.stylix
-            plasma-manager.homeManagerModules.plasma-manager
-            ./home/dpigeon/home.nix
-          ];
         };
-        "test@DPigeon-MacOS" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = {
-            inherit inputs outputs;
+
+        homeManagerModules = import ./modules/home-manager;
+        homeConfigurations = {
+          "dpigeon@DPigeon-MacOS" = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.x86_64-linux;
+            extraSpecialArgs = {
+              inherit inputs outputs;
+            };
+            modules = [
+              stylix.homeManagerModules.stylix
+              plasma-manager.homeManagerModules.plasma-manager
+              ./home/dpigeon/home.nix
+            ];
           };
-          modules = [
-            stylix.homeManagerModules.stylix
-            plasma-manager.homeManagerModules.plasma-manager
-            ./home/test/home.nix
-          ];
+          "test@DPigeon-MacOS" = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.x86_64-linux;
+            extraSpecialArgs = {
+              inherit inputs outputs;
+            };
+            modules = [
+              stylix.homeManagerModules.stylix
+              plasma-manager.homeManagerModules.plasma-manager
+              ./home/test/home.nix
+            ];
+          };
         };
-      };
-      formatter.${system} = pkgs.nixfmt-rfc-style;
-    };
+      }
+    );
 }
