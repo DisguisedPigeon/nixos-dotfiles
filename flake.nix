@@ -33,16 +33,16 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
-        devShells.${system}. default = pkgs.mkShell {
-            buildInputs = [
-              pkgs.statix
-              pkgs.deadnix
-              pkgs.nil
-              pkgs.nixfmt-rfc-style
-              pkgs.stylua
-              pkgs.treefmt
-            ];
-          };
+        devShells.${system}.default = pkgs.mkShell {
+          buildInputs = [
+            pkgs.statix
+            pkgs.deadnix
+            pkgs.nil
+            pkgs.nixfmt-rfc-style
+            pkgs.stylua
+            pkgs.treefmt
+          ];
+        };
 
         # Only in case I'm editing without the devShell
         formatter.${system} = pkgs.nixfmt-rfc-style;
@@ -70,7 +70,7 @@
             modules = [
               stylix.homeManagerModules.stylix
               plasma-manager.homeManagerModules.plasma-manager
-              ./home/dpigeon/home.nix
+              ./home/DPigeon-MacOS/dpigeon/home.nix
             ];
           };
           "test@DPigeon-MacOS" = home-manager.lib.homeManagerConfiguration {
@@ -81,7 +81,7 @@
             modules = [
               stylix.homeManagerModules.stylix
               plasma-manager.homeManagerModules.plasma-manager
-              ./home/test/home.nix
+              ./home/DPigeon-MacOS/test/home.nix
             ];
           };
         };

@@ -5,13 +5,13 @@
   ...
 }:
 {
-  opts = {
+  options = {
     neovim-customization.enable = lib.mkEnableOption "my nvim config";
   };
 
   config =
     let
-      opts = config.neovim-config;
+      opts = config.neovim-customization;
     in
     lib.mkIf opts.enable {
       programs.neovim = {

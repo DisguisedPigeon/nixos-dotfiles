@@ -1,4 +1,4 @@
-{ lib }:
+{ lib, ... }:
 {
   imports = [
     ./home.nix
@@ -7,6 +7,7 @@
     ./kitty.nix
     ./plasma.nix
     ./hyprland.nix
+    ./starship.nix
   ];
   default_home.enable = lib.mkDefault true;
   zsh-customization.enable = lib.mkDefault true;
@@ -14,4 +15,5 @@
   kitty-customization.enable = lib.mkDefault true;
   plasma-customization.enable = lib.mkDefault true;
   hyprland-customization.enable = lib.mkDefault true;
+  starship-customization.enable = lib.mkDefault true;
 }

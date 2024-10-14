@@ -23,7 +23,7 @@
 
       runner = {
         package-name = lib.mkOption {
-          default = "rofi";
+          default = "rofi-wayland";
           type = lib.types.str;
           description = "Default runner package name (as in pkgs.{name}";
         };
@@ -49,8 +49,7 @@
       home.packages = [
         pkgs."${opts.browser}"
         pkgs."${opts.terminal}"
-        pkgs."${opts.runner}"
-        pkgs."${opts.powermenu.package-name}"
+        pkgs."${opts.runner.package-name}"
         pkgs.pcmanfm
         pkgs.gvfs
         pkgs.xdg-desktop-portal-gtk

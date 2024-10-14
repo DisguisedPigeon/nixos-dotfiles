@@ -1,15 +1,13 @@
 {
-  outputs,
   pkgs,
-  inputs,
   ...
 }:
 {
   imports = [
-    ./zsh.nix
-    ./starship.nix
-    ../common/home.nix
+    ../../common
   ];
+
+  zsh-customization.hostname = "DPigeon-MacOS";
 
   home = {
     username = "test";
@@ -18,5 +16,6 @@
       floorp
       youtube-music
     ];
+    starship.prefix = "[TEST](yellow) - ";
   };
 }

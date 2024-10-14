@@ -20,7 +20,7 @@
       programs.starship = {
         enable = true;
         settings = {
-          format = "${opts.prefix}(yellow) - $all";
+          format = "${opts.prefix}$all";
 
           aws = {
             symbol = "";
