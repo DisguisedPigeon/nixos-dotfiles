@@ -25,6 +25,9 @@
       youtube-music
     ];
 
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
   };
 
   # User-specific config
