@@ -205,7 +205,7 @@
             [
               "$mod, F, exec, ${opts.browser}"
               "$mod, return, exec, ${opts.terminal}"
-              "$mod, escape, exit"
+              "$mod shift, escape, exit"
               "$mod, W, killactive"
               "$mod, R, exec, ${opts.runner.command}"
               "$mod shift, P, exec, ${opts.powermenu}"

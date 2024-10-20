@@ -5,6 +5,7 @@
   ];
 
   zsh-customization.hostname = "DPigeon-MacOS";
+  programs.chromium.enable = true;
 
   home = {
     username = "dpigeon";
