@@ -5,10 +5,10 @@ return {
     opts = {
       palettes = { duskfox = { bg1 = "#27253e" } },
     },
-    init = function()
-      vim.cmd.colorscheme "duskfox"
-      vim.cmd.hi "Comment gui=none"
-    end,
+    -- init = function()
+    --   vim.cmd.colorscheme "duskfox"
+    --   vim.cmd.hi "Comment gui=none"
+    -- end,
   },
   {
     "folke/tokyonight.nvim",
@@ -39,9 +39,9 @@ return {
       },
     },
     priority = 1000,
-    -- init = function()
-    --   vim.cmd.colorscheme 'rose-pine-moon'
-    --   vim.cmd.hi 'Comment gui=none'
-    -- end,
+    init = function()
+      vim.cmd.colorscheme "rose-pine"
+      vim.cmd.hi "Comment gui=none"
+    end,
   },
 }
