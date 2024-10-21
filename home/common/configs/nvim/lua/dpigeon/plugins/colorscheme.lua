@@ -32,15 +32,21 @@ return {
     name = "rose-pine",
 
     opts = {
+      styles = {
+        transparency = true,
+      },
       palette = {
         moon = {
-          base = "#27253e",
+          base = "#232137",
+        },
+        main = {
+          --base = "#191723",
         },
       },
     },
     priority = 1000,
     init = function()
-      vim.cmd.colorscheme "rose-pine"
+      vim.cmd.colorscheme "rose-pine-main"
       vim.cmd.hi "Comment gui=none"
     end,
   },
