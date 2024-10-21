@@ -30,8 +30,8 @@
     #   };
     # };
     image = ./configs/wallpaper.png;
-    cursor.package = pkgs.bibata-cursors;
-    cursor.name = "Bibata-Modern-Ice";
+    cursor.package = pkgs.banana-cursor;
+    cursor.name = "Banana";
     fonts = {
       monospace = {
         package = pkgs.maple-mono-NF;

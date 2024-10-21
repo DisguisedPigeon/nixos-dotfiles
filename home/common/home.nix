@@ -25,6 +25,7 @@
           allowUnfree = true;
         };
       };
+      home.packages = [pkgs.banana-cursor];
 
       stylix = {
         enable = lib.mkDefault true;
@@ -56,8 +57,8 @@
         #   };
         # };
         image = lib.mkDefault ./configs/wallpaper.jpeg;
-        cursor.package = lib.mkDefault pkgs.bibata-cursors;
-        cursor.name = lib.mkDefault "Bibata-Modern-Ice";
+        cursor.package = lib.mkDefault pkgs.banana-cursor;
+        cursor.name = lib.mkDefault "Banana";
         cursor.size = lib.mkDefault 22;
         fonts = {
           monospace = {
