@@ -25,7 +25,7 @@
           allowUnfree = true;
         };
       };
-      home.packages = [pkgs.banana-cursor];
+      home.packages = [ pkgs.banana-cursor ];
 
       stylix = {
         enable = lib.mkDefault true;
