@@ -67,7 +67,7 @@ return {
         pyright = {},
         rust_analyzer = {},
         ts_ls = {},
-        nil_ls = {},
+        nixd = {},
         gleam = {},
         elixirls = {
           single_file_support = false,

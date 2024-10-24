@@ -13,6 +13,7 @@
     stateVersion = "23.05";
     # Packages with no home-manager config 
     packages = with pkgs; [
+      typora
       obs-studio
       discord
       gimp

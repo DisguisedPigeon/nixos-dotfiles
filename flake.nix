@@ -37,7 +37,7 @@
           buildInputs = [
             pkgs.statix
             pkgs.deadnix
-            pkgs.nil
+            pkgs.nixd
             pkgs.nixfmt-rfc-style
             pkgs.stylua
             pkgs.treefmt
