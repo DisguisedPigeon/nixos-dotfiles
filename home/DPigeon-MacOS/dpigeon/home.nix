@@ -14,6 +14,7 @@
     # Packages with no home-manager config 
     packages = with pkgs; [
       typora
+      thunderbird
       obs-studio
       discord
       gimp
