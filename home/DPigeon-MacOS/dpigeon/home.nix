@@ -37,7 +37,7 @@
   programs.zsh = {
     shellAliases = {
       nupdate = "sudo nixos-rebuild --flake .#${config.zsh-customization.hostname} switch";
-      fupdate = "sudo nix flake update . && sudo nixos-rebuild --flake .#${config.zsh-customization.hostname} switch && home-manager --flake .#${config.home.username}@${config.zsh-customization.hostname} switch";
+      fupdate = "sudo nix flake update && sudo nixos-rebuild --flake .#${config.zsh-customization.hostname} switch && home-manager --flake .#${config.home.username}@${config.zsh-customization.hostname} switch";
     };
   };
 }

@@ -69,6 +69,7 @@ return {
         ts_ls = {},
         nixd = {},
         gleam = {},
+        erlangls = {},
         elixirls = {
           single_file_support = false,
           cmd = { "elixir-ls" },
