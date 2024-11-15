@@ -12,8 +12,9 @@
       home-manager.follows = "home-manager";
     };
     flake-utils.url = "github:numtide/flake-utils";
-    stylix.url = "github:danth/stylix";
+    stylix.url = "github:danth/stylix?rev=04afcfc0684d9bbb24bb1dc77afda7c1843ec93b";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
 
   outputs =
@@ -24,6 +25,7 @@
       stylix,
       plasma-manager,
       flake-utils,
+      zen-browser,
       ...
     }@inputs:
     flake-utils.lib.eachDefaultSystemPassThrough (
@@ -52,7 +54,10 @@
         nixosConfigurations = {
           DPigeon-MacOS = nixpkgs.lib.nixosSystem {
             specialArgs = {
-              inherit inputs outputs;
+              inherit
+                inputs
+                outputs
+                ;
             };
             modules = [
               stylix.nixosModules.stylix
@@ -65,7 +70,12 @@
           "dpigeon@DPigeon-MacOS" = home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.x86_64-linux;
             extraSpecialArgs = {
-              inherit inputs outputs;
+              inherit
+                inputs
+                outputs
+                zen-browser
+                system
+                ;
             };
             modules = [
               stylix.homeManagerModules.stylix

@@ -1,4 +1,10 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  inputs,
+  system,
+  ...
+}:
 {
   imports = [
     ../../common
@@ -12,20 +18,21 @@
     homeDirectory = "/home/dpigeon";
     stateVersion = "23.05";
     # Packages with no home-manager config 
-    packages = with pkgs; [
-      typora
-      thunderbird
-      obs-studio
-      discord
-      gimp
-      floorp
-      amule
-      transmission_4-gtk
-      syncplay
-      inkscape
-      vlc
-      kdePackages.kdeconnect-kde
-      youtube-music
+    packages = [
+      inputs.zen-browser.packages."${system}".specific
+      pkgs.typora
+      pkgs.thunderbird
+      pkgs.obs-studio
+      pkgs.discord
+      pkgs.gimp
+      pkgs.floorp
+      pkgs.amule
+      pkgs.transmission_4-gtk
+      pkgs.syncplay
+      pkgs.inkscape
+      pkgs.vlc
+      pkgs.kdePackages.kdeconnect-kde
+      pkgs.youtube-music
     ];
 
     sessionVariables = {
