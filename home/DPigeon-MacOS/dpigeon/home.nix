@@ -40,6 +40,11 @@
     };
   };
 
+  hyprland-customization.browser = {
+    package = inputs.zen-browser.packages."${system}".specific;
+    command = "zen";
+  };
+
   # User-specific config
   programs.zsh = {
     shellAliases = {

@@ -8,23 +8,37 @@
   imports = [ ./rofi.nix ];
 
   options = {
-    hyprland-customization.enable = lib.mkEnableOption "hyprland customization";
     hyprland-customization = {
-      browser = lib.mkOption {
-        default = "floorp";
-        type = lib.types.str;
-        description = "Default browser";
+      enable = lib.mkEnableOption "hyprland customization";
+      browser = rec {
+        package = lib.mkOption {
+          default = pkgs."${command.default}";
+          type = lib.types.package;
+          description = "Default browser package";
+        };
+        command = lib.mkOption {
+          default = "floorp";
+          type = lib.types.str;
+          description = "Default browser command";
+        };
       };
-      terminal = lib.mkOption {
-        default = "kitty";
-        type = lib.types.str;
-        description = "Default terminal";
+      terminal = rec {
+        package = lib.mkOption {
+          default = pkgs."${command.default}";
+          type = lib.types.package;
+          description = "Default terminal package";
+        };
+        command = lib.mkOption {
+          default = "kitty";
+          type = lib.types.str;
+          description = "Default terminal command";
+        };
       };
 
       runner = {
-        package-name = lib.mkOption {
-          default = "rofi-wayland";
-          type = lib.types.str;
+        package = lib.mkOption {
+          default = pkgs.rofi-wayland;
+          type = lib.types.package;
           description = "Default runner package name (as in pkgs.{name}";
         };
         command = lib.mkOption {
@@ -47,9 +61,9 @@
     in
     {
       home.packages = [
-        pkgs."${opts.browser}"
-        pkgs."${opts.terminal}"
-        pkgs."${opts.runner.package-name}"
+        opts.browser.package
+        opts.terminal.package
+        opts.runner.package
         pkgs.pcmanfm
         pkgs.gvfs
         pkgs.xdg-desktop-portal-gtk
@@ -175,7 +189,6 @@
           decoration = {
             rounding = 5;
             inactive_opacity = 0.9;
-            drop_shadow = true;
 
             blur = {
               enabled = true;
@@ -203,8 +216,8 @@
 
           bind =
             [
-              "$mod, F, exec, ${opts.browser}"
-              "$mod, return, exec, ${opts.terminal}"
+              "$mod, F, exec, ${opts.browser.command}"
+              "$mod, return, exec, ${opts.terminal.command}"
               "$mod shift, escape, exit"
               "$mod, W, killactive"
               "$mod, R, exec, ${opts.runner.command}"

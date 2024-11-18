@@ -12,7 +12,7 @@
       home-manager.follows = "home-manager";
     };
     flake-utils.url = "github:numtide/flake-utils";
-    stylix.url = "github:danth/stylix?rev=04afcfc0684d9bbb24bb1dc77afda7c1843ec93b";
+    stylix.url = "github:danth/stylix";
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     zen-browser.url = "github:MarceColl/zen-browser-flake";
   };
