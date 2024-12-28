@@ -10,6 +10,8 @@
     ../../common
   ];
 
+  neovim-customization.enable = true;
+
   zsh-customization.hostname = "DPigeon-MacOS";
   programs.chromium.enable = true;
 
@@ -17,7 +19,7 @@
     username = "dpigeon";
     homeDirectory = "/home/dpigeon";
     stateVersion = "23.05";
-    # Packages with no home-manager config 
+    # Packages with no home-manager config
     packages = [
       inputs.zen-browser.packages."${system}".specific
       pkgs.typora
