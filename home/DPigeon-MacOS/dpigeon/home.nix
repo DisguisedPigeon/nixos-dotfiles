@@ -21,7 +21,7 @@
     stateVersion = "23.05";
     # Packages with no home-manager config
     packages = [
-      inputs.zen-browser.packages."${system}".specific
+      inputs.zen-browser.packages."${system}".beta
       pkgs.typora
       pkgs.thunderbird
       pkgs.obs-studio
@@ -43,7 +43,7 @@
   };
 
   hyprland-customization.browser = {
-    package = inputs.zen-browser.packages."${system}".specific;
+    package = inputs.zen-browser.packages."${system}".beta;
     command = "zen";
   };
 
