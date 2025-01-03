@@ -25,7 +25,7 @@
       pkgs.typora
       pkgs.thunderbird
       pkgs.obs-studio
-      pkgs.discord
+      pkgs.discord-canary
       pkgs.gimp
       pkgs.floorp
       pkgs.amule
