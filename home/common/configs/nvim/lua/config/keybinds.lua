@@ -30,7 +30,3 @@ vim.keymap.set("n", "<space>ts", function()
   vim.cmd.term()
 end)
 --#endregion
-
---#region Misc
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
---#endregion
