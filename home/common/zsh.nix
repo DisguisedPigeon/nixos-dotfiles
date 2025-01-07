@@ -60,7 +60,7 @@
         ];
         shellAliases = {
           cat = "bat";
-          hupdate = "home-manager --flake .#${config.home.username}@${opts.hostname} switch";
+          hupdate = "home-manager --flake .#${config.home.username}@${opts.hostname} switch -b backup";
           ":q" = "exit";
           ll = "ls -lah";
           ga = "git add .";

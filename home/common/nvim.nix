@@ -29,6 +29,7 @@
         ripgrep
 
         clang
+        cmake
 
         nodePackages.prettier
 

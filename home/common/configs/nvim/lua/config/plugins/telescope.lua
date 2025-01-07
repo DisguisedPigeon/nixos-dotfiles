@@ -4,11 +4,7 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "stevearc/dressing.nvim",
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        cond = function() return vim.fn.executable "make" == 1 end,
-        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
-      },
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release' }
     },
 
     opts = {
