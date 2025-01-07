@@ -42,9 +42,15 @@
     };
   };
 
-  hyprland-customization.browser = {
-    package = inputs.zen-browser.packages."${system}".beta;
-    command = "zen";
+  hyprland-customization = {
+    browser = {
+      package = inputs.zen-browser.packages."${system}".beta;
+      command = "zen";
+    };
+    terminal = {
+      package = pkgs.ghostty;
+      command = "ghostty";
+    };
   };
 
   # User-specific config
