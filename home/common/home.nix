@@ -74,9 +74,6 @@
             name = lib.mkDefault "DejaVu Serif";
           };
         };
-        opacity = {
-          terminal = lib.mkDefault 0.8;
-        };
         polarity = lib.mkDefault "dark";
       };
 

@@ -12,6 +12,7 @@
         enable = true;
         settings = {
           enable_audio_bell = false;
+          background_opacity = lib.mkForce 0.8;
         };
       };
     };

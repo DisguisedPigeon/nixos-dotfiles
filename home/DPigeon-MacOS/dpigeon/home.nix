@@ -14,6 +14,7 @@
 
   zsh-customization.hostname = "DPigeon-MacOS";
   programs.chromium.enable = true;
+  ghostty-customization.enable = true;
 
   home = {
     username = "dpigeon";
@@ -27,13 +28,8 @@
       pkgs.obs-studio
       pkgs.discord-canary
       pkgs.gimp
-      pkgs.floorp
-      pkgs.amule
       pkgs.transmission_4-gtk
-      pkgs.syncplay
-      pkgs.inkscape
       pkgs.vlc
-      pkgs.kdePackages.kdeconnect-kde
       pkgs.youtube-music
     ];
 
