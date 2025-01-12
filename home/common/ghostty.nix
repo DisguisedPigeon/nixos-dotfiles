@@ -12,7 +12,6 @@
         enable = true;
         settings = {
           window-decoration = false;
-          background-opacity = 1;
         };
       };
     };

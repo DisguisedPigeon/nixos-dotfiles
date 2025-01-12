@@ -8,6 +8,7 @@
   ];
 
   zsh-customization.hostname = "DPigeon-MacOS";
+  kitty-customization.enable = true;
 
   home = {
     username = "test";

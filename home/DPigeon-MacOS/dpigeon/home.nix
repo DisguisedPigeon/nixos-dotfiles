@@ -14,7 +14,7 @@
 
   zsh-customization.hostname = "DPigeon-MacOS";
   programs.chromium.enable = true;
-  ghostty-customization.enable = true;
+  alacritty-customization.enable = true;
 
   home = {
     username = "dpigeon";
@@ -43,10 +43,7 @@
       package = inputs.zen-browser.packages."${system}".beta;
       command = "zen";
     };
-    terminal = {
-      package = pkgs.ghostty;
-      command = "ghostty";
-    };
+    terminal.command = "alacritty";
   };
 
   # User-specific config

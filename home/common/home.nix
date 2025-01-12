@@ -57,9 +57,11 @@
         #   };
         # };
         image = lib.mkDefault ./configs/wallpaper.jpeg;
-        cursor.package = lib.mkDefault pkgs.banana-cursor;
-        cursor.name = lib.mkDefault "Banana";
-        cursor.size = lib.mkDefault 22;
+        cursor = {
+          package = lib.mkDefault pkgs.banana-cursor;
+          name = lib.mkDefault "Banana";
+          size = lib.mkDefault 22;
+        };
         fonts = {
           monospace = {
             package = lib.mkDefault pkgs.maple-mono-NF;
@@ -75,6 +77,9 @@
           };
         };
         polarity = lib.mkDefault "dark";
+        opacity = {
+          terminal = 0.8;
+        };
       };
 
       gtk.enable = lib.mkDefault true;
