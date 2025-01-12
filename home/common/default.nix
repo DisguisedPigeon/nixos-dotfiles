@@ -11,10 +11,12 @@
     ./ghostty.nix
     ./yazi.nix
     ./alacritty.nix
+    ./wezterm.nix
   ];
   default_home.enable = lib.mkDefault true;
   zsh-customization.enable = lib.mkDefault true;
   ghostty-customization.enable = lib.mkDefault false;
+  wezterm-customization.enable = lib.mkDefault false;
   alacritty-customization.enable = lib.mkDefault false;
   neovim-customization.enable = lib.mkDefault true;
   kitty-customization.enable = lib.mkDefault false;

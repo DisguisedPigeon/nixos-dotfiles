@@ -14,7 +14,7 @@
 
   zsh-customization.hostname = "DPigeon-MacOS";
   programs.chromium.enable = true;
-  alacritty-customization.enable = true;
+  wezterm-customization.enable = true;
 
   home = {
     username = "dpigeon";
@@ -43,7 +43,7 @@
       package = inputs.zen-browser.packages."${system}".beta;
       command = "zen";
     };
-    terminal.command = "alacritty";
+    terminal.command = "wezterm";
   };
 
   # User-specific config

@@ -115,17 +115,10 @@ return {
       },
 
       sources = {
-        default = { "lsp", "path", "snippets", "luasnip", "buffer" },
+        default = { "lsp", "path", "snippets", "buffer" },
       },
       snippets = {
-        expand = function(snippet) ls.lsp_expand(snippet) end,
-        active = function(filter)
-          if filter and filter.direction then
-            return ls.jumpable(filter.direction)
-          end
-          return ls.in_snippet()
-        end,
-        jump = function(direction) ls.jump(direction) end,
+        preset = 'luasnip',
       },
     }
   end
