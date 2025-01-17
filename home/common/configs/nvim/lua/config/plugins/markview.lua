@@ -3,6 +3,9 @@ return {
   config = function()
     local presets = require "markview.presets"
     require("markview").setup {
+      latex = {
+        enable = true,
+      },
       checkboxes = presets.checkboxes.nerd,
       headings = presets.headings.glow_center,
       horizontal_rules = presets.horizontal_rules.thick,

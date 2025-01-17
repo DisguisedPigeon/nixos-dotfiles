@@ -37,6 +37,9 @@
         lua53Packages.luacheck
         stylua
 
+        tree-sitter-grammars.tree-sitter-latex
+        tree-sitter
+
       ];
 
       xdg.configFile.nvim = {

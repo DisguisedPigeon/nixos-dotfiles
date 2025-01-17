@@ -4,8 +4,12 @@ return {
     local statusline = require "mini.statusline"
     local surround = require "mini.surround"
     local icons = require "mini.icons"
+    local ai = require "mini.ai"
+    local operators = require "mini.operators"
     statusline.setup { use_icons = true }
     surround.setup {}
     icons.setup {}
+    ai.setup {}
+    operators.setup {}
   end,
 }
