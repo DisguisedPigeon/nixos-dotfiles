@@ -8,6 +8,7 @@ local servers = {
   },
   gleam = {},
   nixd = {},
+  clangd = {},
   nil_ls = {},
   elixirls = {
     cmd = { "elixir-ls" },

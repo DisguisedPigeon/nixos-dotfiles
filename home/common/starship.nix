@@ -40,6 +40,9 @@
           dart = {
             symbol = "";
           };
+          gleam = {
+            symbol = "󰦥 ";
+          };
           directory = {
             read_only = " 󰌾";
           };

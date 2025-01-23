@@ -7,7 +7,7 @@
   modifications = final: prev: {
     maple-mono-NF = prev.stdenv.mkDerivation rec {
       pname = "MapleMono-NF";
-      version = "6.4";
+      version = "7.0-beta35";
       src = prev.fetchurl {
         url = "https://github.com/subframe7536/Maple-font/releases/download/v${version}/${pname}.zip";
         sha256 = "sha256-fy+hdUYZDW5nkMVirhkmys3tIkWezPDrlpNxnRMl4WU=";
