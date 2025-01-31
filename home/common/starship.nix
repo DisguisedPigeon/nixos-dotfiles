@@ -64,6 +64,12 @@
           git_branch = {
             symbol = "";
           };
+          git_status = {
+            deleted = "";
+            ahead = "";
+            behind = "";
+            diverged = "";
+          };
           golang = {
             symbol = "";
           };
