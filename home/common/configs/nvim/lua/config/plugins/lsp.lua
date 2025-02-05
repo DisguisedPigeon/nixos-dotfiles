@@ -6,6 +6,7 @@ local servers = {
       },
     },
   },
+  ocamllsp = {},
   gleam = {},
   nixd = {},
   clangd = {},
