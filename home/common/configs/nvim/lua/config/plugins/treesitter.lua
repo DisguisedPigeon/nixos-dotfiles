@@ -28,6 +28,11 @@ return {
     config = function()
       vim.wo.foldmethod = "expr"
       vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+
+      -- Womp womp
+      vim.api.nvim_create_autocmd("BufEnter", {
+        callback = function() vim.cmd "TSBufEnable highlight" end,
+      })
     end,
   },
   { "nvim-treesitter/nvim-treesitter-context", opts = { enable = true } },
