@@ -6,7 +6,6 @@ return {
     require("markview").setup {
       markdown = {
         headings = presets.headings.glow,
-        horizontal_rules = presets.horizontal_rules.arrowed,
         tables = presets.tables.rounded
       },
     }

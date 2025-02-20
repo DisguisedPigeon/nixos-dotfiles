@@ -56,7 +56,7 @@
         #     base0F = "eb98c3";
         #   };
         # };
-        image = lib.mkDefault ./configs/wallpaper.jpeg;
+        image = lib.mkDefault ./configs/wallpaper.png;
         cursor = {
           package = lib.mkDefault pkgs.banana-cursor;
           name = lib.mkDefault "Banana";

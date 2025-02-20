@@ -92,6 +92,8 @@ return {
       }
     })
 
+    ls.setup()
+
     require("blink.cmp").setup {
       keymap = {
         preset = "none",

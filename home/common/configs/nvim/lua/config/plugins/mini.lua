@@ -6,10 +6,13 @@ return {
     local icons = require "mini.icons"
     local ai = require "mini.ai"
     local operators = require "mini.operators"
+    local starter = require "mini.starter"
+
     statusline.setup { use_icons = true }
     surround.setup {}
     icons.setup {}
     ai.setup {}
+    starter.setup {}
     operators.setup {}
   end,
 }

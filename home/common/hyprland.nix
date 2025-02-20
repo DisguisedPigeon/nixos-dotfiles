@@ -42,7 +42,7 @@
           description = "Default runner package name (as in pkgs.{name}";
         };
         command = lib.mkOption {
-          default = "rofi -show drun -modi run,drun,ssh -scroll-method 0 -drun-match-fields all -drun-display-format '{name}' -no-drun-show-actions -terminal kitty -kb-cancel Alt-F1 -theme '$HOME'/.config/rofi/launcher.rasi";
+          default = "rofi -show drun -modi run,drun,ssh -scroll-method 0 -drun-match-fields all -drun-display-format '{name}' -no-drun-show-actions -terminal wezterm -kb-cancel Alt-F1 -theme '$HOME'/.config/rofi/launcher.rasi";
           type = lib.types.str;
           description = "Default runner command";
         };
@@ -229,6 +229,12 @@
               "$mod, l, movefocus, r"
               "$mod, k, movefocus, u"
               "$mod, j, movefocus, d"
+
+              "$mod control, h, layoutmsg, orientationleft"
+              "$mod control, j, layoutmsg, orientationbottom"
+              "$mod control, k, layoutmsg, orientationtop"
+              "$mod control, l, layoutmsg, orientationright"
+              "$mod control, space, layoutmsg, orientationcenter"
 
               "$mod shift, h, movewindow, l"
               "$mod shift, l, movewindow, r"
