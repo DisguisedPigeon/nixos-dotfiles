@@ -35,6 +35,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
+        # nix development shell
         devShells.${system}.default = pkgs.mkShell {
           buildInputs = [
             pkgs.statix
@@ -47,7 +48,7 @@
           ];
         };
 
-        # Only in case I'm editing without the devShell
+        # Set the default formatter
         formatter.${system} = pkgs.nixfmt-rfc-style;
 
         overlays = import ./overlays { inherit inputs; };

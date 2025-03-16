@@ -1,4 +1,7 @@
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "clear search highlight" })
+--#region <C-d> and <C-u>
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 --#region Execute lua
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>", { desc = "Execute full file" })

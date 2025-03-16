@@ -32,6 +32,8 @@
       pkgs.transmission_4-gtk
       pkgs.vlc
       pkgs.youtube-music
+      pkgs.spotube
+      pkgs.postman
     ];
 
     sessionVariables = {

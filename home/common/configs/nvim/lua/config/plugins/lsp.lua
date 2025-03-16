@@ -11,10 +11,12 @@ local servers = {
   nixd = {},
   clangd = {},
   nil_ls = {},
+  html = {},
   elixirls = {
     cmd = { "elixir-ls" },
     elixirLS = {},
   },
+  ruff = {}
 }
 
 
