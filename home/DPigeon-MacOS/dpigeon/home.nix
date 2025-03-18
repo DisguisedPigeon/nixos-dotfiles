@@ -10,7 +10,6 @@
     ../../common
   ];
 
-  llm.enable = true;
   neovim-customization.enable = true;
 
   zsh-customization.hostname = "DPigeon-MacOS";

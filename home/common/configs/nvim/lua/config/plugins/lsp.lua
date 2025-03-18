@@ -7,6 +7,7 @@ local servers = {
     },
   },
   ocamllsp = {},
+  rust_analyzer = { settings = { ['rust-analyzer'] = { diagnostics = { enable = false } } } },
   gleam = {},
   nixd = {},
   clangd = {},

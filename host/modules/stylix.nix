@@ -30,8 +30,11 @@
     #   };
     # };
     image = ./configs/wallpaper.png;
-    cursor.package = pkgs.banana-cursor;
-    cursor.name = "Banana";
+    cursor = {
+      package = pkgs.banana-cursor;
+      name = "Banana";
+      size = 22;
+    };
     fonts = {
       monospace = {
         package = pkgs.maple-mono-NF;
