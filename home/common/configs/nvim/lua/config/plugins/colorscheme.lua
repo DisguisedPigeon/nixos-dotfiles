@@ -1,13 +1,28 @@
 return {
-  "rose-pine/neovim",
+  {
+    "EdenEast/nightfox.nvim",
 
-  name = "rose-pine",
-  opts = {
-    styles = {
-      transparency = true,
+    opts = {
+      options = {
+        transparent = true,
+      },
     },
-  },
-  priority = 1000,
+    priority = 1000,
 
-  init = function() vim.cmd.colorscheme "rose-pine-main" end,
+    init = function() vim.cmd.colorscheme "duskfox" end,
+  },
+
+  --[[ {
+     "rose-pine/neovim",
+
+     name = "rose-pine",
+     opts = {
+       styles = {
+         transparency = true,
+       },
+     },
+     priority = 1000,
+
+     init = function() vim.cmd.colorscheme "rose-pine-main" end,
+  }]]
 }
