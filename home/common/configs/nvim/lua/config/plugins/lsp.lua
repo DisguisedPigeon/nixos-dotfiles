@@ -9,6 +9,7 @@ local servers = {
   ocamllsp = {},
   rust_analyzer = { settings = { ['rust-analyzer'] = { diagnostics = { enable = false } } } },
   gleam = {},
+  ltex_plus = {settings = {ltex = {language = "es-ES"}}},
   nixd = {},
   clangd = {},
   nil_ls = {},

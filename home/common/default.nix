@@ -13,13 +13,16 @@
     ./yazi.nix
     ./alacritty.nix
     ./wezterm.nix
+    ./obs.nix
   ];
   default_home.enable = lib.mkDefault true;
+  obs.enable = lib.mkDefault false;
   zsh-customization.enable = lib.mkDefault true;
   ghostty-customization.enable = lib.mkDefault false;
   wezterm-customization.enable = lib.mkDefault false;
   alacritty-customization.enable = lib.mkDefault false;
   neovim-customization.enable = lib.mkDefault true;
+  neovim-customization.latex = lib.mkDefault true;
   kitty-customization.enable = lib.mkDefault false;
   plasma-customization.enable = lib.mkDefault true;
   hyprland-customization.enable = lib.mkDefault true;

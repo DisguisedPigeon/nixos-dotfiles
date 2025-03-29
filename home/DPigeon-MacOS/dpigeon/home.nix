@@ -14,6 +14,7 @@
 
   zsh-customization.hostname = "DPigeon-MacOS";
   programs.chromium.enable = true;
+  obs.enable = true;
   wezterm-customization.enable = true;
 
   stylix.base16Scheme = {
@@ -52,13 +53,13 @@
       inputs.zen-browser.packages."${system}".beta
       pkgs.typora
       pkgs.thunderbird
-      pkgs.obs-studio
       pkgs.discord-canary
       pkgs.gimp
       pkgs.transmission_4-gtk
       pkgs.vlc
       pkgs.youtube-music
       pkgs.spotube
+      pkgs.libreoffice-fresh
       pkgs.postman
     ];
 
