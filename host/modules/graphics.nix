@@ -34,7 +34,6 @@
       services = {
         xserver = {
           enable = true;
-          xkb.layout = "es";
         };
 
         pipewire = {
