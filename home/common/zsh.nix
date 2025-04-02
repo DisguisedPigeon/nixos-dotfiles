@@ -75,6 +75,7 @@
           gsp = "git stash pop";
           gd = "git diff";
           gds = "git diff --staged";
+          zi = "yazi";
         };
         history = {
           size = 10000;
