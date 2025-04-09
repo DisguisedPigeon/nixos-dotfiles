@@ -63,8 +63,9 @@
           hupdate = "home-manager --flake .#${config.home.username}@${opts.hostname} switch -b backup";
           ":q" = "exit";
           ll = "ls -lah";
-          ga = "git add .";
           n = "nvim";
+          zi = "yazi";
+          ga = "git add .";
           gc = "git commit -S";
           gl = "git log --graph --pretty=format:'%Cred%h%C(yellow)%d%Creset - %Cblue%an%Creset - %Cgreen%s'";
           gll = "git log --graph --pretty=format:'%Cred%H%C(yellow)%d%Creset - %Cblue%an%n%CgreenAuthor email: %ae%n%CgreenAuthor date: %ah%n%CgreenCommitter: %cn%n%CgreenCommitter email: %ce%n%CgreenCommit date: %ch%n%CgreenSigner: %GS%n%n%s%n%n%b'";
@@ -75,7 +76,6 @@
           gsp = "git stash pop";
           gd = "git diff";
           gds = "git diff --staged";
-          zi = "yazi";
         };
         history = {
           size = 10000;

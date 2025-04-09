@@ -101,13 +101,6 @@
         ];
       };
 
-      programs.git = {
-        enable = lib.mkDefault true;
-        extraConfig = {
-          safe.directory = "/home/.nixos-config/.git";
-        };
-      };
-
       programs.yazi.enable = lib.mkDefault false;
 
       services.kdeconnect = {

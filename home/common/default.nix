@@ -2,6 +2,7 @@
 {
   imports = [
     ./home.nix
+    ./git.nix
     ./zsh.nix
     ./nvim.nix
     ./llm.nix
@@ -24,6 +25,7 @@
   neovim-customization.enable = lib.mkDefault true;
   neovim-customization.latex = lib.mkDefault true;
   kitty-customization.enable = lib.mkDefault false;
+  git-customization.enable = lib.mkDefault true;
   plasma-customization.enable = lib.mkDefault true;
   hyprland-customization.enable = lib.mkDefault true;
   starship-customization.enable = lib.mkDefault true;

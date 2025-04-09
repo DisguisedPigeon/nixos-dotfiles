@@ -45,8 +45,8 @@
     keyboards.default = {
       extraDefCfg = "process-unmapped-keys yes";
       config = ''
-        (defsrc caps s d f g h j k l ; ' n m)
-        (defvar tap-time 150 hold-time 200)
+        (defsrc caps s d f g h j k l ; ')
+        (defvar tap-time 0 hold-time 500)
         (defalias
           caps esc
           a (tap-hold $tap-time $hold-time a lmet)
@@ -60,10 +60,8 @@
           l (tap-hold $tap-time $hold-time l lalt)
           ; (tap-hold $tap-time $hold-time ; lmet)
           ' (tap-hold $tap-time $hold-time ' C-S-u)
-          n (tap-hold $tap-time $hold-time n (unicode ñ))
-          m (tap-hold $tap-time $hold-time m (unicode Ñ))
         )
-        (deflayer base @caps @s @d @f @g @h @j @k @l @; @' @n @m)
+        (deflayer base @caps @s @d @f @g @h @j @k @l @; @')
       '';
     };
   };
