@@ -16,7 +16,6 @@
   graphics.enable = lib.mkDefault false;
   graphics.desktops = {
     hyprland = lib.mkDefault true;
-    plasma = lib.mkDefault false;
     awesome = lib.mkDefault false;
   };
   laptop.enable = lib.mkDefault false;

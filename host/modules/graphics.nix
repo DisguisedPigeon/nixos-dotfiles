@@ -16,7 +16,6 @@
     graphics.enable = lib.mkEnableOption "graphics";
     graphics.desktops = {
       hyprland = lib.mkEnableOption "hyprland desktop";
-      plasma = lib.mkEnableOption "plasma desktop";
       awesome = lib.mkEnableOption "awesome desktop";
     };
   };

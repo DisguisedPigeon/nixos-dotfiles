@@ -13,6 +13,7 @@
   neovim-customization.enable = true;
 
   zsh-customization.hostname = "DPigeon-MacOS";
+  xsession.windowManager.awesome.enable = true;
   programs.chromium.enable = true;
   obs.enable = true;
   wezterm-customization.enable = true;
