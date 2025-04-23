@@ -46,8 +46,8 @@
         xserver = {
           enable = true;
           xkb.layout = "us";
-          xkb.variant = "intl";
-          xkbOptions = "lv3:ralt_switch";
+          xkb.variant = "altgr-intl";
+          xkb.options = "lv3:ralt_switch";
         };
 
         pipewire = {

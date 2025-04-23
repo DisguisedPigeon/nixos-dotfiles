@@ -200,7 +200,7 @@
 
           input = {
             kb_layout = "us";
-            kb_variant = "intl";
+            kb_variant = "altgr-intl";
             follow_mouse = 1;
             touchpad.natural_scroll = true;
           };
