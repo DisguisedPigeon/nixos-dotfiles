@@ -1,5 +1,17 @@
 return {
   {
+    "catppuccin/nvim",
+    name = "catppuccin",
+
+    opts = {
+      transparent_background = true,
+      flavour = "mocha"
+    },
+    priority = 1000,
+
+    init = function() vim.cmd.colorscheme "catppuccin" end,
+  }
+  --[[ {
     "EdenEast/nightfox.nvim",
 
     opts = {
@@ -10,7 +22,7 @@ return {
     priority = 1000,
 
     init = function() vim.cmd.colorscheme "duskfox" end,
-  },
+  },]]
 
   --[[ {
      "rose-pine/neovim",
