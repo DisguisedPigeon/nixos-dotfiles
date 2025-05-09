@@ -6,14 +6,14 @@ Flake-based with unstable channels.
 
 ### Images
 ![Wallpaper](./resources/screenshot_clear_screen.png)
-![Terminal](./resources/screenshot_nvim_neofetch.png)
+![Terminal stuff](./resources/screenshot_nvim_neofetch.png)
 ![Browser](./resources/screenshot_floorp.png)
 
 ### System Info:
  - OS: NixOS
- - DE: Hyprland, KDE plasma (Basic config), awesomewm (unconfigured)
+ - DE: Hyprland, awesomewm (unconfigured)
  - Shell: ZSH
- - Terminal: Kitty/Konsole
+ - Terminal: Wezterm
  - Editor: Neovim BTW
 
 ### Repo structure (might change)
@@ -76,7 +76,7 @@ fupdate # Only as dpigeon
 ### Aditional notes
  - This is a permanent WIP, do not expect stability from anything I make. I've deleted my nvim config and re-wrote it like 3 times in the past. Also, I often forget to push stuff. Oopsie.
  - I use NixOS BTW
- - I will probably forget updating this readme (LAST UPDATE: 14/10/2024), so success rate will probably get worse with time
- - Unless in the future I update this , there probably are programs with incomplete configurations (also see first item). At the time of writing this, awesomewm is not configured at all. (I did update this, but awesomewm is still not done) (Still not done)
+ - I will probably forget updating this readme (LAST UPDATE: 09/05/2025), so success rate will probably get worse with time
+ - Unless in the future I update this, there probably are programs with incomplete configurations (also see first item). At the time of writing this, awesomewm is not configured at all. (I did update this, but awesomewm is still not done) (Still not done) (Once again not done, at this point I might just remove it)
  - I use NeoVim BTW
- - I don't expect nobody to use this, so if somebody is reading, I'm sorry for giving you the impression that installing this is a good idea. it's probably better for you to use another config (haven't tried it, but everything rxyhn makes is cool AF, so [rxyhn's yuki](https://github.com/rxyhn/yuki)).
+ - I don't expect nobody to use this, so if somebody is reading, I'm sorry for giving you the impression that installing this is a good idea. it's probably better for you to use another config (haven't tried it, but everything raexera makes is cool AF, so [raexera's yuki](https://github.com/raexera/yuki)).
