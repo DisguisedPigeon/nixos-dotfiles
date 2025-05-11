@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   options = {
     wezterm-customization.enable = lib.mkEnableOption "wezterm customization";
@@ -8,9 +13,13 @@
       opts = config.wezterm-customization;
     in
     lib.mkIf opts.enable {
-      programs.wezterm = {
+      xdg.configFile.wezterm = {
         enable = true;
-        extraConfig = ''return {hide_tab_bar_if_only_one_tab = true}'';
+        source = ./configs/wezterm;
+        recursive = true;
       };
+      home.packages = with pkgs; [
+        wezterm
+      ];
     };
 }

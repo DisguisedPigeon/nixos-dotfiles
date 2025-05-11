@@ -33,6 +33,8 @@
           cmake
 
           nodePackages.prettier
+          nodePackages.jsregexp
+          fd
 
           lua-language-server
           lua53Packages.luacheck

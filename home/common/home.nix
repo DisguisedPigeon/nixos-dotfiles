@@ -7,10 +7,6 @@
 }:
 let
   theme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-  wallpaper = pkgs.runCommand "image.png" { } ''
-    COLOR=$(${pkgs.yq}/bin/yq -r .palette.base00 ${theme})
-    ${pkgs.imagemagick}/bin/magick -size 1920x1080 xc:$COLOR $out
-  '';
 in
 {
   options = {
@@ -36,9 +32,9 @@ in
 
       stylix = {
         enable = lib.mkDefault true;
-        #base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+        # base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
         base16Scheme = lib.mkDefault theme;
-        #image = lib.mkDefault wallpaper;
+        # image = lib.mkDefault wallpaper;
         image = lib.mkDefault ./configs/wallpaper.png;
         cursor = {
           package = lib.mkDefault pkgs.banana-cursor;

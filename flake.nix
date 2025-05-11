@@ -45,6 +45,7 @@
             pkgs.nixfmt-rfc-style
             pkgs.stylua
             pkgs.treefmt
+            pkgs.lua-language-server
           ];
         };
 

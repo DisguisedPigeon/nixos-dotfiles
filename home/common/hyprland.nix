@@ -225,6 +225,7 @@
               "$mod shift, P, exec, ${opts.powermenu}"
               "$mod, V, togglefloating"
               "$mod, m, fullscreen"
+              #"$mod, spacebar, fullscreen"
 
               "$mod, h, movefocus, l"
               "$mod, l, movefocus, r"
