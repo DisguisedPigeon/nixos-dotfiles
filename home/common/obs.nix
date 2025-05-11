@@ -1,13 +1,18 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 {
   options = {
     obs.enable = lib.mkEnableOption "obs config";
   };
 
-  config = 
-    let 
+  config =
+    let
       opts = config.obs;
-    in 
+    in
     lib.mkIf opts.enable {
       programs.obs-studio = {
         enable = true;
