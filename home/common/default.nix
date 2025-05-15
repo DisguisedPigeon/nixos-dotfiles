@@ -16,6 +16,7 @@
     ./wezterm.nix
     ./obs.nix
   ];
+  session-chooser.enable = lib.mkDefault false;
   default_home.enable = lib.mkDefault true;
   obs.enable = lib.mkDefault false;
   zsh-customization.enable = lib.mkDefault true;

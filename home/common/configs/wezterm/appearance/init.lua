@@ -17,6 +17,6 @@ return function(wezterm)
       inactive_titlebar_bg = '#181825',
     },
 
-    colors = require "colors"
+    colors = require "appearance.colors"
   }
 end

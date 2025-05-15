@@ -225,7 +225,7 @@
               "$mod shift, P, exec, ${opts.powermenu}"
               "$mod, V, togglefloating"
               "$mod, m, fullscreen"
-              #"$mod, spacebar, fullscreen"
+              (lib.mkIf config.session-chooser.enable "$mod, Space, exec, wezterm start session-chooser")
 
               "$mod, h, movefocus, l"
               "$mod, l, movefocus, r"

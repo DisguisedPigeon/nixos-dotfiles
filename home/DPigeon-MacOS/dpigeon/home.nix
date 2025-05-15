@@ -10,6 +10,7 @@
     ../../common
   ];
 
+  session-chooser.enable = true;
   neovim-customization.enable = true;
 
   zsh-customization.hostname = "DPigeon-MacOS";
@@ -28,6 +29,7 @@
     packages = [
       inputs.zen-browser.packages."${system}".beta
       pkgs.typora
+      pkgs.ladybird
       pkgs.thunderbird
       pkgs.discord-canary
       pkgs.gimp

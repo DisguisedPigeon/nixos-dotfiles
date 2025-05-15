@@ -1,4 +1,4 @@
-local keymaps = require "keymaps"
+local keymaps = require "behavior.keymaps"
 
 return function(wezterm)
   return {
