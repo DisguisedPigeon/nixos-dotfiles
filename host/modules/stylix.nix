@@ -2,9 +2,6 @@
 { pkgs, lib, ... }:
 let
   theme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
-  wallpaper = pkgs.runCommand "image.png" { } ''
-    COLOR=$(${pkgs.yq}/bin/yq -r .palette.base00 ${theme}) ${pkgs.imagemagick}/bin/magick -size 1920x1080 xc:$COLOR $out
-  '';
 in
 {
   stylix = {
@@ -35,8 +32,6 @@ in
     #    base0F = "eb98c3";
     #  };
     #};
-    image = wallpaper;
-    #image = ./configs/wallpaper.png;
     cursor = {
       package = pkgs.banana-cursor;
       name = "Banana";

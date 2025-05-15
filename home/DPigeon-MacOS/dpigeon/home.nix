@@ -38,7 +38,6 @@
       pkgs.youtube-music
       pkgs.spotube
       pkgs.libreoffice-fresh
-      pkgs.postman
     ];
 
     sessionVariables = {
