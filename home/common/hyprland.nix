@@ -79,6 +79,53 @@
 
       services.dunst.enable = true;
 
+      stylix.targets.hyprlock.enable = false;
+
+      programs.hyprlock = {
+        enable = true;
+        settings = {
+          general.hide_cursor = true;
+          auth.pam.enabled = true;
+          background = [
+            {
+              path = "screenshot";
+              blur_passes = 3;
+              blur_size = 8;
+            }
+          ];
+          input-field = with config.lib.stylix.colors; {
+            outer_color = "rgb(${base03})";
+            inner_color = "rgb(${base00})";
+            font_color = "rgb(${base05})";
+            fail_color = "rgb(${base08})";
+            check_color = "rgb(${base0A})";
+          };
+        };
+      };
+
+      services.hypridle = {
+        enable = true;
+        settings = {
+          general = {
+            after_sleep_cmd = "hyprctl dispatch dpms on";
+            ignore_dbus_inhibit = false;
+            lock_cmd = "hyprlock";
+          };
+
+          listener = [
+            {
+              timeout = 200;
+              on-timeout = "hyprlock";
+            }
+            {
+              timeout = 1200;
+              on-timeout = "hyprctl dispatch dpms off";
+              on-resume = "hyprctl dispatch dpms on";
+            }
+          ];
+        };
+      };
+
       programs.waybar = {
         enable = true;
         settings = {

@@ -18,3 +18,5 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 vim.opt.breakindent = true
+
+vim.opt.winborder = "rounded"

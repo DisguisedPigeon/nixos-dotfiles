@@ -2,8 +2,7 @@ return {
   "saghen/blink.cmp",
   dependencies = { "rafamadriz/friendly-snippets", { "L3MON4D3/luasnip", version = '2.*' } },
 
-  version = "*",
-  build = "nix run .#build-plugin",
+  version = "1.*",
 
   opts_extend = { "sources.default" },
 
@@ -109,18 +108,29 @@ return {
 
         ['<C-h>'] = { 'snippet_backward' },
         ['<C-l>'] = { 'snippet_forward', 'select_and_accept', 'fallback' },
+
+        ['<C-k>'] = { 'show_signature', 'hide_signature', 'fallback' },
       },
 
       appearance = {
-        use_nvim_cmp_as_default = true,
-        nerd_font_variant = "mono",
+        nerd_font_variant = "normal",
+      },
+
+      snippets = {
+        preset = "luasnip"
       },
 
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
       },
-      snippets = {
-        preset = 'luasnip',
+
+      completion = {
+        ghost_text = {
+          enabled = true,
+        }
+      },
+      signature = {
+        enabled = true,
       },
     }
   end
