@@ -4,6 +4,7 @@ require "config.keybinds"
 
 vim.lsp.enable("clangd")
 vim.lsp.enable("elixirls")
+vim.lsp.enable("erlangls")
 vim.lsp.enable("gleam")
 vim.lsp.enable("html")
 vim.lsp.enable("ltex_plus")

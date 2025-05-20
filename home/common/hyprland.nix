@@ -146,20 +146,18 @@
               format = "<span style=\"italic\">{}</span>";
             };
             "hyprland/workspaces" = {
-              format = "{icon}";
+              format = "{icon}<sub> {name}</sub>";
               format-icons = {
+                "1" = "";
+                "2" = "";
+                "9" = "";
+                "10" = "";
                 "default" = "";
                 "empty" = "";
               };
               persistent-workspaces = {
                 "1" = [ ];
                 "2" = [ ];
-                "3" = [ ];
-                "4" = [ ];
-                "5" = [ ];
-                "6" = [ ];
-                "7" = [ ];
-                "8" = [ ];
                 "9" = [ ];
                 "10" = [ ];
               };
