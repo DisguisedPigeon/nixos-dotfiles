@@ -93,7 +93,7 @@ case $chosen in
         fi
         ;;
     $lock)
-        sh hyprlock
+        hyprlock
         ;;
     $suspend)
 		ans=$(rdialog &)
