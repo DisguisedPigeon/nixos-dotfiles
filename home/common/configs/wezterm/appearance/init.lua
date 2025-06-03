@@ -5,7 +5,7 @@ return function(wezterm)
       "Noto Color Emoji"
     },
     font_size = 12,
-    window_background_opacity = 0.8,
+    window_background_opacity = 1,
 
     hide_tab_bar_if_only_one_tab = true,
 

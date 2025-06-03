@@ -36,7 +36,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("<leader>lgd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
     map("<leader>lgD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-    map("<leader>lgd", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
     map("<leader>lds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
     map("<leader>lws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
     map("<leader>lf", function() vim.lsp.buf.format { async = true } end, "[L]sp [F]ormat")

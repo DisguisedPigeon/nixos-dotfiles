@@ -32,7 +32,7 @@
       pkgs.ladybird
       pkgs.thunderbird
       pkgs.discord-canary
-      pkgs.gimp
+      pkgs.gimp3
       pkgs.transmission_4-gtk
       pkgs.vlc
       pkgs.youtube-music

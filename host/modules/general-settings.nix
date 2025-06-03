@@ -27,6 +27,9 @@
       networking = {
         hostName = opts.hostname;
         networkmanager.enable = true;
+        extraHosts = ''
+          192.168.1.147 nextcloud.dpigeon
+        '';
       };
       time.timeZone = "Europe/Madrid";
       i18n.defaultLocale = "gl_ES.UTF-8";
