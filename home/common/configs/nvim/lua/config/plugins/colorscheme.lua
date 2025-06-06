@@ -1,25 +1,18 @@
 return {
-  {
+  --[[{
     "catppuccin/nvim",
     name = "catppuccin",
 
     config = function()
-      local mocha = require("catppuccin.palettes").get_palette "mocha"
-
       require("catppuccin").setup {
-        color_overrides = {
-          mocha = {
-            base = "#000000",
-            mantle = mocha.crust,
-            crust = mocha.mantle
-          }
-        }
+        transparent_background = true
       }
 
       vim.cmd.colorscheme "catppuccin-mocha"
     end,
     priority = 1000,
   },
+  ]]
   --[[ {
     "EdenEast/nightfox.nvim",
 
@@ -31,19 +24,22 @@ return {
     priority = 1000,
 
     init = function() vim.cmd.colorscheme "duskfox" end,
-  },]]
+  },
+  ]]
 
   {
     "rose-pine/neovim",
 
     name = "rose-pine",
-    opts = {
-      styles = {
-        transparency = true,
-      },
-    },
     priority = 1000,
 
-    --init = function() vim.cmd.colorscheme "rose-pine-main" end,
+    config = function()
+      require("rose-pine").setup {
+        styles = {
+          transparency = true,
+        },
+      }
+      vim.cmd.colorscheme "rose-pine-moon"
+    end,
   }
 }

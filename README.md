@@ -7,7 +7,7 @@ Flake-based with unstable channels.
 ### Images
 ![Wallpaper](./resources/screenshot_clear_screen.png)
 ![Terminal stuff](./resources/screenshot_nvim_neofetch.png)
-![Browser](./resources/screenshot_floorp.png)
+![Browser](./resources/screenshot_zen.png)
 
 ### System Info:
  - OS: NixOS
