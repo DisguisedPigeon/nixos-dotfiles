@@ -19,11 +19,11 @@ vim.opt.smartcase = true
 
 vim.opt.breakindent = true
 
-vim.opt_local.tabstop = 4
-vim.opt_local.softtabstop = 4
-vim.opt_local.shiftwidth = 4
-vim.opt_local.expandtab = true
-vim.opt_local.autoindent = true
-vim.opt_local.smartindent = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 
 vim.opt.winborder = "rounded"
