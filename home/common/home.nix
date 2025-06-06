@@ -58,7 +58,7 @@ in
         # base16Scheme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
         base16Scheme = lib.mkDefault theme;
         # image = lib.mkDefault wallpaper;
-        image = lib.mkDefault ./configs/wallpaper.jpeg;
+        image = lib.mkDefault ./configs/wallpaper.png;
         cursor = {
           package = lib.mkDefault pkgs.banana-cursor;
           name = lib.mkDefault "Banana";
