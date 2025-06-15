@@ -1,73 +1,62 @@
-# Graphic environment-related options
-
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-{
-  imports = [
-    ./hyprland.nix
-    ./awesome.nix
-  ];
-
-  options = {
-    graphics.enable = lib.mkEnableOption "graphics";
-    graphics.desktops = {
-      hyprland = lib.mkEnableOption "hyprland desktop";
-      awesome = lib.mkEnableOption "awesome desktop";
-    };
-  };
-
-  config =
-    let
-      opts = config.graphics;
-    in
-    lib.mkIf opts.enable {
-      environment.etc."sddm-wallpaper.png".source = ./sddm-wallpaper.png;
-
-      environment.systemPackages = [
-        (pkgs.callPackage ./sddm-astronaut-theme.nix {
-          theme = "astronaut";
-          themeConfig = {
-            General = {
-              HeaderText = "Hi";
-              Background = "/etc/sddm-wallpaper.png";
-              FontSize = "10.0";
-            };
-          };
-        })
-        pkgs.banana-cursor
-        pkgs.kdePackages.sddm-kcm
-      ];
-      services = {
-        xserver = {
-          enable = true;
-          xkb.layout = "us";
-          xkb.variant = "altgr-intl";
-          xkb.options = "lv3:ralt_switch";
-        };
-
-        pipewire = {
-          enable = true;
-          pulse.enable = true;
-          alsa.enable = true;
-        };
-
-        libinput.enable = true;
-        displayManager.defaultSession = "hyprland";
-        displayManager.sddm = {
-          theme = "sddm-astronaut-theme";
-          extraPackages = with pkgs; [
-            kdePackages.qtmultimedia
-            kdePackages.qtsvg
-            kdePackages.qtvirtualkeyboard
-          ];
-          package = pkgs.kdePackages.sddm;
-          wayland.enable = true;
-          enable = true;
-        };
+{ pkgs, ... }:
+let
+  wallpaper-location = "sddm-wallpaper.png";
+  sddm-astronaut-pkg = pkgs.callPackage ./sddm-astronaut-theme.nix {
+    theme = "astronaut";
+    themeConfig = {
+      General = {
+        HeaderText = "Hi";
+        FontSize = "10.0";
+        Background = "/etc/${wallpaper-location}";
       };
     };
+  };
+in
+{
+
+  environment.etc.${wallpaper-location}.source = ../../shared-files/wallpaper.png;
+
+  environment.systemPackages = [
+    sddm-astronaut-pkg
+    pkgs.banana-cursor
+    pkgs.kdePackages.sddm-kcm
+  ];
+
+  services = {
+    libinput.enable = true;
+    pipewire.enable = true;
+
+    displayManager.sddm.enable = true;
+    displayManager.defaultSession = "hyprland";
+
+    pipewire = {
+      pulse.enable = true;
+      alsa.enable = true;
+    };
+
+    displayManager.sddm = {
+      wayland.enable = true;
+
+      theme = "sddm-astronaut-theme";
+
+      package = pkgs.kdePackages.sddm;
+
+      extraPackages = with pkgs.kdePackages; [
+        qtmultimedia
+        qtsvg
+        qtvirtualkeyboard
+      ];
+    };
+
+    security.pam.services.hyprlock = { };
+
+    programs = {
+      hyprland = {
+        enable = true;
+        xwayland.enable = true;
+      };
+      hyprlock.enable = true;
+    };
+
+  };
 }

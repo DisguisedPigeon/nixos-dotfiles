@@ -26,6 +26,7 @@ local servers = {
   nil_ls = {},
 
   html = {},
+  cssls = {},
 
   tailwindcss = {
     workspace_required = false,

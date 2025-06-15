@@ -1,27 +1,29 @@
-# Stylix config (probably not the best way to do this)
-{ pkgs, lib, ... }:
-let
-  theme = lib.mkDefault "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
-in
+{ pkgs, ... }:
 {
   stylix = {
-    base16Scheme = theme;
+    enable = true;
+
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
+
+    polarity = "dark";
+
     cursor = {
       package = pkgs.banana-cursor;
       name = "Banana";
       size = 22;
     };
+
     fonts = {
       serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
+        package = pkgs.maple-mono.NF-unhinted;
+        name = "Maple Mono NF";
       };
       sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
+        package = pkgs.maple-mono.NF-unhinted;
+        name = "Maple Mono NF";
       };
       monospace = {
-        package = pkgs.maple-mono-NF;
+        package = pkgs.maple-mono.NF-unhinted;
         name = "Maple Mono NF";
       };
       emoji = {
@@ -29,12 +31,12 @@ in
         name = "Noto Color Emoji";
       };
     };
+
     opacity = {
       applications = 1.0;
       terminal = 0.8;
       desktop = 1.0;
       popups = 1.0;
     };
-    polarity = "dark";
   };
 }

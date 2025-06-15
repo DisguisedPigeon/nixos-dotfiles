@@ -35,32 +35,12 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
-        # nix development shell
-        devShells.${system}.default = pkgs.mkShell {
-          buildInputs = [
-            pkgs.statix
-            pkgs.deadnix
-            pkgs.nil
-            pkgs.nixd
-            pkgs.nixfmt-rfc-style
-            pkgs.stylua
-            pkgs.treefmt
-            pkgs.lua-language-server
-          ];
-        };
-
-        # Set the default formatter
-        formatter.${system} = pkgs.nixfmt-rfc-style;
-
-        overlays = import ./overlays { inherit inputs; };
+        overlays.nvim-nightly = inputs.neovim-nightly.overlays.default;
 
         nixosConfigurations = {
           DPigeon-MacOS = nixpkgs.lib.nixosSystem {
             specialArgs = {
-              inherit
-                inputs
-                outputs
-                ;
+              inherit inputs outputs;
             };
             modules = [
               stylix.nixosModules.stylix
@@ -97,6 +77,25 @@
               ./home/DPigeon-MacOS/test/home.nix
             ];
           };
+        };
+
+        formatter.${system} = pkgs.nixfmt-rfc-style;
+
+        devShells.${system}.default = pkgs.mkShell {
+          buildInputs = [
+            # Nix stuff
+            pkgs.statix
+            pkgs.deadnix
+            pkgs.nil
+            pkgs.nixd
+            pkgs.nixfmt-rfc-style
+
+            # Lua stuff
+            pkgs.stylua
+            pkgs.lua-language-server
+
+            pkgs.treefmt
+          ];
         };
       }
     );
