@@ -1,5 +1,3 @@
-# Generally useful nix settings
-
 {
   lib,
   outputs,
@@ -10,7 +8,10 @@
 {
   nixpkgs = {
     overlays = [ outputs.overlays.nvim-nightly ];
-    config.allowUnfree = true;
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+    };
   };
 
   nix =

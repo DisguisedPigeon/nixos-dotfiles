@@ -1,6 +1,5 @@
-{ config, lib, ... }:
 {
-  programs.waybar = lib.mkIf config.hyprland-customization.enable {
+  programs.waybar = {
     enable = true;
     settings = {
       mainBar = {

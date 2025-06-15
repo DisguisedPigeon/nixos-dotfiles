@@ -15,15 +15,15 @@
 
     fonts = {
       serif = {
-        package = pkgs.maple-mono.NF-unhinted;
+        package = pkgs.maple-mono.NF;
         name = "Maple Mono NF";
       };
       sansSerif = {
-        package = pkgs.maple-mono.NF-unhinted;
+        package = pkgs.maple-mono.NF;
         name = "Maple Mono NF";
       };
       monospace = {
-        package = pkgs.maple-mono.NF-unhinted;
+        package = pkgs.maple-mono.NF;
         name = "Maple Mono NF";
       };
       emoji = {

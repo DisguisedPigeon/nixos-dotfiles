@@ -48,15 +48,14 @@ in
       ];
     };
 
-    security.pam.services.hyprlock = { };
+  };
+  security.pam.services.hyprlock = { };
 
-    programs = {
-      hyprland = {
-        enable = true;
-        xwayland.enable = true;
-      };
-      hyprlock.enable = true;
+  programs = {
+    hyprland = {
+      enable = true;
+      xwayland.enable = true;
     };
-
+    hyprlock.enable = true;
   };
 }
