@@ -21,12 +21,12 @@
         "hyprland/workspaces" = {
           format = "{icon}<sub> {name}</sub>";
           format-icons = {
-            "1" = "";
-            "2" = "";
-            "9" = "";
-            "10" = "";
-            "default" = "";
-            "empty" = "";
+            "1" = " ";
+            "2" = " ";
+            "9" = " ";
+            "10" = " ";
+            "default" = " ";
+            "empty" = " ";
           };
           persistent-workspaces = {
             "1" = [ ];
