@@ -59,7 +59,7 @@
                 ;
             };
             modules = [
-              stylix.homeManagerModules.stylix
+              stylix.homeModules.stylix
               ./home/DPigeon-MacOS/dpigeon/home.nix
             ];
           };
