@@ -1,8 +1,6 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 {
   imports = [ ../../common ];
-
-  programs.tmux.enable = true;
 
   home = {
     username = "dpigeon";

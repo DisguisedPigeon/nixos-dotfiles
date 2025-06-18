@@ -1,7 +1,7 @@
 return {
   {
     "alec-gibson/nvim-tetris",
-    cmd = "Tetris"
+    cmd = "Tetris",
   },
-  { "Eandrju/cellular-automaton.nvim" }
+  { "Eandrju/cellular-automaton.nvim" },
 }

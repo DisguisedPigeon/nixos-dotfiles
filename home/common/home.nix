@@ -1,8 +1,4 @@
-{
-  outputs,
-  pkgs,
-  ...
-}:
+{ outputs, pkgs, ... }:
 {
   nixpkgs = {
     overlays = [ outputs.overlays.nvim-nightly ];
@@ -87,5 +83,4 @@
 
   systemd.user.startServices = "sd-switch";
   programs.home-manager.enable = true;
-
 }

@@ -18,7 +18,7 @@ local servers = {
 
   erlangls = {},
 
-  rust_analyzer = { settings = { ['rust-analyzer'] = { diagnostics = { enable = false } } } },
+  rust_analyzer = { settings = { ["rust-analyzer"] = { diagnostics = { enable = false } } } },
 
   clangd = {},
 
@@ -37,9 +37,9 @@ local servers = {
         experimental = { configFile = "theme.css" },
         classFunctions = {
           "class\\(\\s*['\"]([^'\"]*)['\"]\\s*\\)",
-          "#?\\(\\s*['\"]([^'\"]*)['\"]\\s*,\\s*[^\\)]*\\)"
+          "#?\\(\\s*['\"]([^'\"]*)['\"]\\s*,\\s*[^\\)]*\\)",
         },
-        includeLanguages = { gleam = "javascript" }
+        includeLanguages = { gleam = "javascript" },
       },
     },
   },
@@ -53,17 +53,18 @@ return {
     dependencies = { "folke/lazydev.nvim", "j-hui/fidget.nvim", "saghen/blink.cmp" },
     config = function()
       for server, config in pairs(servers) do
-        vim.lsp.config(server, vim.tbl_deep_extend(function(_, prev, value)
-          if type(prev) == "table" and vim.tbl_contains(prev, 1) == false then
-            return vim.list_extend(prev, value)
-          else
-            return value
-          end
-        end, config, vim.lsp.config[server]))
+        vim.lsp.config(
+          server,
+          vim.tbl_deep_extend(function(_, prev, value)
+            if type(prev) == "table" and vim.tbl_contains(prev, 1) == false then
+              return vim.list_extend(prev, value)
+            else
+              return value
+            end
+          end, config, vim.lsp.config[server])
+        )
         vim.lsp.config(server, config)
-        if vim.fn.executable(vim.lsp.config[server].cmd[1]) == 1 then
-          vim.lsp.enable(server)
-        end
+        if vim.fn.executable(vim.lsp.config[server].cmd[1]) == 1 then vim.lsp.enable(server) end
       end
     end,
   },
@@ -72,12 +73,12 @@ return {
     ft = "lua",
     opts = {
       library = {
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } }
-      }
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
     },
   },
   {
     "j-hui/fidget.nvim",
-    opts = {}
+    opts = {},
   },
 }

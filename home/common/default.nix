@@ -1,6 +1,7 @@
 {
   imports = [
     ./git.nix
+    ./tmux.nix
     ./home.nix
     ./hyprland.nix
     ./nvim.nix

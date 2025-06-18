@@ -1,10 +1,5 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}:
-{
-
   programs.bat.enable = true;
   programs.eza.enable = true;
   programs.fzf.enable = true;

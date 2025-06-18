@@ -13,7 +13,6 @@ let
   };
 in
 {
-
   environment.etc.${wallpaper-location}.source = ../../shared-files/wallpaper.png;
 
   environment.systemPackages = [
@@ -47,7 +46,6 @@ in
         qtvirtualkeyboard
       ];
     };
-
   };
   security.pam.services.hyprlock = { };
 

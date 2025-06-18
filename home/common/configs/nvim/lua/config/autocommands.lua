@@ -20,7 +20,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-
 -- keybinds
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-keybinds", { clear = true }),
@@ -37,7 +36,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("<leader>lgD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
     map("<leader>lds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-    map("<leader>lws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+    map(
+      "<leader>lws",
+      require("telescope.builtin").lsp_dynamic_workspace_symbols,
+      "[W]orkspace [S]ymbols"
+    )
     map("<leader>lf", function() vim.lsp.buf.format { async = true } end, "[L]sp [F]ormat")
     map("<leader>lrn", vim.lsp.buf.rename, "[L]sp [R]e[N]ame")
     map("<leader>lc", vim.lsp.buf.code_action, "[C]ode Actions", { "n", "x" })
