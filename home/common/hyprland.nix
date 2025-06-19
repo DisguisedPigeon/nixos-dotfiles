@@ -44,7 +44,7 @@
 
       monitor = [
         "HDMI-A-1, highres, 0x0, 1"
-        "eDP-1, highres, 1920x0, 1"
+        "eDP-1, highres, 1920x0, 1.25"
         ", preferred, auto-right, 1"
       ];
 

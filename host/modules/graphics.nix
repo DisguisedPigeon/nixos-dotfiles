@@ -56,4 +56,5 @@ in
     };
     hyprlock.enable = true;
   };
+  programs.niri.enable = true;
 }

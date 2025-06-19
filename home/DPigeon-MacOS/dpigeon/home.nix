@@ -8,6 +8,8 @@
     sessionVariables.EDITOR = "nvim";
 
     packages = [
+      pkgs.tor-browser
+      pkgs.onionshare-gui
       pkgs.typora
       pkgs.discord-canary
       pkgs.gimp3

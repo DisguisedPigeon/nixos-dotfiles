@@ -8,6 +8,12 @@
             path: boot():/EFI/microsoft/boot/bootmgfw.efi
     '';
     maxGenerations = 5;
+    additionalFiles = {
+      "font" = ../../shared-files/DECORATE.F16;
+    };
+    extraConfig = ''
+      term_font = boot():/font
+    '';
     style = {
       wallpapers = [ ../../shared-files/wallpaper.png ];
       wallpaperStyle = "centered";
