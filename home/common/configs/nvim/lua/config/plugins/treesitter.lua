@@ -1,39 +1,38 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = { "nvim-treesitter/nvim-treesitter-context" },
+    dependencies = { "OXY2DEV/markview.nvim" },
+    lazy = false,
+    branch = "main",
     build = ":TSUpdate",
-    main = "nvim-treesitter.configs",
-    opts = {
-      ensure_installed = {
-        "vim",
-        "vimdoc",
-        "lua",
-        "luadoc",
-        "query",
-        "diff",
-        "bash",
-        "c",
-        "markdown",
-        "markdown_inline",
-        "html",
-        "gleam",
-      },
-      auto_install = true,
-      highlight = {
-        enable = {},
-      },
-      indent = { enable = true },
-    },
     config = function()
+      require('nvim-treesitter').setup {
+        install_dir = vim.fn.stdpath('data') .. '/site'
+      }
+
+      require('nvim-treesitter').install({
+        'gleam',
+        'nix',
+        'python',
+        'go',
+        'elixir',
+        'erlang',
+        'markdown_inline',
+      }):wait(300000)
+
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'TSUpdate',
+        callback = function()
+          require('nvim-treesitter.parsers').lua.install_info.generate = true
+        end
+      })
+
       vim.wo.foldmethod = "expr"
       vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-
-      -- Womp womp
-      vim.api.nvim_create_autocmd("BufEnter", {
-        callback = function() vim.cmd "TSBufEnable highlight" end,
-      })
     end,
   },
-  { "nvim-treesitter/nvim-treesitter-context", opts = { enable = true } },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    opts = { multiwindow = true }
+  }
 }

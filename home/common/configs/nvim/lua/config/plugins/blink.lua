@@ -22,7 +22,7 @@ return {
       ["<C-f>"] = { "scroll_documentation_down", "fallback" },
 
       ["<C-h>"] = { "snippet_backward" },
-      ["<C-l>"] = { "snippet_forward", "select_and_accept", "fallback" },
+      ["<C-l>"] = { "snippet_forward", "fallback" },
 
       ["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
     },
@@ -36,16 +36,21 @@ return {
     },
 
     sources = {
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = { "snippets", "lsp", "path", "buffer" },
+      per_filetype = {
+        lua = { inherit_defaults = true, 'lazydev' },
+      },
+    },
+
+    fuzzy = {
+      sorts = { "exact", "score", "kind" }
     },
 
     completion = {
-      ghost_text = {
-        enabled = true,
-      },
+      keyword = { range = "full" },
+      documentation = { auto_show = true }
     },
-    signature = {
-      enabled = true,
-    },
+
+    signature = { enabled = true, },
   },
 }

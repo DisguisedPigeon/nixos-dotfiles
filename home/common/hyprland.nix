@@ -15,7 +15,6 @@
     inputs.zen-browser.packages."${system}".beta
     pkgs.wezterm
     pkgs.rofi-wayland
-    pkgs.pcmanfm
     pkgs.gvfs
     pkgs.xdg-desktop-portal-gtk
     pkgs.xdg-desktop-portal-hyprland

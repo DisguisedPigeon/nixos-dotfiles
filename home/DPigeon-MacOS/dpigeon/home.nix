@@ -9,12 +9,12 @@
 
     packages = [
       pkgs.tor-browser
-      pkgs.onionshare-gui
       pkgs.typora
       pkgs.discord-canary
       pkgs.gimp3
       pkgs.transmission_4-gtk
       pkgs.vlc
+      pkgs.syncplay
       pkgs.youtube-music
       pkgs.libreoffice-fresh
     ];

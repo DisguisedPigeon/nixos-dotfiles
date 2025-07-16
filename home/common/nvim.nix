@@ -25,12 +25,10 @@
     lua53Packages.luacheck
     stylua
 
-    tree-sitter-grammars.tree-sitter-latex
     tree-sitter
 
     # Latex
     kdePackages.okular
-    texliveMedium
   ];
 
   xdg.configFile.nvim = {
