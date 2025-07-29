@@ -9,6 +9,8 @@ local servers = {
 
   gleam = {},
 
+  ocamllsp = {},
+
   ruff = {},
 
   elixirls = {
@@ -23,6 +25,7 @@ local servers = {
   clangd = {},
 
   nixd = {},
+
   nil_ls = {},
 
   html = {},
@@ -44,8 +47,24 @@ local servers = {
     },
   },
 
-  ltex_plus = { settings = { ltex = { language = "es-ES" } } },
+  texlab = {
+    build = {
+      args = {
+        "-X", "compile", "%f", "--outdir", "_build", "--synctex", "--keep-logs", "--keep-intermediates"
+      },
+      executable = "tectonic",
+      forwardSearchAfter = false,
+      auxdirectory = "_build",
+      onSave = true,
+      pdfDirectory = "_build"
+    },
+    forwardSearch = {
+      executable = "okular",
+      args = "--unique --noraise _build/%p#src:%l%f"
+    },
+  }
 }
+
 
 return {
   {
@@ -66,6 +85,7 @@ return {
         vim.lsp.config(server, config)
         if vim.fn.executable(vim.lsp.config[server].cmd[1]) == 1 then vim.lsp.enable(server) end
       end
+      vim.diagnostic.config { virtual_text = true }
     end,
   },
   {

@@ -88,6 +88,7 @@
       bind =
         [
           "$mod, F, exec, zen"
+          "$mod shift, F, exec, zen -p"
           "$mod, return, exec, wezterm"
           "$mod shift, escape, exit"
           "$mod, W, killactive"

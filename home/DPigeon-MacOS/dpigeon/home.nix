@@ -15,6 +15,7 @@
       pkgs.transmission_4-gtk
       pkgs.vlc
       pkgs.syncplay
+      pkgs.chromium
       pkgs.youtube-music
       pkgs.libreoffice-fresh
     ];
