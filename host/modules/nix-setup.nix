@@ -7,7 +7,10 @@
 }:
 {
   nixpkgs = {
-    overlays = [ outputs.overlays.nvim-nightly ];
+    overlays = [
+      outputs.overlays.nvim-nightly
+      outputs.overlays.niri
+    ];
     config = {
       allowUnfree = true;
       allowUnfreePredicate = _: true;

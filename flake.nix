@@ -14,6 +14,8 @@
 
     neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs =
@@ -24,6 +26,7 @@
       stylix,
       flake-utils,
       zen-browser,
+      niri,
       ...
     }@inputs:
     flake-utils.lib.eachDefaultSystemPassThrough (
@@ -34,6 +37,7 @@
       in
       {
         overlays.nvim-nightly = inputs.neovim-nightly.overlays.default;
+        overlays.niri = inputs.niri.overlays.niri;
 
         nixosConfigurations = {
           DPigeon-MacOS = nixpkgs.lib.nixosSystem {
@@ -42,6 +46,7 @@
             };
             modules = [
               stylix.nixosModules.stylix
+              niri.nixosModules.niri
               ./host/DPigeon-MacOS/configuration.nix
             ];
           };
@@ -60,6 +65,7 @@
             };
             modules = [
               stylix.homeModules.stylix
+              niri.homeModules.niri
               ./home/DPigeon-MacOS/dpigeon/home.nix
             ];
           };

@@ -9,5 +9,6 @@
     ./starship.nix
     ./wezterm.nix
     ./zsh.nix
+    ./niri.nix
   ];
 }

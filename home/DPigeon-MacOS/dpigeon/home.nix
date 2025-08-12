@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, outputs,... }:
 {
   imports = [ ../../common ];
 
@@ -16,10 +16,13 @@
       pkgs.vlc
       pkgs.syncplay
       pkgs.chromium
+      pkgs.rpi-imager
       pkgs.youtube-music
       pkgs.libreoffice-fresh
+      pkgs.gcr
     ];
 
     stateVersion = "23.05";
   };
+  services.gnome-keyring.enable = true;
 }
