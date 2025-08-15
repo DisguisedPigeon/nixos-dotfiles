@@ -1,4 +1,4 @@
-{ pkgs, outputs,... }:
+{ pkgs, ... }:
 {
   imports = [ ../../common ];
 

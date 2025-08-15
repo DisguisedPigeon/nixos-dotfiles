@@ -8,14 +8,13 @@ return {
     config = function()
       require('nvim-treesitter').install({
         'gleam',
+        'html',
+        'lua',
         'nix',
         'python',
-        'go',
-        'elixir',
-        'erlang',
         'markdown_inline',
         'markdown',
-      }, { force = true, max_jobs = 10, summary = true }):wait(1000)
+      }, { summary = true })
 
       vim.api.nvim_create_autocmd('User', {
         pattern = 'TSUpdate',
@@ -23,8 +22,6 @@ return {
           require('nvim-treesitter.parsers').lua.install_info.generate = true
         end
       })
-
-      vim.treesitter.start()
 
       vim.wo.foldmethod = "expr"
       vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"

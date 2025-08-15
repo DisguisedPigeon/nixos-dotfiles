@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, ... }:
 {
   imports = [
     inputs.hardware.nixosModules.asus-zephyrus-ga502

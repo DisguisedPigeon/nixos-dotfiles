@@ -16,6 +16,7 @@ in
   environment.etc.${wallpaper-location}.source = ../../shared-files/wallpaper.png;
 
   environment.systemPackages = [
+    pkgs.xwayland-satellite
     sddm-astronaut-pkg
     pkgs.banana-cursor
     pkgs.kdePackages.sddm-kcm
