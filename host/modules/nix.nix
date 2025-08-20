@@ -1,6 +1,6 @@
 {
-  lib,
   outputs,
+  lib,
   config,
   inputs,
   ...
