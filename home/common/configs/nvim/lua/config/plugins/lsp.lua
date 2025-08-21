@@ -1,11 +1,5 @@
 local servers = {
-  lua_ls = {
-    settings = {
-      Lua = {
-        telemetry = { enable = false },
-      },
-    },
-  },
+  lua_ls = { settings = { Lua = { telemetry = { enable = false }, }, }, },
 
   gleam = {},
 
@@ -13,10 +7,7 @@ local servers = {
 
   ruff = {},
 
-  elixirls = {
-    cmd = { "elixir-ls" },
-    elixirLS = {},
-  },
+  elixirls = { cmd = { "elixir-ls" }, elixirLS = {}, },
 
   erlangls = {},
 
@@ -31,37 +22,16 @@ local servers = {
   html = {},
   cssls = {},
 
-  tailwindcss = {
-    workspace_required = false,
-    root_marker = "gleam.toml",
-    filetypes = { "gleam" },
-    settings = {
-      tailwindCSS = {
-        experimental = { configFile = "theme.css" },
-        classFunctions = {
-          "class\\(\\s*['\"]([^'\"]*)['\"]\\s*\\)",
-          "#?\\(\\s*['\"]([^'\"]*)['\"]\\s*,\\s*[^\\)]*\\)",
-        },
-        includeLanguages = { gleam = "javascript" },
-      },
-    },
-  },
-
   texlab = {
     build = {
-      args = {
-        "-X", "compile", "%f", "--outdir", "_build", "--synctex", "--keep-logs", "--keep-intermediates"
-      },
       executable = "tectonic",
+      args = { "-X", "compile", "%f", "--outdir", "_build", "--synctex", "--keep-logs", "--keep-intermediates" },
       forwardSearchAfter = false,
       auxdirectory = "_build",
       onSave = true,
       pdfDirectory = "_build"
     },
-    forwardSearch = {
-      executable = "okular",
-      args = "--unique --noraise _build/%p#src:%l%f"
-    },
+    forwardSearch = { executable = "okular", args = "--unique --noraise _build/%p#src:%l%f" },
   }
 }
 

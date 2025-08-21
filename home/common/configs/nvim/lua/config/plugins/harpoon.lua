@@ -1,4 +1,20 @@
 return {
+  'vieitesss/miniharp.nvim',
+  config = function()
+    require("miniharp").setup {
+      autoload = true,
+      autosave = true,
+      show_on_autoload = true
+    }
+    vim.keymap.set('n', '<leader>ht', require('miniharp').toggle_file, { desc = 'miniharp: toggle file mark' })
+    vim.keymap.set('n', '<C-n>', require('miniharp').next, { desc = 'miniharp: next file mark' })
+    vim.keymap.set('n', '<C-p>', require('miniharp').prev, { desc = 'miniharp: prev file mark' })
+    vim.keymap.set('n', '<leader>hv', require('miniharp').show_list, { desc = 'miniharp: list marks' })
+  end
+}
+
+--[[
+return {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
   dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
@@ -26,18 +42,19 @@ return {
       end
 
       require("telescope.pickers")
-        .new({}, {
-          prompt_title = "Harpoon",
-          finder = require("telescope.finders").new_table {
-            results = file_paths,
-          },
-          previewer = conf.file_previewer {},
-          sorter = conf.generic_sorter {},
-        })
-        :find()
+          .new({}, {
+            prompt_title = "Harpoon",
+            finder = require("telescope.finders").new_table {
+              results = file_paths,
+            },
+            previewer = conf.file_previewer {},
+            sorter = conf.generic_sorter {},
+          })
+          :find()
     end
 
     vim.keymap.set("n", "<leader>ht", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
     local conf = require("telescope.config").values
   end,
 }
+]]
