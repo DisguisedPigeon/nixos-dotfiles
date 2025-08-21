@@ -40,6 +40,16 @@
         overlays.niri = inputs.niri.overlays.niri;
 
         nixosConfigurations = {
+          Pepper = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs outputs;
+            };
+            modules = [
+              stylix.nixosModules.stylix
+              niri.nixosModules.niri
+              ./host/Pepper/configuration.nix
+            ];
+          };
           DPigeon-MacOS = nixpkgs.lib.nixosSystem {
             specialArgs = {
               inherit inputs outputs;

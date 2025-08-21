@@ -17,13 +17,16 @@
       dpigeon = true;
     };
 
+    userConfigs = lib.mkDefault {
+      shell = pkgs.zsh;
+      isNormalUser = true;
+    };
+
     adminConfigs = lib.mkDefault {
       shell = pkgs.zsh;
       isNormalUser = true;
       extraGroups = [ "docker" ];
     };
-
-    stylix.enable = lib.mkDefault true;
 
     general-bundle = lib.mkDefault true;
     ui-bundle = lib.mkDefault false;

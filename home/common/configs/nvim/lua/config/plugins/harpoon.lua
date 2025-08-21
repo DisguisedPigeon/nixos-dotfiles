@@ -1,16 +1,26 @@
 return {
-  'vieitesss/miniharp.nvim',
+  "vieitesss/miniharp.nvim",
   config = function()
     require("miniharp").setup {
       autoload = true,
       autosave = true,
-      show_on_autoload = true
+      show_on_autoload = true,
     }
-    vim.keymap.set('n', '<leader>ht', require('miniharp').toggle_file, { desc = 'miniharp: toggle file mark' })
-    vim.keymap.set('n', '<C-n>', require('miniharp').next, { desc = 'miniharp: next file mark' })
-    vim.keymap.set('n', '<C-p>', require('miniharp').prev, { desc = 'miniharp: prev file mark' })
-    vim.keymap.set('n', '<leader>hv', require('miniharp').show_list, { desc = 'miniharp: list marks' })
-  end
+    vim.keymap.set(
+      "n",
+      "<leader>ht",
+      require("miniharp").toggle_file,
+      { desc = "miniharp: toggle file mark" }
+    )
+    vim.keymap.set("n", "<C-n>", require("miniharp").next, { desc = "miniharp: next file mark" })
+    vim.keymap.set("n", "<C-p>", require("miniharp").prev, { desc = "miniharp: prev file mark" })
+    vim.keymap.set(
+      "n",
+      "<leader>hv",
+      require("miniharp").show_list,
+      { desc = "miniharp: list marks" }
+    )
+  end,
 }
 
 --[[

@@ -1,9 +1,9 @@
 { outputs, pkgs, ... }:
 {
   nixpkgs = {
-    overlays = [ 
-      outputs.overlays.nvim-nightly 
-      outputs.overlays.niri 
+    overlays = [
+      outputs.overlays.nvim-nightly
+      outputs.overlays.niri
     ];
     config = {
       allowUnfree = true;

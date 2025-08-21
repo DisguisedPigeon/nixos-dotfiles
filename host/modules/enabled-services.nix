@@ -7,9 +7,14 @@
   };
 
   config = lib.mkMerge [
+
     (lib.mkIf config.general-bundle {
       programs.zsh.enable = true;
       virtualisation.podman.enable = true;
+    })
+
+    (lib.mkIf config.server-bundle {
+      services.openssh.enable = true;
     })
 
     (lib.mkIf config.ui-bundle {
@@ -25,8 +30,10 @@
       };
       boot.loader.limine.enable = true;
       stylix.enable = true;
-      networking.networkmanager.enable = true;
+      networking = {
+        networkmanager.enable = true;
+        useDHCP = true;
+      };
     })
-    (lib.mkIf config.server-bundle { })
   ];
 }

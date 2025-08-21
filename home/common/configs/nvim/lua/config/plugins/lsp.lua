@@ -1,5 +1,5 @@
 local servers = {
-  lua_ls = { settings = { Lua = { telemetry = { enable = false }, }, }, },
+  lua_ls = { settings = { Lua = { telemetry = { enable = false } } } },
 
   gleam = {},
 
@@ -7,7 +7,7 @@ local servers = {
 
   ruff = {},
 
-  elixirls = { cmd = { "elixir-ls" }, elixirLS = {}, },
+  elixirls = { cmd = { "elixir-ls" }, elixirLS = {} },
 
   erlangls = {},
 
@@ -25,16 +25,24 @@ local servers = {
   texlab = {
     build = {
       executable = "tectonic",
-      args = { "-X", "compile", "%f", "--outdir", "_build", "--synctex", "--keep-logs", "--keep-intermediates" },
+      args = {
+        "-X",
+        "compile",
+        "%f",
+        "--outdir",
+        "_build",
+        "--synctex",
+        "--keep-logs",
+        "--keep-intermediates",
+      },
       forwardSearchAfter = false,
       auxdirectory = "_build",
       onSave = true,
-      pdfDirectory = "_build"
+      pdfDirectory = "_build",
     },
     forwardSearch = { executable = "okular", args = "--unique --noraise _build/%p#src:%l%f" },
-  }
+  },
 }
-
 
 return {
   {

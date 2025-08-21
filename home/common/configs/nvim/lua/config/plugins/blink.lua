@@ -38,19 +38,19 @@ return {
     sources = {
       default = { "snippets", "lsp", "path", "buffer" },
       per_filetype = {
-        lua = { inherit_defaults = true, 'lazydev' },
+        lua = { inherit_defaults = true, "lazydev" },
       },
     },
 
     fuzzy = {
-      sorts = { "exact", "score", "kind" }
+      sorts = { "exact", "score", "kind" },
     },
 
     completion = {
       keyword = { range = "full" },
-      documentation = { auto_show = true }
+      documentation = { auto_show = true },
     },
 
-    signature = { enabled = true, },
+    signature = { enabled = true },
   },
 }

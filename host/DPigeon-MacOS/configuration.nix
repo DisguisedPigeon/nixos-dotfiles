@@ -22,6 +22,10 @@
   networking.hostName = "DPigeon-MacOS";
 
   boot = {
+    initrd.availableKernelModules = [
+      "usb_storage"
+      "sd_mod"
+    ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
     kernelModules = [ "v4l2loopback" ];
     extraModprobeConfig = ''

@@ -6,21 +6,19 @@ return {
     branch = "main",
     build = ":TSUpdate",
     config = function()
-      require('nvim-treesitter').install({
-        'gleam',
-        'html',
-        'lua',
-        'nix',
-        'python',
-        'markdown_inline',
-        'markdown',
+      require("nvim-treesitter").install({
+        "gleam",
+        "html",
+        "lua",
+        "nix",
+        "python",
+        "markdown_inline",
+        "markdown",
       }, { summary = true })
 
-      vim.api.nvim_create_autocmd('User', {
-        pattern = 'TSUpdate',
-        callback = function()
-          require('nvim-treesitter.parsers').lua.install_info.generate = true
-        end
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "TSUpdate",
+        callback = function() require("nvim-treesitter.parsers").lua.install_info.generate = true end,
       })
 
       vim.wo.foldmethod = "expr"
@@ -29,6 +27,6 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    opts = { multiwindow = true }
-  }
+    opts = { multiwindow = true },
+  },
 }
