@@ -22,6 +22,7 @@
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/92c1d417-c71c-4bf0-a20f-3f4514f14892";
     fsType = "ext4";
+    options = [ "noatime" ];
   };
 
   fileSystems."/boot" = {
@@ -29,11 +30,17 @@
     fsType = "vfat";
     options = [
       "fmask=0022"
+      "noatime"
       "dmask=0022"
     ];
   };
 
-  swapDevices = [ ];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

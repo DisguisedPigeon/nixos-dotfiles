@@ -16,6 +16,7 @@
       pkgs.vlc
       pkgs.syncplay
       pkgs.chromium
+      pkgs.obsidian
       pkgs.rpi-imager
       pkgs.youtube-music
       pkgs.libreoffice-fresh

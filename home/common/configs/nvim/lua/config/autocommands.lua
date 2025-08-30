@@ -55,3 +55,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("DPigeon-Yank-Highlight", { clear = true }),
   callback = function() vim.highlight.on_yank() end,
 })
+
+-- Source project config
+vim.api.nvim_create_autocmd("BufEnter", {
+  desc = "Source project config",
+  group = vim.api.nvim_create_augroup("DPigeon-Source-Project", { clear = true }),
+  callback = function()
+    pcall(vim.cmd.source, vim.uv.exepath() .. "nvim/init.lua")
+  end
+})
