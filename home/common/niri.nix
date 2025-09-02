@@ -1,5 +1,7 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+
   programs.niri = {
     enable = true;
     settings = {

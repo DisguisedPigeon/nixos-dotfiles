@@ -60,8 +60,13 @@
 
   fileSystems."/mnt/disk2" = {
     device = "/dev/disk/by-uuid/92F44E63F44E49A5";
-    fstype = "ntfs";
-    options = [ "noatime" ];
+    fsType = "ntfs";
+    options = [
+      "noatime"
+      "defaults"
+      "user"
+      "rw"
+    ];
   };
   services.fstrim.enable = true;
 

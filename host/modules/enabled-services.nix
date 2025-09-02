@@ -30,10 +30,7 @@
       };
       boot.loader.limine.enable = true;
       stylix.enable = true;
-      networking = {
-        networkmanager.enable = true;
-        useDHCP = true;
-      };
+      networking.networkmanager.enable = true;
     })
   ];
 }
