@@ -31,7 +31,7 @@
       }
     ];
     shellAliases = {
-      hupdate = "home-manager --flake .#${config.home.username}@DPigeon-MacOS switch -b backup";
+      hupdate = "home-manager --flake .#${config.home.username} switch -b backup";
       nupdate = "sudo nixos-rebuild --flake .#DPigeon-MacOS switch";
       fupdate = "sudo nix flake update && nupdate && hupdate";
 

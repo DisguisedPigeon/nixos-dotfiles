@@ -2,103 +2,111 @@
   description = "DPigeon's nix config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # Dependencies for both NixOS and Home Manager
+    nixpkgs.follows = "cosmic/nixpkgs";
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Just NixOS
     hardware.url = "github:nixos/nixos-hardware";
+    cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # Just Home Manager
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    neovim-nightly = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    flake-utils.url = "github:numtide/flake-utils";
-
-    stylix.url = "github:danth/stylix";
-
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
-    niri.url = "github:sodiboo/niri-flake";
   };
 
   outputs =
+    inputs@{ self, nixpkgs, ... }:
+    let
+      system = if builtins ? currentSystem then builtins.currentSystem else "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+      outputs = self.outputs;
+
+    in
     {
-      self,
-      nixpkgs,
-      home-manager,
-      stylix,
-      flake-utils,
-      zen-browser,
-      niri,
-      ...
-    }@inputs:
-    flake-utils.lib.eachDefaultSystemPassThrough (
-      system:
-      let
-        outputs = self.outputs;
-        pkgs = nixpkgs.legacyPackages.${system};
-      in
-      {
-        overlays.nvim-nightly = inputs.neovim-nightly.overlays.default;
-        overlays.niri = inputs.niri.overlays.niri;
+      formatter.${system} = pkgs.nixfmt-rfc-style;
 
-        nixosConfigurations = {
-          Pepper = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs outputs;
+      overlays = {
+        nvim-nightly = inputs.neovim-nightly.overlays.default;
+        niri = inputs.niri.overlays.niri;
+      };
+
+      devShells.${system}.default = pkgs.mkShell {
+        buildInputs = [
+          # Nix stuff
+          pkgs.statix
+          pkgs.deadnix
+          pkgs.nil
+          pkgs.nixd
+          pkgs.nixfmt-rfc-style
+
+          # Lua stuff
+          pkgs.stylua
+          pkgs.lua-language-server
+
+          pkgs.treefmt
+        ];
+      };
+
+      homeConfigurations."dpigeon" = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+
+        extraSpecialArgs = { inherit inputs outputs; };
+
+        modules = [
+          inputs.zen-browser.homeModules.beta
+          inputs.stylix.homeModules.stylix
+          inputs.niri.homeModules.niri
+
+          home/dpigeon/home.nix
+        ];
+      };
+
+      nixosConfigurations.Pepper = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs outputs; };
+        modules = [ host/Pepper/configuration.nix ];
+      };
+
+      nixosConfigurations.DPigeon-MacOS =
+        let
+          cosmic-cache = {
+            nix.settings = {
+              substituters = [ "https://cosmic.cachix.org/" ];
+              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
             };
-            modules = [
-              stylix.nixosModules.stylix
-              niri.nixosModules.niri
-              ./host/Pepper/configuration.nix
-            ];
           };
-          DPigeon-MacOS = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs outputs;
-            };
-            modules = [
-              stylix.nixosModules.stylix
-              niri.nixosModules.niri
-              ./host/DPigeon-MacOS/configuration.nix
-            ];
-          };
-        };
+        in
+        nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            cosmic-cache
 
-        homeConfigurations = {
-          "dpigeon@DPigeon-MacOS" = home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            extraSpecialArgs = {
-              inherit
-                inputs
-                outputs
-                zen-browser
-                system
-                ;
-            };
-            modules = [
-              stylix.homeModules.stylix
-              niri.homeModules.niri
-              ./home/DPigeon-MacOS/dpigeon/home.nix
-            ];
-          };
-        };
+            inputs.cosmic.nixosModules.default
+            inputs.niri.nixosModules.niri
+            inputs.stylix.nixosModules.stylix
 
-        formatter.${system} = pkgs.nixfmt-rfc-style;
-
-        devShells.${system}.default = pkgs.mkShell {
-          buildInputs = [
-            # Nix stuff
-            pkgs.statix
-            pkgs.deadnix
-            pkgs.nil
-            pkgs.nixd
-            pkgs.nixfmt-rfc-style
-
-            # Lua stuff
-            pkgs.stylua
-            pkgs.lua-language-server
-
-            pkgs.treefmt
+            host/DPigeon-MacOS/configuration.nix
           ];
         };
-      }
-    );
+
+    };
 }

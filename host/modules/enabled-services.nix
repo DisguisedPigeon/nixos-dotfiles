@@ -26,7 +26,7 @@
           pulse.enable = true;
           alsa.enable = true;
         };
-        displayManager.sddm.enable = true;
+        displayManager.sddm.enable = lib.mkDefault true;
       };
       boot.loader.limine.enable = true;
       stylix.enable = true;

@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
-  imports = [ ../../common ];
+  imports = [ ../common ];
+
+  programs.zen-browser.enable = true;
 
   home = {
     username = "dpigeon";

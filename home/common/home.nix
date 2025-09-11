@@ -14,7 +14,7 @@
   stylix = {
     enable = true;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
     image = ../../shared-files/wallpaper.png;
 
     polarity = "dark";
@@ -60,6 +60,12 @@
         common = {
           default = [ "gtk" ];
         };
+        cosmic = {
+          default = [
+            "cosmic"
+            "gtk"
+          ];
+        };
         hyprland = {
           default = [
             "hyprland"
@@ -69,6 +75,7 @@
       };
       extraPortals = [
         pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-cosmic
         pkgs.xdg-desktop-portal-gtk
       ];
     };

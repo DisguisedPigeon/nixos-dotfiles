@@ -2,7 +2,6 @@
   pkgs,
   config,
   inputs,
-  system,
   ...
 }:
 {
@@ -12,7 +11,6 @@
   ];
 
   home.packages = [
-    inputs.zen-browser.packages."${system}".beta
     pkgs.wezterm
     pkgs.rofi-wayland
     pkgs.gvfs
