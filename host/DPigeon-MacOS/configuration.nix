@@ -57,9 +57,9 @@
     hyprland.enable = false;
     niri.enable = true;
   };
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
-  services.displayManager.sddm.enable = false;
+  # services.desktopManager.cosmic.enable = true;
+  # services.displayManager.cosmic-greeter.enable = true;
+  # services.displayManager.sddm.enable = false;
 
   fileSystems."/mnt/disk2" = {
     device = "/dev/disk/by-uuid/92F44E63F44E49A5";

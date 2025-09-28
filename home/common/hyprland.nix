@@ -12,7 +12,7 @@
 
   home.packages = [
     pkgs.wezterm
-    pkgs.rofi-wayland
+    pkgs.rofi
     pkgs.gvfs
     pkgs.xdg-desktop-portal-gtk
     pkgs.xdg-desktop-portal-hyprland

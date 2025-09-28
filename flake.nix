@@ -3,8 +3,6 @@
 
   inputs = {
     # Dependencies for both NixOS and Home Manager
-    nixpkgs.follows = "cosmic/nixpkgs";
-
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,7 +14,13 @@
 
     # Just NixOS
     hardware.url = "github:nixos/nixos-hardware";
-    cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+
+    #cosmic = {
+    #  url = "github:busyboredom/cosmic-nightly-flake";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Just Home Manager
     home-manager = {
@@ -76,6 +80,7 @@
           inputs.zen-browser.homeModules.beta
           inputs.stylix.homeModules.stylix
           inputs.niri.homeModules.niri
+          #({ nixpkgs.overlays = [ inputs.cosmic.overlays.default ]; })
 
           home/dpigeon/home.nix
         ];
@@ -86,27 +91,17 @@
         modules = [ host/Pepper/configuration.nix ];
       };
 
-      nixosConfigurations.DPigeon-MacOS =
-        let
-          cosmic-cache = {
-            nix.settings = {
-              substituters = [ "https://cosmic.cachix.org/" ];
-              trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-            };
-          };
-        in
-        nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            cosmic-cache
+      nixosConfigurations.DPigeon-MacOS = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs outputs; };
+        modules = [
+          #({ nixpkgs.overlays = [ inputs.cosmic.overlays.default ]; })
 
-            inputs.cosmic.nixosModules.default
-            inputs.niri.nixosModules.niri
-            inputs.stylix.nixosModules.stylix
+          inputs.niri.nixosModules.niri
+          inputs.stylix.nixosModules.stylix
 
-            host/DPigeon-MacOS/configuration.nix
-          ];
-        };
+          host/DPigeon-MacOS/configuration.nix
+        ];
+      };
 
     };
 }

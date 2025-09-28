@@ -60,7 +60,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Source project config",
   group = vim.api.nvim_create_augroup("DPigeon-Source-Project", { clear = true }),
-  callback = function()
-    pcall(vim.cmd.source, vim.uv.exepath() .. "nvim/init.lua")
-  end
+  callback = function() pcall(vim.cmd.source, vim.uv.exepath() .. "nvim/init.lua") end,
 })

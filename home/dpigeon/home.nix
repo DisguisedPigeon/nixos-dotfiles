@@ -2,7 +2,32 @@
 {
   imports = [ ../common ];
 
-  programs.zen-browser.enable = true;
+  programs.zen-browser = {
+    enable = true;
+    profiles.default = {
+      containersForce = true;
+      containers = {
+        Personal = {
+          color = "purple";
+          icon = "fingerprint";
+          id = 1;
+        };
+        Work = {
+          color = "blue";
+          icon = "briefcase";
+          id = 2;
+        };
+        Shopping = {
+          color = "green";
+          icon = "dollar";
+          id = 3;
+        };
+      };
+    };
+    profiles.music = {
+      id = 2;
+    };
+  };
 
   home = {
     username = "dpigeon";
@@ -11,6 +36,7 @@
 
     packages = [
       pkgs.tor-browser
+      pkgs.figma-linux
       pkgs.typora
       pkgs.discord-canary
       pkgs.gimp3

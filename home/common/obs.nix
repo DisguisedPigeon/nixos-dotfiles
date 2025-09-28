@@ -2,6 +2,6 @@
 {
   programs.obs-studio = {
     enable = true;
-    plugins = [ pkgs.obs-studio-plugins.obs-webkitgtk ];
+    #plugins = [ pkgs.obs-studio-plugins.obs-webkitgtk ];
   };
 }

@@ -14,6 +14,11 @@
   stylix = {
     enable = true;
 
+    targets.zen-browser.profileNames = [
+      "default"
+      "music"
+    ];
+
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
     image = ../../shared-files/wallpaper.png;
 
@@ -60,12 +65,7 @@
         common = {
           default = [ "gtk" ];
         };
-        cosmic = {
-          default = [
-            "cosmic"
-            "gtk"
-          ];
-        };
+        # cosmic = { default = [ "cosmic" "gtk" ]; };
         hyprland = {
           default = [
             "hyprland"
@@ -75,7 +75,7 @@
       };
       extraPortals = [
         pkgs.xdg-desktop-portal-hyprland
-        pkgs.xdg-desktop-portal-cosmic
+        #pkgs.xdg-desktop-portal-cosmic
         pkgs.xdg-desktop-portal-gtk
       ];
     };

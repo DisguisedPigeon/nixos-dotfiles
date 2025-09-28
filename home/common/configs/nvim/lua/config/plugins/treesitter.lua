@@ -16,7 +16,7 @@ return {
         "markdown",
       }, { summary = true })
 
-      vim.api.nvim_create_autocmd("User", {
+      vim.api.nvim_create_autocmd("VimEnter", {
         pattern = "TSUpdate",
         callback = function() require("nvim-treesitter.parsers").lua.install_info.generate = true end,
       })
