@@ -53,7 +53,7 @@
         { command = [ "nm-applet" ]; }
         { command = [ "xwayland-satellite" ]; }
         { command = [ "hyprpaper" ]; }
-        #{ command = [ "waybar" ]; }
+        { command = [ "waybar" ]; }
         {
           command = [
             "dbus-update-activation-environment"
@@ -73,6 +73,7 @@
           # Actual keybinds
           "Mod+Shift+Escape".action = quit;
           "Mod+Shift+Slash".action = show-hotkey-overlay;
+          "Mod+Space".action = spawn "wezterm start session-chooser";
 
           # Move stuff around
           "Mod+H".action = focus-column-left;
@@ -102,7 +103,7 @@
           "Mod+T".action = toggle-column-tabbed-display;
           "Mod+W".action = close-window;
 
-          "Mod+Space".action = switch-focus-between-floating-and-tiling;
+          "Mod+Q".action = switch-focus-between-floating-and-tiling;
           "Mod+Shift+Space".action = toggle-window-floating;
 
           "Mod+F".action = spawn "zen";

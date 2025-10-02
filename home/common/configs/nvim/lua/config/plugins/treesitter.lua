@@ -6,23 +6,19 @@ return {
     branch = "main",
     build = ":TSUpdate",
     config = function()
+      require("nvim-treesitter").setup({ install_dir = vim.fn.stdpath('data') .. '/site' })
       require("nvim-treesitter").install({
         "gleam",
-        "html",
         "lua",
         "nix",
-        "python",
         "markdown_inline",
         "markdown",
       }, { summary = true })
 
-      vim.api.nvim_create_autocmd("VimEnter", {
-        pattern = "TSUpdate",
-        callback = function() require("nvim-treesitter.parsers").lua.install_info.generate = true end,
-      })
+      vim.o.foldmethod = "expr"
+      vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
-      vim.wo.foldmethod = "expr"
-      vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      vim.o.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
     end,
   },
   {
