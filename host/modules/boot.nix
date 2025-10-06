@@ -13,7 +13,7 @@
         remember_last_entry:yes
       '';
       style = {
-        wallpapers = [ ../../shared-files/wallpaper.png ];
+        wallpapers = [ ../../shared-files/wallpaper.jpg ];
         wallpaperStyle = "centered";
         backdrop = "1E1E2E";
         interface = {
