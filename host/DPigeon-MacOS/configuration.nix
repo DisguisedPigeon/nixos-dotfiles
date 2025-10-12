@@ -22,6 +22,7 @@
   networking.hostName = "DPigeon-MacOS";
 
   boot = {
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
     initrd.availableKernelModules = [
       "usb_storage"
       "sd_mod"
@@ -54,7 +55,7 @@
 
   programs = {
     hyprlock.enable = true;
-    hyprland.enable = false;
+    hyprland.enable = true;
     niri.enable = true;
   };
   # services.desktopManager.cosmic.enable = true;

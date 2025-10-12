@@ -41,7 +41,7 @@
 
       monitor = [
         "HDMI-A-1, highres, 0x0, 1"
-        "eDP-1, highres, 1920x0, 1.25"
+        "eDP-1, highres, 1920x0, 1"
         ", preferred, auto-right, 1"
       ];
 
@@ -77,7 +77,7 @@
         force_zero_scaling = true;
       };
 
-      gestures.workspace_swipe = true;
+      gesture = [ "3, horizontal, workspace" ];
       bindm = [
         "$mod,mouse:272,movewindow"
         "$mod,mouse:273,resizewindow"
