@@ -53,7 +53,7 @@
         { command = [ "nm-applet" ]; }
         { command = [ "xwayland-satellite" ]; }
         { command = [ "hyprpaper" ]; }
-        { command = [ "waybar" ]; }
+        #{ command = [ "waybar" ]; }
         {
           command = [
             "dbus-update-activation-environment"

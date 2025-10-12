@@ -15,7 +15,7 @@ in
 {
   environment.systemPackages = [ sddm-astronaut-pkg ];
 
-  environment.etc.${wallpaper-location}.source = ../../shared-files/wallpaper.png;
+  environment.etc.${wallpaper-location}.source = ../../shared-files/wallpaper.jpg;
 
   services = {
     displayManager.sddm = {

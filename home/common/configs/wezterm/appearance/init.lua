@@ -9,7 +9,7 @@ return function(wezterm)
     },
     use_cap_height_to_scale_fallback_fonts = true,
     allow_square_glyphs_to_overflow_width = "WhenFollowedBySpace",
-    font_size = 12,
+    font_size = 15,
     window_background_opacity = 0.9,
 
     hide_tab_bar_if_only_one_tab = true,
