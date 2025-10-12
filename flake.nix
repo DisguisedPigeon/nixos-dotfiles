@@ -88,7 +88,11 @@
 
       nixosConfigurations.Pepper = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs outputs; };
-        modules = [ host/Pepper/configuration.nix ];
+        modules = [
+          inputs.stylix.nixosModules
+          inputs.niri.nixosModules.niri
+          host/Pepper/configuration.nix
+        ];
       };
 
       nixosConfigurations.DPigeon-MacOS = nixpkgs.lib.nixosSystem {
