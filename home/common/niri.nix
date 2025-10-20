@@ -99,7 +99,7 @@
 
           "Mod+M".action = maximize-column;
           "Mod+S".action = switch-preset-column-width;
-          "Mod+Print".action = screenshot { show-pointer = false; };
+          "Mod+Print".action = sh "niri msg action screenshot-screen";
           "Mod+T".action = toggle-column-tabbed-display;
           "Mod+W".action = close-window;
 
