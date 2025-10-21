@@ -4,6 +4,8 @@
     boot.loader = {
       efi.canTouchEfiVariables = true;
 
+      grub.enable = false;
+      generic-extlinux-compatible.enable = false;
       limine = {
         enable = true;
 
@@ -16,7 +18,7 @@
           remember_last_entry:yes
         '';
         style = {
-          wallpapers = [ ../../shared-files/wallpaper.jpg ];
+          wallpapers = [ ../../../resources/wallpaper.jpeg ];
           wallpaperStyle = "centered";
           backdrop = "1E1E2E";
           interface = {

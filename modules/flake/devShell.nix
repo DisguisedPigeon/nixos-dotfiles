@@ -1,6 +1,6 @@
 {
   perSystem =
-    { inputs', system, ... }:
+    { inputs', ... }:
     let
       pkgs = inputs'.nixpkgs.legacyPackages;
     in

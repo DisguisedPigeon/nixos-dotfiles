@@ -6,4 +6,12 @@
     deadnix.enable = true;
     # kdlfmt.enable = true;
   };
+
+  perSystem.treefmt.settings.global.excludes = [
+    "flake.lock"
+    ".envrc"
+    "**/.gitignore"
+    "resources/*"
+  ];
+
 }

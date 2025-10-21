@@ -11,7 +11,10 @@ let
           enable = true;
           package = inputs.niri.packages.${pkgs.system}.niri-unstable;
         };
-        environment.systemPackages = [ pkgs.xwayland-satellite ];
+        environment.systemPackages = [
+          pkgs.xdg-desktop-portal-gnome
+          pkgs.xwayland-satellite
+        ];
       };
 
     homeManager.niri =

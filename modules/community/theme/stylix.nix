@@ -1,15 +1,21 @@
 { inputs, ... }:
 let
   flake-file.inputs.stylix.url = "github:danth/stylix";
-  image = ../../../resources/wallpaper.jpg;
+  image = ../../../resources/wallpaper.jpeg;
   stylix_opts = pkgs: {
     inherit image;
     enable = true;
 
-    targets.zen-browser.profileNames = [
-      "default"
-      "music"
-    ];
+    targets =
+      if builtins.hasAttr "zen-browser" inputs then
+        {
+          zen-browser.profileNames = [
+            "default"
+            "music"
+          ];
+        }
+      else
+        { };
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
 
@@ -44,12 +50,14 @@ in
   flake.modules.nixos.stylix =
     { pkgs, ... }:
     {
+      imports = [ inputs.stylix.nixosModules.stylix ];
       stylix = stylix_opts pkgs;
     };
   flake.modules.homeManager.stylix =
     { pkgs, ... }:
     {
       imports = [
+        inputs.stylix.homeModules.stylix
         inputs.self.flake.modules.homeManager.decorations
       ];
       stylix = stylix_opts pkgs;

@@ -1,8 +1,11 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.hyprland = {
-    programs.hyprland.enable = true;
-  };
+  flake.modules.nixos.hyprland =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = [ pkgs.xdg-desktop-portal-hyprland ];
+      programs.hyprland.enable = true;
+    };
 
   flake.modules.homeManager.hyprland = {
     imports = [

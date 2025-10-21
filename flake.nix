@@ -10,11 +10,8 @@
   };
 
   inputs = {
-    allfollow = {
-      url = "github:spikespaz/allfollow";
-    };
-    devshell = {
-      url = "github:numtide/devshell";
+    flake-aspects = {
+      url = "github:vic/flake-aspects";
     };
     flake-file = {
       url = "github:vic/flake-file";
@@ -30,6 +27,9 @@
     };
     niri = {
       url = "github:sodiboo/niri-flake";
+    };
+    nix-auto-follow = {
+      url = "github:fzakaria/nix-auto-follow";
     };
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixpkgs-unstable";

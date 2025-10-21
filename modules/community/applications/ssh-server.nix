@@ -1,14 +1,7 @@
 { ... }:
 let
-  flake.modules.nixos.ssh = {
+  flake.modules.nixos.ssh-server = {
     services = {
-      services.endlessh = {
-        enable = true;
-        port = 22;
-        openFirewall = true;
-      };
-
-      fail2ban.enable = true;
       openssh = {
         enable = true;
         ports = [ 6922 ];
@@ -18,6 +11,13 @@ let
           PermitRootLogin = "no";
           AllowUsers = [ "dpigeon" ];
         };
+      };
+
+      fail2ban.enable = true;
+      services.endlessh = {
+        enable = true;
+        port = 22;
+        openFirewall = true;
       };
     };
   };
