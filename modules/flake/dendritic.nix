@@ -1,4 +1,6 @@
 { inputs, ... }:
 {
-  imports = [ inputs.flake-file.flakeModules.dendritic ];
+  imports = [
+    inputs.flake-file.flakeModules.dendritic
+  ];
 }

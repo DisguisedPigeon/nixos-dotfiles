@@ -104,13 +104,13 @@ If you want to add an input, use `flake-file` to install it in the module where 
 
 To update the flake use `nix flake update`.
 
-
 Remember you can delete home-manager and NixOS generations if you are running out of disk space. You should have the config backed up on git anyways, so if something happens you can always restore the state through a live USB.
 
 ```sh
 sudo home-manager expire-generations "$(date +%Y-%m-%d)"
 sudo nix-collect-garbage --delete-old
 ```
+
 The nix store is optimized and cleaned periodically if configured, but nix stores every bootable nixos generation and rollback-able home-manager config.
 
 ### Aditional notes

@@ -11,6 +11,7 @@ let
         networkmanager
       ];
 
+      programs.zsh.enable = true;
       environment.systemPackages = [
         pkgs.xdg-desktop-portal-gtk
       ];
