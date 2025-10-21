@@ -21,6 +21,17 @@
         };
       };
 
+      layout = {
+        preset-column-widths = [
+          { proportion = 1.; }
+          { proportion = 1. / 2.; }
+        ];
+
+        default-column-width = {
+          proportion = 1. / 2.;
+        };
+      };
+
       outputs = {
         "1" = {
           name = "eDP-1";
@@ -97,7 +108,6 @@
           "Mod+Shift+BracketRight".action = consume-or-expel-window-right;
           # \Move stuff around
 
-          "Mod+M".action = maximize-column;
           "Mod+S".action = switch-preset-column-width;
           "Mod+Print".action = sh "niri msg action screenshot-screen";
           "Mod+T".action = toggle-column-tabbed-display;

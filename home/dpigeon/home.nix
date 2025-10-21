@@ -43,6 +43,7 @@
       pkgs.transmission_4-gtk
       pkgs.vlc
       pkgs.syncplay
+      pkgs.whatsapp-for-linux
       pkgs.chromium
       pkgs.obsidian
       pkgs.rpi-imager
