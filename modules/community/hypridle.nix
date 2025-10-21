@@ -1,7 +1,7 @@
-{inputs, ...}:
+{ ... }:
 {
   flake.modules.nixos.hyprlock = {
-    security.pam.services.hyprlock = {};
+    security.pam.services.hyprlock = { };
   };
 
   flake.modules.homeManager.hyprlock = {

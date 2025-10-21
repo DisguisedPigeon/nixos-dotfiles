@@ -1,8 +1,8 @@
-{inputs, ...}:
+{ inputs, ... }:
 let
   flake-file.inputs.stylix.url = "github:danth/stylix";
   image = ./wallpaper.jpg;
-  stylix = {
+  stylix_opts = pkgs: {
     inherit image;
     enable = true;
 
@@ -12,7 +12,6 @@ let
     ];
 
     base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine.yaml";
-
 
     polarity = "dark";
 
@@ -39,19 +38,20 @@ let
 
   };
 in
-  {
+{
   inherit flake-file;
 
-  flake.modules.nixos.stylix = {
-    imports = [
-      flake.modules.nixos.decorations
-    ];
-    inherit stylix;
-  };
-  flake.modules.homeManager.stylix = {
-    imports = [
-      flake.modules.nixos.decorations
-    ];
-    inherit stylix;
-  };
+  flake.modules.nixos.stylix =
+    { pkgs, ... }:
+    {
+      stylix = stylix_opts pkgs;
+    };
+  flake.modules.homeManager.stylix =
+    { pkgs, ... }:
+    {
+      imports = [
+        inputs.self.flake.modules.homeManager.decorations
+      ];
+      stylix = stylix_opts pkgs;
+    };
 }

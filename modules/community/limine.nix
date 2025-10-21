@@ -1,4 +1,4 @@
-{inputs, ...}:
+{ ... }:
 {
   flake.modules.nixos.limine = {
     boot.loader = {
@@ -12,8 +12,8 @@
           "font" = ../../shared-files/DECORATE.F16;
         };
         extraConfig = ''
-        term_font = boot():/font
-        remember_last_entry:yes
+          term_font = boot():/font
+          remember_last_entry:yes
         '';
         style = {
           wallpapers = [ ../../shared-files/wallpaper.jpg ];

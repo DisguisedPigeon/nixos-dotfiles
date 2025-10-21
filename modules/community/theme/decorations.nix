@@ -1,15 +1,16 @@
-{inputs, ...}:
+{ ... }:
 {
-
-  flake.modules.homeManager.decorations= {
-    gtk = {
-      enable = true;
-      iconTheme = {
-        package = pkgs.papirus-icon-theme;
-        name = "Papirus-Dark";
+  flake.modules.homeManager.decorations =
+    { pkgs, ... }:
+    {
+      gtk = {
+        enable = true;
+        iconTheme = {
+          package = pkgs.papirus-icon-theme;
+          name = "Papirus-Dark";
+        };
       };
-    };
 
-    qt.enable = true;
-  };
+      qt.enable = true;
+    };
 }
