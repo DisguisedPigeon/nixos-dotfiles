@@ -1,10 +1,6 @@
 { ... }:
 {
-  flake.modules.nixos.hyprlock = {
-    security.pam.services.hyprlock = { };
-  };
-
-  flake.modules.homeManager.hyprlock = {
+  flake.modules.homeManager.hypridle = {
     services.hypridle = {
       enable = true;
       settings = {

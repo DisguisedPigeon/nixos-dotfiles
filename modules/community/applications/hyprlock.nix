@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 {
   flake.modules.nixos.hyprlock = {
     security.pam.services.hyprlock = { };
@@ -7,6 +7,7 @@
   flake.modules.homeManager.hyprlock =
     { config, ... }:
     {
+      imports = with inputs.self.modules.homeManager; [ hypridle ];
       programs.hyprlock = {
         enable = true;
         settings = {

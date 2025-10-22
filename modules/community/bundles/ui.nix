@@ -1,5 +1,17 @@
 { inputs, ... }:
 let
+  flake.modules.homeManager.ui =
+    { ... }:
+    {
+      imports = with inputs.self.modules.nixos; [
+        hyprland
+        kde-connect
+        starship
+        tmux
+        waybar
+        hypridle
+      ];
+    };
   flake.modules.nixos.ui =
     { pkgs, ... }:
     {
