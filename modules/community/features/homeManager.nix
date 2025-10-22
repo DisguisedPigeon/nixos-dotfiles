@@ -1,8 +1,10 @@
 { inputs, ... }:
 {
   flake.modules.homeManager.home-manager.imports = [
-    inputs.home-manager.flakeModules.home-manager
     inputs.self.modules.homeManager.nix-settings
-    inputs.self.modules.homeManager.unfree
   ];
+  flake.modules.homeManager.home-manager = {
+    systemd.user.startServices = "sd-switch";
+    programs.home-manager.enable = true;
+  };
 }

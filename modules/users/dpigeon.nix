@@ -1,12 +1,13 @@
 { inputs, ... }:
 {
-  flake.homeConfigurations.dpigeon-salt = {
+  flake.modules.homeManager.dpigeon-salt = {
     imports = with inputs.self.modules.homeManager; [
-      home-manager
-      ui-bundle
-      kde-connect
+      ui
       obs
       thunderbird
     ];
+    home.username = "dpigeon";
+    home.homeDirectory = "/home/dpigeon";
+    home.stateVersion = "25.05";
   };
 }

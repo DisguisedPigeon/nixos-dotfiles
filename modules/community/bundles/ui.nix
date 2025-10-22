@@ -3,7 +3,7 @@ let
   flake.modules.homeManager.ui =
     { ... }:
     {
-      imports = with inputs.self.modules.nixos; [
+      imports = with inputs.self.modules.homeManager; [
         hyprland
         kde-connect
         starship

@@ -1,8 +1,8 @@
-{ ... }:
+{ inputs, ... }:
 {
   flake.modules.nixos.limine = {
+    imports = with inputs.self.modules.nixos; [ boot ];
     boot.loader = {
-      efi.canTouchEfiVariables = true;
 
       grub.enable = false;
       generic-extlinux-compatible.enable = false;
