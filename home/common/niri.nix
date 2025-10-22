@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 {
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+  xdg.portal.config = {
+    niri.default = ["gnome" "gtk"];
+  };
 
   programs.niri = {
     enable = true;
