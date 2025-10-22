@@ -28,9 +28,9 @@
         use-xdg-base-directories = true;
 
         # [yellow]Devshell-
-        bash-prompt-prefix = "\[\e[93m\]DevShell\[\e[0m\]-";
-        # [red]Host-[green]User: [purple]Directory\n[cyan]> [base]
-        bash-prompt = "\[\e[91m\]\h\[\e[0m\]-\[\e[32m\]\u\[\e[0m\]: \[\e[35m\]\w\n\[\e[96;1m\]> \[\e[0m\]";
+        bash-prompt-prefix = ";\\[\\e[93m\\]DevShell\\[\\e[0m\\]-";
+        # [red]Host-[green]User: [purple]Directory\\n[cyan]> [base]
+        bash-prompt = "\\[\\e[91m\\]\\h\\[\\e[0m\\]-\\[\\e[32m\\]\\u\\[\\e[0m\\]: \\[\\e[35m\\]\\w\\n\\[\\e[96;1m\\]> \\[\\e[0m\\]";
       };
     };
   };
