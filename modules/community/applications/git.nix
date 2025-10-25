@@ -1,4 +1,3 @@
-{ ... }:
 {
   flake.modules.nixos.git = {
     programs.git = {

@@ -8,7 +8,6 @@
       ];
       environment.systemPackages = [
         pkgs.neovim
-        pkgs.home-manager
       ];
     };
 }

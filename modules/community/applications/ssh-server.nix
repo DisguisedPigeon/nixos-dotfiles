@@ -1,4 +1,3 @@
-{ ... }:
 let
   flake.modules.nixos.ssh-server = {
     services = {

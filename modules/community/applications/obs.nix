@@ -1,13 +1,9 @@
-{ ... }:
 {
-  flake.modules.homeManager.obs =
-    { config, ... }:
+  flake.modules.nixos.obs =
+    { pkgs, ... }:
     {
-      boot.kernelModules = [ "v4l2loopback" ];
-      boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback.out ];
-      boot.extraModprobeConfig = ''
-        options v4l2loopback exclusive_caps=1 card_label="VirtuaCamera"
-      '';
+      environment.systemPackages = [ pkgs.v4l-utils ];
       programs.obs-studio.enable = true;
+      programs.obs-studio.enableVirtualCamera = true;
     };
 }

@@ -2,6 +2,7 @@
 {
   flake.modules.nixos.hyprlock = {
     security.pam.services.hyprlock = { };
+    programs.hyprlock.enable = true;
   };
 
   flake.modules.homeManager.hyprlock =

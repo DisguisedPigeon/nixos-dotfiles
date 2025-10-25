@@ -1,31 +1,30 @@
 { inputs, ... }:
 let
-  flake.modules.homeManager.ui =
-    { ... }:
-    {
-      imports = with inputs.self.modules.homeManager; [
-        hyprland
-        kde-connect
-        starship
-        tmux
-        waybar
-        hypridle
-      ];
-    };
+  flake.modules.homeManager.ui.imports = with inputs.self.modules.homeManager; [
+    hyprland
+    kde-connect
+    starship
+    tmux
+    waybar
+    hypridle
+  ];
   flake.modules.nixos.ui =
     { pkgs, ... }:
     {
       imports = with inputs.self.modules.nixos; [
-        pipewire
+        hyprland
         sddm
         limine
         stylix
         networkmanager
+        shell
       ];
 
       programs.zsh.enable = true;
+
       environment.systemPackages = [
         pkgs.xdg-desktop-portal-gtk
+        pkgs.home-manager
       ];
 
       xdg.portal = {

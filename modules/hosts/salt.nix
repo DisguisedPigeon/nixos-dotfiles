@@ -1,37 +1,42 @@
 { inputs, ... }:
 let
+  flake-file.inputs.hardware.url = "github:nixos/nixos-hardware";
+
   flake.modules.nixos.salt =
     { pkgs, ... }:
     {
       imports = with inputs.self.modules.nixos; [
+        # Apps
+        obs
+        docker
+        git
+        starship
+
+        # DMs
+        hyprland
+        niri
+
+        # Bundles
         ui
+
+        # Users
+        dpigeon
+
+        # System
+        locale
         salt-hardware
-        (import ./_users.nix {
-          dpigeon = {
-            shell = pkgs.zsh;
-            initialPassword = "ligma";
-            isNormalUser = true;
-            extraGroups = [
-              "dpigeon"
-              "wheel"
-              "user"
-              "docker"
-            ];
-          };
-        })
+        inputs.hardware.nixosModules.asus-zephyrus-ga502
       ];
-      loader.limine.extraEntries =
-        if inputs.self.nixosConfigurations.salt.config.boot.loader.limine.enable then
-          ''
-            /Windows
-                      protocol: efi
-                      path: boot():/EFI/microsoft/boot/bootmgfw.efi
-          ''
-        else
-          "";
+
+      users.users.dpigeon.extraGroups = [
+        "wheel"
+        "docker"
+      ];
+
+      environment.systemPackages = [ pkgs.ntfs3g ];
+      dualboot.enable = true;
 
       fileSystems."/mnt/disk2" = {
-        device = "/dev/disk/by-uuid/92F44E63F44E49A5";
         fsType = "ntfs";
         options = [
           "noatime"
@@ -39,6 +44,7 @@ let
           "user"
           "rw"
         ];
+        device = "/dev/disk/by-uuid/92F44E63F44E49A5";
       };
 
       services.fstrim.enable = true;
@@ -47,5 +53,5 @@ let
     };
 in
 {
-  inherit flake;
+  inherit flake flake-file;
 }

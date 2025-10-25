@@ -1,4 +1,3 @@
-{ ... }:
 {
   flake.modules.nixos.sddm =
     { pkgs, ... }:
@@ -37,7 +36,4 @@
         };
       };
     };
-
-  flake.modules.homeManager.sddm = {
-  };
 }
