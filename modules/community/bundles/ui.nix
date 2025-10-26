@@ -1,12 +1,10 @@
 { inputs, ... }:
 let
   flake.modules.homeManager.ui.imports = with inputs.self.modules.homeManager; [
-    hyprland
-    kde-connect
-    starship
+    git
+    nvim
     tmux
-    waybar
-    hypridle
+    wezterm
   ];
   flake.modules.nixos.ui =
     { pkgs, ... }:

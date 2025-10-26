@@ -1,26 +1,15 @@
 { inputs, ... }:
 {
   flake.modules.nixos.limine =
-    { config, ... }:
-    let
-      extraEntries =
-        if config.dualboot.enable then
-          builtins.concatStringsSep "\n" [
-            "/Windows"
-            "\tprotocol: efi"
-            "\tpath: boot():/EFI/microsoft/boot/bootmgfw.efi"
-          ]
-        else
-          "";
-    in
+    { lib, ... }:
     {
       imports = with inputs.self.modules.nixos; [ boot ];
       boot.loader = {
         generic-extlinux-compatible.enable = false;
         limine = {
-          inherit extraEntries;
 
           enable = true;
+          extraEntries = lib.mkDefault "";
 
           maxGenerations = 5;
           additionalFiles = {

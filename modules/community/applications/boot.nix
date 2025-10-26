@@ -5,7 +5,7 @@
 
       binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-      boot.initrd.availableKernelModules = [
+      initrd.availableKernelModules = [
         "usb_storage"
         "sd_mod"
       ];

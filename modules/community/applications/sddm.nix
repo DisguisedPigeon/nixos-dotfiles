@@ -3,16 +3,7 @@
     { pkgs, ... }:
     let
       wallpaper-location = "sddm-wallpaper.png";
-      sddm-astronaut-pkg = pkgs.callPackage ./_sddm-astronaut-theme-pkg.nix {
-        theme = "astronaut";
-        themeConfig = {
-          General = {
-            HeaderText = ":3";
-            FontSize = "10.0";
-            Background = "/etc/${wallpaper-location}";
-          };
-        };
-      };
+      sddm-astronaut-pkg = pkgs.sddm-astronaut;
     in
     {
       environment.systemPackages = [ sddm-astronaut-pkg ];

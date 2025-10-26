@@ -13,12 +13,14 @@
       imports = with inputs.self.modules.homeManager; [
         hyprlock
         waybar
-        # rofi
       ];
 
-      home.packages = [
-        pkgs.dunst
-        pkgs.rofi
+      home.packages = with pkgs; [
+        wl-clipboard
+        grim
+        slurp
+        dunst
+        rofi
       ];
 
       wayland.windowManager.hyprland = {
@@ -69,9 +71,7 @@
             touchpad.natural_scroll = true;
           };
 
-          xwayland = {
-            force_zero_scaling = true;
-          };
+          xwayland.force_zero_scaling = true;
 
           gesture = [ "3, horizontal, workspace" ];
           bindm = [

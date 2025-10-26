@@ -9,6 +9,7 @@
             spacing = 10;
             modules-left = [
               "hyprland/workspaces"
+              "niri/workspaces"
             ];
             modules-center = [ "clock" ];
             modules-right = [
@@ -32,6 +33,13 @@
                 updating = " ";
                 updated = " ";
                 error = " ";
+              };
+            };
+            "niri/workspaces" = {
+              format = "{icon}<sub> {name}</sub>";
+              format-icons = {
+                "default" = " ";
+                "empty" = " ";
               };
             };
             "hyprland/workspaces" = {

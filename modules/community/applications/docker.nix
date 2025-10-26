@@ -1,18 +1,19 @@
-{ inputs', ... }:
 let
-  flake.modules.nixos.docker = {
-    virtualisation = {
-      containers.enable = true;
-      podman = {
-        enable = true;
-        dockerCompat = true;
-        defaultNetwork.settings.dns_enabled = true;
+  flake.modules.nixos.docker =
+    { pkgs, ... }:
+    {
+      virtualisation = {
+        containers.enable = true;
+        podman = {
+          enable = true;
+          dockerCompat = true;
+          defaultNetwork.settings.dns_enabled = true;
+        };
       };
+      environment.systemPackages = [
+        pkgs.podman-compose
+      ];
     };
-    environment.systemPackages = [
-      inputs'.nixpkgs.legacyPackages.podman-compose
-    ];
-  };
 in
 {
   inherit flake;

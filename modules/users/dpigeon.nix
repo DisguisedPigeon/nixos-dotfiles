@@ -17,7 +17,16 @@
   flake.modules.homeManager.dpigeon-salt = {
     imports = with inputs.self.modules.homeManager; [
       ui
-      obs
+      stylix
+      hyprland
+      kde-connect
+      networkmanager
+      niri
+      starship
+      rofi
+      waybar
+      wezterm
+      zen
       thunderbird
     ];
     home.username = "dpigeon";
