@@ -46,7 +46,6 @@
       pkgs.whatsapp-for-linux
       pkgs.chromium
       pkgs.obsidian
-      pkgs.rpi-imager
       pkgs.youtube-music
       pkgs.libreoffice-fresh
       pkgs.gcr
