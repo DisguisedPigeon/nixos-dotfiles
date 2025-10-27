@@ -1,7 +1,7 @@
 { inputs, ... }:
 let
   flake-file.inputs.stylix.url = "github:danth/stylix";
-  image = ../../../resources/wallpaper.jpeg;
+  image = ../../../resources/wallpaper.png;
   stylix = pkgs: {
     inherit image;
     enable = true;

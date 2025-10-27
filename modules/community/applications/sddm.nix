@@ -2,13 +2,13 @@
   flake.modules.nixos.sddm =
     { pkgs, ... }:
     let
-      wallpaper-location = "sddm-wallpaper.jpeg";
+      wallpaper-location = "sddm-wallpaper.png";
       sddm-astronaut-pkg = pkgs.sddm-astronaut;
     in
     {
       environment.systemPackages = [ sddm-astronaut-pkg ];
 
-      environment.etc.${wallpaper-location}.source = ../../../resources/wallpaper.jpeg;
+      environment.etc.${wallpaper-location}.source = ../../../resources/wallpaper.png;
 
       services = {
         displayManager.sddm = {

@@ -20,7 +20,7 @@
             remember_last_entry:yes
           '';
           style = {
-            wallpapers = [ ../../../resources/wallpaper.jpeg ];
+            wallpapers = [ ../../../resources/wallpaper.png ];
             wallpaperStyle = "centered";
             backdrop = "1E1E2E";
             interface = {
