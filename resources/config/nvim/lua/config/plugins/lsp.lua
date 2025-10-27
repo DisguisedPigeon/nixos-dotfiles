@@ -50,16 +50,7 @@ return {
     dependencies = { "folke/lazydev.nvim", "j-hui/fidget.nvim", "saghen/blink.cmp" },
     config = function()
       for server, config in pairs(servers) do
-        vim.lsp.config(
-          server,
-          vim.tbl_deep_extend(function(_, prev, value)
-            if type(prev) == "table" and vim.tbl_contains(prev, 1) == false then
-              return vim.list_extend(prev, value)
-            else
-              return value
-            end
-          end, config, vim.lsp.config[server])
-        )
+        vim.lsp.config( server, vim.tbl_deep_extend("keep", config, vim.lsp.config[server]))
         vim.lsp.config(server, config)
         if vim.fn.executable(vim.lsp.config[server].cmd[1]) == 1 then vim.lsp.enable(server) end
       end
