@@ -6,7 +6,6 @@
       programs.rofi = {
         enable = true;
         cycle = true;
-        font = "Maple Mono NF 24";
         location = "center";
         terminal = "\${pkgs.wezterm}/bin/wezterm";
         modes = [
