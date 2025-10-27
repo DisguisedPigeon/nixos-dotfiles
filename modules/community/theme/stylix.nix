@@ -40,6 +40,7 @@ in
     { pkgs, ... }:
     {
       imports = [ inputs.stylix.nixosModules.stylix ];
+      environment.systemPackages = [ pkgs.banana-cursor ];
       stylix = (stylix pkgs);
     };
   flake.modules.homeManager.stylix =

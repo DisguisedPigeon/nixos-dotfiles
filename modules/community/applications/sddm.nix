@@ -2,7 +2,7 @@
   flake.modules.nixos.sddm =
     { pkgs, ... }:
     let
-      wallpaper-location = "sddm-wallpaper.png";
+      wallpaper-location = "sddm-wallpaper.jpeg";
       sddm-astronaut-pkg = pkgs.sddm-astronaut;
     in
     {

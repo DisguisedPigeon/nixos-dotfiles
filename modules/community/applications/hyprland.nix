@@ -3,6 +3,7 @@
   flake.modules.nixos.hyprland =
     { pkgs, ... }:
     {
+      imports = [ inputs.self.modules.homeManager.hyprlock ];
       environment.systemPackages = [ pkgs.xdg-desktop-portal-hyprland ];
       programs.hyprland.enable = true;
     };
