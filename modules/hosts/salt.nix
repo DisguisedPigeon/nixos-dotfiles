@@ -33,12 +33,12 @@ let
       ];
 
       environment.systemPackages = [ pkgs.ntfs3g ];
+
       boot.loader.limine.extraEntries = builtins.concatStringsSep "\n" [
         "/Windows"
         "\tprotocol: efi"
         "\tpath: boot():/EFI/microsoft/boot/bootmgfw.efi"
       ];
-      dualboot.enable = true;
 
       fileSystems."/mnt/disk2" = {
         fsType = "ntfs";

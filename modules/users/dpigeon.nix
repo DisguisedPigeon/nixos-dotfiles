@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules.nixos.dpigeon =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       users.users.dpigeon = {
         shell = pkgs.zsh;
