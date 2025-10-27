@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules.nixos.dpigeon =
-    { pkgs, lib, ... }:
+    { pkgs, ... }:
     {
       users.users.dpigeon = {
         shell = pkgs.zsh;
@@ -28,7 +28,16 @@
       wezterm
       zen
       thunderbird
+      dpigeon-salt-extra-apps
+      bat
+      eza
+      fzf
+      zoxide
     ];
+
+    home.sessionVariables.host = "salt";
+    home.sessionVariables.EDITOR = "nvim";
+
     home.username = "dpigeon";
     home.homeDirectory = "/home/dpigeon";
     home.stateVersion = "25.05";

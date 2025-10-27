@@ -5,6 +5,7 @@ let
     nvim
     tmux
     wezterm
+    zsh
   ];
   flake.modules.nixos.ui =
     { pkgs, ... }:
@@ -17,8 +18,6 @@ let
         networkmanager
         shell
       ];
-
-      programs.zsh.enable = true;
 
       environment.systemPackages = [
         pkgs.xdg-desktop-portal-gtk

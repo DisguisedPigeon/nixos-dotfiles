@@ -1,19 +1,5 @@
 <<< /home/dpigeon/.nix-profile
 >>> built-links/dpigeon-salt
-Selection state changes:
-[C+]  #01  bash             5.3p3
-[C+]  #02  coreutils        9.8
-[C+]  #03  diffutils        3.12
-[C+]  #04  findutils        4.10.0
-[C+]  #05  gettext          0.25.1
-[C+]  #06  gnugrep          3.12
-[C+]  #07  gnused           4.9
-[C+]  #08  home-manager.sh  <none>
-[C+]  #09  hyprland         0.51.1, 0.51.1-man
-[C+]  #10  jq               1.8.1, 1.8.1-bin
-[C+]  #11  ncurses          6.5
-[C+]  #12  procps           4.0.4
-[C+]  #13  systemd          258, 258-dev
 Added packages:
 [A.]  #01  base16-rose-pine.conf                                 <none>
 [A.]  #02  base16-rose-pine.css                                  <none>
