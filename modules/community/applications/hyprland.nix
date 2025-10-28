@@ -11,11 +11,6 @@
   flake.modules.homeManager.hyprland =
     { pkgs, ... }:
     {
-      imports = with inputs.self.modules.homeManager; [
-        hyprlock
-        waybar
-      ];
-
       home.packages = with pkgs; [
         wl-clipboard
         grim
@@ -34,7 +29,6 @@
             "dunst"
             "nm-applet &"
             "hyprpaper"
-            "waybar"
             "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           ];
 

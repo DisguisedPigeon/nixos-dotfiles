@@ -4,8 +4,10 @@
     {
       programs.waybar = {
         enable = true;
+        systemd.enable = true;
         settings = {
           mainBar = {
+            position = "bottom";
             spacing = 10;
             modules-left = [
               "hyprland/workspaces"
@@ -18,7 +20,6 @@
               "pulseaudio"
               "custom/nix-updates"
             ];
-
             "custom/nix-updates" = {
               exec = "update-checker";
               signal = 12;

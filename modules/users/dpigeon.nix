@@ -24,7 +24,6 @@
       niri
       starship
       rofi
-      waybar
       wezterm
       zen
       thunderbird

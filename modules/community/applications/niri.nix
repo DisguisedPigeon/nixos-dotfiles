@@ -78,8 +78,7 @@ let
           environment.DISPLAY = ":0";
 
           spawn-at-startup = [
-            #{ command = [ "waybar" ]; }
-            #{ command = [ "nm-applet" ]; }
+            { command = [ "nm-applet" ]; }
             { command = [ "xwayland-satellite" ]; }
             { command = [ "hyprpaper" ]; }
             {
