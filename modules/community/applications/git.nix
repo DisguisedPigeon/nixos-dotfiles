@@ -6,9 +6,13 @@
         gpg.format = "ssh";
       };
     };
+    environment.variables.PAGER = null;
   };
 
   flake.modules.homeManager.git = {
+    programs.jujutsu = {
+      enable = true;
+    };
     programs.git = {
       enable = true;
       settings = {

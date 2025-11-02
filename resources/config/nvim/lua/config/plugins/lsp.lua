@@ -9,7 +9,7 @@ local servers = {
 
   elixirls = { cmd = { "elixir-ls" }, elixirLS = {} },
 
-  erlangls = {},
+  elp = {},
 
   rust_analyzer = { settings = { ["rust-analyzer"] = { diagnostics = { enable = false } } } },
 
@@ -50,7 +50,7 @@ return {
     dependencies = { "folke/lazydev.nvim", "j-hui/fidget.nvim", "saghen/blink.cmp" },
     config = function()
       for server, config in pairs(servers) do
-        vim.lsp.config( server, vim.tbl_deep_extend("keep", config, vim.lsp.config[server]))
+        vim.lsp.config(server, vim.tbl_deep_extend("keep", config, vim.lsp.config[server]))
         vim.lsp.config(server, config)
         if vim.fn.executable(vim.lsp.config[server].cmd[1]) == 1 then vim.lsp.enable(server) end
       end

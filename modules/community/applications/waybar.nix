@@ -16,6 +16,8 @@
             modules-center = [ "clock" ];
             modules-right = [
               "tray"
+              "network"
+              "cpu"
               "battery"
               "pulseaudio"
               "custom/nix-updates"
@@ -35,6 +37,34 @@
                 updated = " ";
                 error = " ";
               };
+            };
+
+            network = {
+              "interface" = "wlp3s0";
+              "format" = "{ifname}";
+              "format-wifi" = "󰖩 ({signalStrength}%)";
+              "format-ethernet" = "󰌘 {ipaddr}/{cidr}";
+              "format-disconnected" = "󰌙 ";
+              "tooltip-format" = "󱘖 {ifname} via {gwaddr}";
+              "tooltip-format-wifi" = "󱛁 {essid}";
+              "tooltip-format-ethernet" = " {ifname}";
+              "tooltip-format-disconnected" = "󰚦 ";
+              "max-length" = 50;
+            };
+
+            cpu = {
+              interval = 3;
+              format = "{icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}";
+              format-icons = [
+                "<span color='#69ff94'>▁</span>"
+                "<span color='#2aa9ff'>▂</span>"
+                "<span color='#f8f8f2'>▃</span>"
+                "<span color='#f8f8f2'>▄</span>"
+                "<span color='#ffffa5'>▅</span>"
+                "<span color='#ffffa5'>▆</span>"
+                "<span color='#ff9977'>▇</span>"
+                "<span color='#dd532e'>█</span>"
+              ];
             };
             "niri/workspaces" = {
               format = "{icon}<sub> {name}</sub>";
@@ -111,7 +141,7 @@
           # This script checks for NixOS updates and outputs JSON for Waybar integration
 
           # ===== Configuration =====
-          UPDATE_INTERVAL=3599  # Check interval in seconds (1 hour)
+          UPDATE_INTERVAL=86400  # Check interval in seconds (1 day)
           NIXOS_CONFIG_PATH="/home/.nixos-config"  # Path to NixOS configuration
           CACHE_DIR="$HOME/.cache"
           STATE_FILE="$CACHE_DIR/nix-update-state"

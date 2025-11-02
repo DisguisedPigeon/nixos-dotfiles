@@ -78,7 +78,6 @@ let
           environment.DISPLAY = ":0";
 
           spawn-at-startup = [
-            { command = [ "nm-applet" ]; }
             { command = [ "xwayland-satellite" ]; }
             { command = [ "hyprpaper" ]; }
             {
@@ -135,9 +134,7 @@ let
               "Mod+F".action = spawn "zen";
               "Mod+Return".action = spawn "wezterm";
               "Mod+Shift+P".action = sh "$HOME/.config/rofi/powermenu.sh";
-              "Mod+R".action = (
-                sh "rofi -show drun -modi run,drun,ssh -scroll-method 0 -drun-match-fields all -drun-display-format '{name}' -no-drun-show-actions -terminal wezterm -kb-cancel Alt-F1 -theme .config/rofi/launcher.rasi"
-              );
+              "Mod+R".action = (sh "rofi -show drun -modi run,drun,ssh,window");
 
               "Mod+O" = {
                 action = toggle-overview;

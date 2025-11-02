@@ -27,7 +27,6 @@
 
           exec-once = [
             "dunst"
-            "nm-applet &"
             "hyprpaper"
             "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
           ];
@@ -80,7 +79,7 @@
             "$mod, return, exec, wezterm"
             "$mod shift, escape, exit"
             "$mod, W, killactive"
-            "$mod, R, exec, rofi -show drun -modi run,drun,ssh -scroll-method 0 -drun-match-fields all -drun-display-format '{name}' -no-drun-show-actions -terminal wezterm -kb-cancel Alt-F1 -theme '$HOME'/.config/rofi/launcher.rasi"
+            "$mod, R, exec, rofi -show drun -modi run,drun,ssh,window"
             "$mod shift, P, exec, $HOME/.config/rofi/powermenu.sh"
             "$mod, V, togglefloating"
             "$mod, m, fullscreen"

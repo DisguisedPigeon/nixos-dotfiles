@@ -20,7 +20,6 @@
       stylix
       hyprland
       kde-connect
-      networkmanager
       niri
       starship
       rofi
