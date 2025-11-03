@@ -12,7 +12,7 @@ let
         git
 
         # DMs
-        hyprland
+        mango
         niri
 
         # Bundles

@@ -36,6 +36,9 @@
     import-tree = {
       url = "github:vic/import-tree";
     };
+    mango = {
+      url = "github:DreamMaoMao/mangowc";
+    };
     niri = {
       url = "github:sodiboo/niri-flake";
     };

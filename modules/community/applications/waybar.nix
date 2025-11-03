@@ -12,6 +12,7 @@
             modules-left = [
               "hyprland/workspaces"
               "niri/workspaces"
+              "ext/workspaces"
             ];
             modules-center = [ "clock" ];
             modules-right = [
@@ -65,6 +66,23 @@
                 "<span color='#ff9977'>▇</span>"
                 "<span color='#dd532e'>█</span>"
               ];
+            };
+            "ext/workspaces" = {
+              format = "{icon}<sub> {name}</sub>";
+              format-icons = {
+                "default" = " ";
+                "empty" = " ";
+              };
+              ignore-hidden = true;
+              on-click = "activate";
+              on-click-right = "deactivate";
+              sort-by-id = true;
+            };
+            "dwl/tags" = {
+              num-tags = 9;
+            };
+            "dwl/window" = {
+              format = "[{layout}]{title}";
             };
             "niri/workspaces" = {
               format = "{icon}<sub> {name}</sub>";

@@ -2,7 +2,6 @@
 let
   flake.modules.homeManager.ui.imports = with inputs.self.modules.homeManager; [
     git
-    hyprlock
     waybar
     nvim
     tmux
@@ -13,7 +12,6 @@ let
     { pkgs, ... }:
     {
       imports = with inputs.self.modules.nixos; [
-        hyprland
         zsh
         sddm
         limine

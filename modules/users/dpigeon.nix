@@ -18,9 +18,9 @@
     imports = with inputs.self.modules.homeManager; [
       ui
       stylix
-      hyprland
       kde-connect
       niri
+      mango
       starship
       rofi
       wezterm
