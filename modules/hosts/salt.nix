@@ -11,6 +11,9 @@ let
         docker
         git
 
+        # Secrets
+        sops
+
         # DMs
         mango
         niri

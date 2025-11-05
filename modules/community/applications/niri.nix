@@ -4,11 +4,15 @@ let
 
   flake.modules.nixos.niri =
     { pkgs, ... }:
+    let
+      pkgs' = pkgs.extend inputs.niri.overlays.niri;
+    in
     {
       imports = [ inputs.niri.nixosModules.niri ];
+
       programs.niri = {
         enable = true;
-        package = inputs.niri.packages.${pkgs.system}.niri-unstable;
+        package = pkgs'.niri-unstable;
       };
       environment.systemPackages = [
         pkgs.xdg-desktop-portal-gnome
@@ -18,10 +22,13 @@ let
 
   flake.modules.homeManager.niri =
     { pkgs, config, ... }:
+    let
+      pkgs' = pkgs.extend inputs.niri.overlays.niri;
+    in
     {
       imports = [ inputs.niri.homeModules.niri ];
       programs.niri = {
-        package = inputs.niri.packages.${pkgs.system}.niri-unstable;
+        package = pkgs'.niri-unstable;
         settings = {
           hotkey-overlay.skip-at-startup = true;
 
