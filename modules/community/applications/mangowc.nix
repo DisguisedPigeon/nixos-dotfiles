@@ -1,6 +1,10 @@
 { inputs, ... }:
 {
-  flake-file.inputs.mango.url = "github:DreamMaoMao/mangowc";
+  flake-file.inputs.mango = {
+    url = "github:DreamMaoMao/mangowc";
+    inputs.nixpkgs.follows = "nixpkgs";
+    inputs.flake-parts.follows = "flake-parts";
+  };
 
   flake.modules.nixos.mango = {
     imports = [ inputs.mango.nixosModules.mango ];
@@ -15,6 +19,9 @@
       home.packages = with pkgs; [
         swaybg
         wl-clip-persist
+        wlsunset
+        wl-clipboard
+
       ];
 
       services.swaync.enable = true;
@@ -34,7 +41,7 @@
           dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
 
           # night light
-          wlsunset -T 3501 -t 3500 &
+          wlsunset -l '42.9' -L '-8.5' &
 
           # wallpaper
           swaybg -i ~/.config/mango/wallpaper.png &

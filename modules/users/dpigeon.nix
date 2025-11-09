@@ -1,16 +1,21 @@
 { inputs, ... }:
 {
   flake.modules.nixos.dpigeon =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     {
-      users.users.dpigeon = {
-        shell = pkgs.zsh;
-        initialPassword = "ligma";
-        isNormalUser = true;
-        extraGroups = [
-          "dpigeon"
-          "user"
-        ];
+      imports = [ inputs.self.modules.nixos.sops ];
+
+      users = {
+        mutableUsers = false;
+        users.dpigeon = {
+          shell = pkgs.zsh;
+          hashedPasswordFile = config.sops.secrets.user-password.path;
+          isNormalUser = true;
+          extraGroups = [
+            "dpigeon"
+            "user"
+          ];
+        };
       };
     };
 
@@ -19,6 +24,7 @@
       ui
       stylix
       kde-connect
+      sops
       niri
       mango
       starship
@@ -26,11 +32,11 @@
       wezterm
       zen
       thunderbird
-      dpigeon-salt-extra-apps
       bat
       eza
       fzf
       zoxide
+      dpigeon-salt-extra-pkgs
     ];
 
     home.sessionVariables.host = "salt";

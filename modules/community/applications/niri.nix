@@ -1,6 +1,9 @@
 { inputs, ... }:
 let
-  flake-file.inputs.niri.url = "github:sodiboo/niri-flake";
+  flake-file.inputs.niri = {
+    url = "github:sodiboo/niri-flake";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 
   flake.modules.nixos.niri =
     { pkgs, ... }:
@@ -12,7 +15,7 @@ let
 
       programs.niri = {
         enable = true;
-        package = pkgs'.niri-unstable;
+        package = pkgs'.niri-stable;
       };
       environment.systemPackages = [
         pkgs.xdg-desktop-portal-gnome
@@ -27,8 +30,16 @@ let
     in
     {
       imports = [ inputs.niri.homeModules.niri ];
+
+      home.packages = with pkgs'; [ swaybg ];
+
+      xdg.configFile."niri/wallpaper.png" = {
+        enable = true;
+        source = ../../../resources/wallpaper.png;
+      };
+
       programs.niri = {
-        package = pkgs'.niri-unstable;
+        package = pkgs'.niri-stable;
         settings = {
           hotkey-overlay.skip-at-startup = true;
 
@@ -60,12 +71,12 @@ let
           outputs = {
             "1" = {
               name = "eDP-1";
-              focus-at-startup = true;
+              focus-at-startup = false;
               position = {
-                x = 1280;
+                x = 0;
                 y = 0;
               };
-              scale = 1.25;
+              scale = 1;
 
             };
 
@@ -73,7 +84,7 @@ let
               name = "HDMI-A-1";
               focus-at-startup = true;
               position = {
-                x = 1536;
+                x = 1920;
                 y = 0;
               };
               scale = 1;
@@ -85,16 +96,16 @@ let
           environment.DISPLAY = ":0";
 
           spawn-at-startup = [
-            { command = [ "xwayland-satellite" ]; }
-            { command = [ "hyprpaper" ]; }
+            { argv = [ "xwayland-satellite" ]; }
             {
-              command = [
+              argv = [
                 "dbus-update-activation-environment"
                 "--systemd"
                 "WAYLAND_DISPLAY"
                 "XDG_CURRENT_DESKTOP"
               ];
             }
+            { sh = "swaybg -i ~/.config/niri/wallpaper.png"; }
           ];
 
           binds =

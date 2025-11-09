@@ -9,11 +9,7 @@
           mainBar = {
             position = "bottom";
             spacing = 10;
-            modules-left = [
-              "hyprland/workspaces"
-              "niri/workspaces"
-              "ext/workspaces"
-            ];
+            modules-left = [ "ext/workspaces" ];
             modules-center = [ "clock" ];
             modules-right = [
               "tray"
@@ -68,8 +64,12 @@
               ];
             };
             "ext/workspaces" = {
-              format = "{icon}<sub> {name}</sub>";
+              format = "{icon}";
               format-icons = {
+                "1" = " ";
+                "2" = " ";
+                "8" = " ";
+                "9" = " ";
                 "default" = " ";
                 "empty" = " ";
               };
@@ -83,30 +83,6 @@
             };
             "dwl/window" = {
               format = "[{layout}]{title}";
-            };
-            "niri/workspaces" = {
-              format = "{icon}<sub> {name}</sub>";
-              format-icons = {
-                "default" = " ";
-                "empty" = " ";
-              };
-            };
-            "hyprland/workspaces" = {
-              format = "{icon}<sub> {name}</sub>";
-              format-icons = {
-                "1" = " ";
-                "2" = " ";
-                "9" = " ";
-                "10" = " ";
-                "default" = " ";
-                "empty" = " ";
-              };
-              persistent-workspaces = {
-                "1" = [ ];
-                "2" = [ ];
-                "9" = [ ];
-                "10" = [ ];
-              };
             };
             tray = {
               icon-size = 10;

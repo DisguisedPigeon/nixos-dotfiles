@@ -1,6 +1,11 @@
 { inputs, ... }:
 let
-  flake-file.inputs.stylix.url = "github:danth/stylix";
+  flake-file.inputs.stylix = {
+    url = "github:danth/stylix";
+    inputs.nixpkgs.follows = "nixpkgs";
+    inputs.flake-parts.follows = "flake-parts";
+    inputs.systems.follows = "systems";
+  };
   image = ../../../resources/wallpaper.png;
   stylix = pkgs: {
     inherit image;

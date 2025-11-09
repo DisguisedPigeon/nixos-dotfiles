@@ -1,6 +1,9 @@
 { inputs, ... }:
 let
-  flake-file.inputs.sops-nix.url = "github:Mic92/sops-nix";
+  flake-file.inputs.sops-nix = {
+    url = "github:Mic92/sops-nix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
   flake.modules.nixos.sops =
     { pkgs, ... }:
     {
@@ -11,7 +14,23 @@ let
         defaultSopsFormat = "yaml";
         age.keyFile = "/sops/age/keys.txt";
 
-        secrets.hello = {};
+        secrets = {
+          user-password.neededForUsers = true;
+        };
+      };
+    };
+  flake.modules.homeManager.sops =
+    { pkgs, ... }:
+    {
+      imports = [ inputs.sops-nix.homeManagerModules.sops ];
+      home.packages = with pkgs; [ sops ];
+      sops = {
+        defaultSopsFile = ../../../secrets/secrets.yaml;
+        defaultSopsFormat = "yaml";
+        age.keyFile = "$XDG_CONFIG_HOME/sops/age/keys.txt";
+        secrets = {
+          github-PAT = { };
+        };
       };
     };
 in

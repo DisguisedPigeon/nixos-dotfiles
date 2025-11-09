@@ -1,6 +1,10 @@
 { inputs, ... }:
 {
-  flake-file.inputs.zen.url = "github:0xc000022070/zen-browser-flake";
+  flake-file.inputs.zen = {
+    url = "github:0xc000022070/zen-browser-flake";
+    inputs.nixpkgs.follows = "nixpkgs";
+    inputs.home-manager.follows = "home-manager";
+  };
 
   flake.modules.homeManager.zen = {
     imports = [ inputs.zen.homeModules.beta ];

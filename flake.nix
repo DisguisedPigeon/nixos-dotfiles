@@ -5,10 +5,6 @@
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
-  nixConfig = {
-    allow-import-from-derivation = true;
-  };
-
   inputs = {
     den = {
       url = "github:vic/den";
@@ -31,15 +27,33 @@
       url = "github:nixos/nixos-hardware";
     };
     home-manager = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
       url = "github:nix-community/home-manager";
     };
     import-tree = {
       url = "github:vic/import-tree";
     };
     mango = {
+      inputs = {
+        flake-parts = {
+          follows = "flake-parts";
+        };
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
       url = "github:DreamMaoMao/mangowc";
     };
     niri = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
       url = "github:sodiboo/niri-flake";
     };
     nix-auto-follow = {
@@ -57,9 +71,25 @@
       follows = "nixpkgs";
     };
     sops-nix = {
+      inputs = {
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
       url = "github:Mic92/sops-nix";
     };
     stylix = {
+      inputs = {
+        flake-parts = {
+          follows = "flake-parts";
+        };
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+        systems = {
+          follows = "systems";
+        };
+      };
       url = "github:danth/stylix";
     };
     systems = {
@@ -74,6 +104,14 @@
       url = "github:numtide/treefmt-nix";
     };
     zen = {
+      inputs = {
+        home-manager = {
+          follows = "home-manager";
+        };
+        nixpkgs = {
+          follows = "nixpkgs";
+        };
+      };
       url = "github:0xc000022070/zen-browser-flake";
     };
   };
