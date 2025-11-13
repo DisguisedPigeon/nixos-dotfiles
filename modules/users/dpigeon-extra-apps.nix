@@ -15,6 +15,8 @@
         obsidian
         pavucontrol
         tor
+        grim
+        slurp
         transmission_4
         onionshare-gui
         typora

@@ -6,8 +6,8 @@
 
       sops.templates."nix.conf" = {
         content = ''
-              access-tokens = "github.com=${config.sops.placeholder.github-pat} git.protagio.org=PAT:${config.sops.placeholder.protagio-pat}";
-          allowed-users = *
+          access-tokens = "github.com=${config.sops.placeholder.github-pat}
+          allowed-users = dpigeon
           auto-optimise-store = true
           builders =
           cores = 0
@@ -64,12 +64,36 @@
       };
     };
 
-  flake.modules.homeManager.nix-settings = {
-    nixpkgs.config.allowUnfree = true;
+  flake.modules.homeManager.nix-settings =
+    { pkgs, ... }:
+    {
+      nixpkgs.config.allowUnfree = true;
 
-    services.home-manager.autoExpire = {
-      enable = true;
-      timestamp = "-0 days";
+      nix = {
+        package = pkgs.nix;
+        # Could be done by home manager's expiration too, but I'm suspicious in case it needs superuser
+        gc = {
+          automatic = true;
+          options = "-d";
+          dates = "daily";
+        };
+
+        settings = {
+          experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
+
+          # [yellow]Devshell-
+          bash-prompt-prefix = ";\\[\\e[93m\\]DevShell\\[\\e[0m\\]-";
+          # [red]Host-[green]User: [purple]Directory\\n[cyan]> [base]
+          bash-prompt = "\\[\\e[91m\\]\\h\\[\\e[0m\\]-\\[\\e[32m\\]\\u\\[\\e[0m\\]: \\[\\e[35m\\]\\w\\n\\[\\e[96;1m\\]> \\[\\e[0m\\]";
+        };
+      };
+
+      services.home-manager.autoExpire = {
+        enable = true;
+        timestamp = "-0 days";
+      };
     };
-  };
 }

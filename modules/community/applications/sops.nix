@@ -27,7 +27,7 @@ let
       sops = {
         defaultSopsFile = ../../../secrets/secrets.yaml;
         defaultSopsFormat = "yaml";
-        age.keyFile = "$XDG_CONFIG_HOME/sops/age/keys.txt";
+        age.keyFile = "/sops/age/keys.txt";
         secrets = {
           github-PAT = { };
         };

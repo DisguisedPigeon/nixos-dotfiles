@@ -63,7 +63,7 @@
         settings = ''
           #           name      masterfactor numbermasters layout    transform scale x     y  width height refreshrate
           monitorrule=eDP-1,    0.5,         1,            scroller, 0,        1,    0,    0, 1920, 1080,  120
-          monitorrule=HDMI-A-1, 0.5,         1,            scroller, 0,        1,    1925, 0, 1920, 1080,  80
+          monitorrule=HDMI-A-1, 0.5,         1,            scroller, 0,        1,    1920, 0, 1920, 1080,  80
 
           # Window effect
           blur=1
