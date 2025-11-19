@@ -140,6 +140,9 @@ nmap_leader("oz", "<Cmd>lua MiniMisc.zoom()<CR>", "Zoom toggle")
 nmap_leader("th", "<Cmd>horizontal term<CR>", "Terminal (horizontal)")
 nmap_leader("tv", "<Cmd>vertical term<CR>", "Terminal (vertical)")
 nmap_leader("tt", "<Cmd>tab terminal<CR>", "Terminal (new tab)")
+-- Quick term exit.
+vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Execute selection" })
 
 nmap_leader("<C-d>", "<C-d>zz", "Scroll down + center")
 nmap_leader("<C-u>", "<C-u>zz", "Scroll up + center")
+

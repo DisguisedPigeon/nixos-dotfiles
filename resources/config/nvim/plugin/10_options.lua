@@ -22,6 +22,7 @@ vim.o.iskeyword = "@,48-57,_,192-255,-"
 vim.o.formatlistpat = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
 vim.o.complete = ".,w,b,kspell"
 vim.o.completeopt = "menuone,noselect,fuzzy,nosort"
+vim.o.scrolloff = 10
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.indentexpr = "nvim_treesitter#indentexpr()"
 

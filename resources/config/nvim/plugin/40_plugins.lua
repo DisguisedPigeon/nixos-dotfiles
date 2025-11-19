@@ -107,8 +107,13 @@ end)
 now_if_args(function()
   add("neovim/nvim-lspconfig")
   vim.lsp.enable({
-    "lua_ls",
+    "cssls",
     "gleam",
+    "lua_ls",
+    "nil_ls",
+    "superhtml",
+    "ts_ls",
+    "ts_ls",
   })
 end)
 

@@ -34,4 +34,12 @@ vim.keymap.set("n", "<space>ts", function()
   vim.api.nvim_win_set_height(0, 10)
   vim.cmd.term()
 end)
+
+-- Quick term exit
+vim.keymap.set("n", "<space>ts", function()
+  vim.cmd.new()
+  vim.cmd.wincmd "J"
+  vim.api.nvim_win_set_height(0, 10)
+  vim.cmd.term()
+end)
 --#endregion

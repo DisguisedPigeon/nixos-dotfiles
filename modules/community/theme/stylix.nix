@@ -56,7 +56,7 @@ in
         inputs.self.modules.homeManager.decorations
       ];
       stylix = (stylix pkgs) // {
-        targets.zen-browser.profileNames = [ "default" ];
+        targets.zen-browser.enable = false;
         targets.hyprlock.enable = false;
       };
     };
