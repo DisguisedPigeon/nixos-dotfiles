@@ -31,7 +31,7 @@
         shellAliases = {
           hupdate = "home-manager --flake .#${config.home.username}-${config.home.sessionVariables.host} switch -b backup";
           nupdate = "sudo nixos-rebuild --flake .#${config.home.sessionVariables.host} switch";
-          fupdate = "sudo nix flake update && nupdate && hupdate";
+          fupdate = "nix flake update && nupdate && hupdate";
 
           ":q" = "exit";
 

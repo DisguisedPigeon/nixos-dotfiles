@@ -1,7 +1,9 @@
 # Disguised Pigeon's NixOS Dotfiles
+
 Nixos unstable dendritic-style config with standalone home manager buzzword buzzword.
 
 ### Images
+
 [<img src="./resources/wallpaper.png">](https://wallhaven.cc/w/5g22q5)
 ![Terminal stuff](./resources/screenshot_nvim_neofetch.png)
 ![Browser](./resources/screenshot_zen.png)
@@ -36,12 +38,14 @@ cd /home/.nixos-dotfiles
 At this point, you may use this config as your own.
 
 To apply the changes to the whole system, run:
+
 ```sh
 # HOST is any hostname defined on Configs.nix under flake.nixosConfigurations
 nixos-rebuild switch --flake .#{HOST}
 ```
 
 To apply the changes to the user config, run:
+
 ```sh
 # HOST is any hostname defined on Configs.nix under flake.nixosConfigurations
 # USERNAME is any user defined on Configs.nix under flake.homeConfigurations

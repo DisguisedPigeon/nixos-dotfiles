@@ -2,19 +2,19 @@
 -- TODO: Check mini.basics mappings
 --
 _G.Config.leader_group_clues = {
-  { mode = "n", keys = "<Leader>b", desc = "+Buffer" },
-  { mode = "n", keys = "<Leader>e", desc = "+Explore/Edit" },
-  { mode = "n", keys = "<Leader>f", desc = "+Find" },
-  { mode = "n", keys = "<Leader>g", desc = "+Git" },
-  { mode = "n", keys = "<Leader>l", desc = "+Language" },
-  { mode = "n", keys = "<Leader>m", desc = "+Map" },
-  { mode = "n", keys = "<Leader>o", desc = "+Other" },
-  { mode = "n", keys = "<Leader>s", desc = "+Session" },
-  { mode = "n", keys = "<Leader>t", desc = "+Terminal" },
-  { mode = "n", keys = "<Leader>v", desc = "+Visits" },
-  { mode = "n", keys = "<Leader>h", desc = "+MiniHarp" },
-  { mode = "x", keys = "<Leader>g", desc = "+Git" },
-  { mode = "x", keys = "<Leader>l", desc = "+Language" },
+	{ mode = "n", keys = "<Leader>b", desc = "+Buffer" },
+	{ mode = "n", keys = "<Leader>e", desc = "+Explore/Edit" },
+	{ mode = "n", keys = "<Leader>f", desc = "+Find" },
+	{ mode = "n", keys = "<Leader>g", desc = "+Git" },
+	{ mode = "n", keys = "<Leader>l", desc = "+Language" },
+	{ mode = "n", keys = "<Leader>m", desc = "+Map" },
+	{ mode = "n", keys = "<Leader>o", desc = "+Other" },
+	{ mode = "n", keys = "<Leader>s", desc = "+Session" },
+	{ mode = "n", keys = "<Leader>t", desc = "+Terminal" },
+	{ mode = "n", keys = "<Leader>v", desc = "+Visits" },
+	{ mode = "n", keys = "<Leader>h", desc = "+MiniHarp" },
+	{ mode = "x", keys = "<Leader>g", desc = "+Git" },
+	{ mode = "x", keys = "<Leader>l", desc = "+Language" },
 }
 
 ---@alias action string | function a neovim action. It can be either a classic vim action (`<Cmd>...<CR>`|`g<C-A>`) or a lua function.
@@ -24,7 +24,7 @@ _G.Config.leader_group_clues = {
 ---@param rhs action the called function when the mapping is read.
 ---@param desc string a short string describing the mapping functionality.
 local nmap_leader = function(suffix, rhs, desc)
-  vim.keymap.set("n", "<Leader>" .. suffix, rhs, { desc = desc })
+	vim.keymap.set("n", "<Leader>" .. suffix, rhs, { desc = desc })
 end
 
 ---Adds a visual mode mapping.
@@ -32,7 +32,7 @@ end
 ---@param rhs action the called function when the mapping is read.
 ---@param desc string a short string describing the mapping functionality.
 local xmap_leader = function(suffix, rhs, desc)
-  vim.keymap.set("x", "<Leader>" .. suffix, rhs, { desc = desc })
+	vim.keymap.set("x", "<Leader>" .. suffix, rhs, { desc = desc })
 end
 
 -- Oil.nvim
@@ -47,7 +47,7 @@ vim.keymap.set("n", "<leader>ht", "<Cmd>lua require'miniharp'.toggle_file()<CR>"
 
 --#region buffer
 local new_scratch_buffer = function()
-  vim.api.nvim_win_set_buf(0, vim.api.nvim_create_buf(true, true))
+	vim.api.nvim_win_set_buf(0, vim.api.nvim_create_buf(true, true))
 end
 
 nmap_leader("ba", "<Cmd>b#<CR>", "Alternate")
@@ -56,12 +56,12 @@ nmap_leader("bs", new_scratch_buffer, "Scratch")
 
 --#region explore
 local explore_quickfix = function()
-  for _, win_id in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-    if vim.fn.getwininfo(win_id)[1].quickfix == 1 then
-      return vim.cmd("cclose")
-    end
-  end
-  vim.cmd("copen")
+	for _, win_id in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+		if vim.fn.getwininfo(win_id)[1].quickfix == 1 then
+			return vim.cmd("cclose")
+		end
+	end
+	vim.cmd("copen")
 end
 
 nmap_leader("ed", "<Cmd>lua MiniFiles.open()<CR>", "Directory")
@@ -145,4 +145,3 @@ vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Execute selection" })
 
 nmap_leader("<C-d>", "<C-d>zz", "Scroll down + center")
 nmap_leader("<C-u>", "<C-u>zz", "Scroll up + center")
-

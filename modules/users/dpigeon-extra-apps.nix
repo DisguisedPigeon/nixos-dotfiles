@@ -7,8 +7,16 @@
   flake.modules.homeManager.dpigeon-salt-extra-pkgs =
     { pkgs, ... }:
     {
+      xdg.configFile."discord/settings.json" = {
+        enable = true;
+        text = ''
+          {
+            "SKIP_HOST_UPDATE": true
+          }
+        '';
+      };
       home.packages = with pkgs; [
-        discord-canary
+        discord
         spotube
         yt-dlp
         gimp3

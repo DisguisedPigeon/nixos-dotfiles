@@ -21,38 +21,19 @@
           '';
           style = {
             wallpapers = [ ../../../resources/wallpaper.png ];
-            wallpaperStyle = "centered";
-            backdrop = "1E1E2E";
+            backdrop = lib.mkForce "1E1E2E";
             interface = {
               branding = "DPigeon MacOS";
               helpHidden = true;
             };
             graphicalTerminal = {
-              foreground = "CDD6F4";
-              background = "FF1E1E2E";
-              palette = builtins.concatStringsSep ";" [
-                "11111B" # Black
-                "F38BA8" # Red
-                "A6E3A1" # Green
-                "F9E2AF" # Brown (yellow??)
-                "89B4FA" # Blue
-                "F5C2E7" # Magenta (Pink)
-                "94E2D5" # Cyan (Teal)
-                "A6ADC8" # Gray (Subtext 0)
-              ];
+              foreground = lib.mkForce "CDD6F4";
+              background = lib.mkForce "FF1E1E2E";
+              palette = lib.mkForce "11111B;F38BA8;A6E3A1;F9E2AF;89B4FA;F5C2E7;94E2D5;A6ADC8";
 
-              brightBackground = "313244";
-              brightForeground = "CDD6F4";
-              brightPalette = builtins.concatStringsSep ";" [
-                "11111B" # Black
-                "F38BA8" # Red
-                "A6E3A1" # Green
-                "F9E2AF" # Brown (yellow??)
-                "89B4FA" # Blue
-                "F5C2E7" # Magenta (Pink)
-                "94E2D5" # Cyan (Teal)
-                "A6ADC8" # Gray (Subtext 0)
-              ];
+              brightBackground = lib.mkForce "313244";
+              brightForeground = lib.mkForce "CDD6F4";
+              brightPalette = lib.mkForce "11111B;F38BA8;A6E3A1;F9E2AF;89B4FA;F5C2E7;94E2D5;A6ADC8";
             };
           };
         };

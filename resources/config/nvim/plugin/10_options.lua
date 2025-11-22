@@ -37,40 +37,39 @@ vim.o.indentexpr = "nvim_treesitter#indentexpr()"
 vim.o.shada = "'100,<50,s10,:1000,/100,@100,h"
 
 _G.Config.new_autocmd("FileType", nil, function()
-  vim.cmd("setlocal formatoptions-=c formatoptions-=o")
+	vim.cmd("setlocal formatoptions-=c formatoptions-=o")
 end, "Proper 'formatoptions'")
 
 local diagnostic_opts = {
-  signs = {
-    priority = 9999,
-    severity = {
-      min = vim.diagnostic.severity.WARN,
-      max = vim.diagnostic.severity.ERROR,
-    },
-  },
+	signs = {
+		priority = 9999,
+		severity = {
+			min = vim.diagnostic.severity.WARN,
+			max = vim.diagnostic.severity.ERROR,
+		},
+	},
 
-  underline = { severity = {
-    min = vim.diagnostic.severity.HINT,
-    max = vim.diagnostic.severity.ERROR,
-  } },
+	underline = { severity = {
+		min = vim.diagnostic.severity.HINT,
+		max = vim.diagnostic.severity.ERROR,
+	} },
 
-  virtual_lines = false,
-  virtual_text = { current_line = true },
+	virtual_lines = false,
+	virtual_text = { current_line = true },
 
-  update_in_insert = false,
+	update_in_insert = false,
 }
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  callback = function()
-    if vim.list_contains(require("nvim-treesitter").get_installed(), vim.bo.ft)
-    then
-      vim.wo.foldmethod = "expr"
-    else
-      vim.wo.foldmethod = "syntax"
-    end
-  end,
+	callback = function()
+		if vim.list_contains(require("nvim-treesitter").get_installed(), vim.bo.ft) then
+			vim.wo.foldmethod = "expr"
+		else
+			vim.wo.foldmethod = "syntax"
+		end
+	end,
 })
 
 MiniDeps.later(function()
-  vim.diagnostic.config(diagnostic_opts)
+	vim.diagnostic.config(diagnostic_opts)
 end)
