@@ -100,23 +100,25 @@
           globalcolor=0x31748fff
           overlaycolor=0x9ccfd8ff
 
-          tagrule=id:1,layout_name:scroller
-          tagrule=id:2,layout_name:scroller
-          tagrule=id:3,layout_name:scroller
+          windowrule=isfullscreen:1,appid:wezterm
+
+          tagrule=id:1,layout_name:tile
+          tagrule=id:2,layout_name:tile
+          tagrule=id:3,layout_name:tile
           tagrule=id:4,layout_name:scroller
           tagrule=id:5,layout_name:scroller
           tagrule=id:6,layout_name:scroller
           tagrule=id:7,layout_name:scroller
-          tagrule=id:8,layout_name:scroller
-          tagrule=id:9,layout_name:scroller
+          tagrule=id:8,layout_name:tile
+          tagrule=id:9,layout_name:tile
 
-          bind=SUPER+SHIFT,r,reload_config
+          bind=SUPER+SHIFT,R,reload_config
 
           bind=SUPER,r,spawn,rofi -show drun -modi run,drun,ssh,window
           bind=SUPER,Return,spawn,wezterm
           bind=SUPER,f,spawn,zen -P default
           bind=SUPER,m,spawn,zen -P music
-          bind=SUPER+SHIFT,Print,spawn,grim -g "$(slurp -d)" - | wl-copy
+          bind=SUPER+SHIFT,Print,spawn_shell,grim -g "$(slurp -d)" - | wl-copy
 
           bind=SUPER+SHIFT,Escape,quit
           bind=SUPER,w,killclient,
@@ -134,7 +136,7 @@
           bind=SUPER,Tab,toggleoverview,
           bind=SUPER,backslash,togglefloating,
           bind=SUPER,a,togglemaximizescreen,
-          bind=SUPER,f,togglefakefullscreen,
+          bind=SUPER+SHIFT,f,togglefullscreen,
           bind=SUPER,i,minimized,
           bind=SUPER,o,toggleoverlay,
           bind=SUPER+SHIFT,I,restore_minimized

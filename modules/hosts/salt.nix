@@ -7,6 +7,7 @@ let
     {
       imports = with inputs.self.modules.nixos; [
         # Apps
+        kanata
         obs
         docker
         git
@@ -25,6 +26,7 @@ let
         dpigeon
 
         # System
+        bluetooth
         locale
         salt-hardware
         inputs.hardware.nixosModules.asus-zephyrus-ga502
