@@ -143,5 +143,9 @@ nmap_leader("tt", "<Cmd>tab terminal<CR>", "Terminal (new tab)")
 -- Quick term exit.
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Execute selection" })
 
+nmap_leader("d", '"_d', "delete no copy")
+
+nmap_leader("st", "<Cmd>spell!<CR>", "toggle spellintoggle spellingg")
+
 nmap_leader("<C-d>", "<C-d>zz", "Scroll down + center")
 nmap_leader("<C-u>", "<C-u>zz", "Scroll up + center")

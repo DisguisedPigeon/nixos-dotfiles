@@ -1,30 +1,36 @@
 vim.g.mapleader = " "
-vim.o.switchbuf = "usetab"
-vim.o.breakindentopt = "list:-1"
-vim.o.colorcolumn = "+1"
-vim.o.relativenumber = true
-vim.o.winborder = "rounded"
-vim.o.cursorlineopt = "screenline,number"
-vim.o.fillchars = "eob:ø,fold:·"
-vim.o.list = true
-vim.opt.listchars = { tab = "»\\ ", trail = "·", nbsp = "␣" }
-vim.o.wrap = true
-vim.o.foldlevel = 10
-vim.o.foldmethod = "indent"
-vim.o.foldnestmax = 10
-vim.o.foldtext = ""
-vim.o.autoindent = true
-vim.o.expandtab = true
-vim.o.shiftwidth = 2
-vim.o.spelloptions = "camel"
-vim.o.tabstop = 2
-vim.o.iskeyword = "@,48-57,_,192-255,-"
-vim.o.formatlistpat = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
-vim.o.complete = ".,w,b,kspell"
-vim.o.completeopt = "menuone,noselect,fuzzy,nosort"
-vim.o.scrolloff = 10
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-vim.o.indentexpr = "nvim_treesitter#indentexpr()"
+vim.opt.switchbuf = "usetab"
+vim.opt.breakindentopt = "list:-1"
+vim.opt.colorcolumn = "+1"
+vim.opt.relativenumber = true
+vim.opt.winborder = "rounded"
+vim.opt.cursorlineopt = "screenline,number"
+vim.opt.fillchars = "eob:ø,fold:·"
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.foldlevel = 10
+vim.opt.foldmethod = "indent"
+vim.opt.foldnestmax = 10
+vim.opt.foldtext = ""
+vim.opt.autoindent = true
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.spelloptions = "camel"
+vim.opt.spl = { "en", "es", "gl" }
+vim.opt.tabstop = 2
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.inccommand = "split"
+vim.opt.undofile = true
+vim.opt.iskeyword = "@,48-57,_,192-255,-"
+vim.opt.formatlistpat = [[^\s*[0-9\-\+\*]\+[\.\)]*\s\+]]
+vim.opt.complete = ".,w,b,kspell"
+vim.opt.completeopt = "menuone,noselect,fuzzy,nosort"
+vim.opt.scrolloff = 10
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.indentexpr = "nvim_treesitter#indentexpr()"
 
 --- ShaDa(Shared data) file size limitations
 -- '100: 100 files with marks saved
@@ -34,7 +40,7 @@ vim.o.indentexpr = "nvim_treesitter#indentexpr()"
 -- /100: 100 lines in search history
 -- @100: 100 lines in input-line history (input boxes, like telescope's?)
 -- h keep the hlshearch when loading shada.
-vim.o.shada = "'100,<50,s10,:1000,/100,@100,h"
+vim.opt.shada = "'100,<50,s10,:1000,/100,@100,h"
 
 _G.Config.new_autocmd("FileType", nil, function()
 	vim.cmd("setlocal formatoptions-=c formatoptions-=o")

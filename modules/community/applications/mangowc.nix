@@ -1,5 +1,5 @@
 { inputs, ... }:
-{
+let
   flake-file.inputs.mango = {
     url = "github:DreamMaoMao/mangowc";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -8,6 +8,7 @@
 
   flake.modules.nixos.mango = {
     imports = [ inputs.mango.nixosModules.mango ];
+
     programs.mango.enable = true;
   };
 
@@ -16,15 +17,15 @@
     {
       imports = [ inputs.mango.hmModules.mango ];
 
+      wayland.windowManager.mango.enable = true;
+      services.swaync.enable = true;
+
       home.packages = with pkgs; [
         swaybg
         wl-clip-persist
         wlsunset
         wl-clipboard
-
       ];
-
-      services.swaync.enable = true;
 
       xdg.configFile."mango/wallpaper.png" = {
         enable = true;
@@ -32,7 +33,6 @@
       };
 
       wayland.windowManager.mango = {
-        enable = true;
         autostart_sh = ''
           # see autostart.sh
           set +e
@@ -50,7 +50,7 @@
           wl-clip-persist --clipboard regular --reconnect-tries 0 &
 
           # clipboard content manager
-          wl-paste --type text --watch cliphist store & 
+          wl-paste --type text --watch cliphist store &
 
           # xwayland dpi scale
           echo "Xft.dpi: 140" | xrdb -merge #dpi缩放
@@ -60,6 +60,7 @@
           /usr/lib/xfce-polkit/xfce-polkit &
 
         '';
+
         settings = ''
           #           name      masterfactor numbermasters layout    transform scale x     y  width height refreshrate
           monitorrule=eDP-1,    0.5,         1,            scroller, 0,        1,    0,    0, 1920, 1080,  120
@@ -186,4 +187,7 @@
         '';
       };
     };
+in
+{
+  inherit flake-file flake;
 }

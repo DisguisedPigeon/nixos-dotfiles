@@ -1,12 +1,12 @@
 { inputs, ... }:
 {
   flake.modules.nixos.dpigeon =
-    { pkgs, config, ... }:
+    { pkgs, config, lib, ... }:
     {
       imports = [ inputs.self.modules.nixos.sops ];
 
       users = {
-        mutableUsers = false;
+        mutableUsers = lib.mkDefault false;
         users.dpigeon = {
           shell = pkgs.zsh;
           hashedPasswordFile = config.sops.secrets.user-password.path;

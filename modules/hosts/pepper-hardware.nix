@@ -14,10 +14,7 @@
         (modulesPath + "/installer/scan/not-detected.nix")
       ];
 
-      boot.initrd.availableKernelModules = [
-        "xhci_pci"
-        "usbhid"
-      ];
+      boot.initrd.availableKernelModules = [ "xhci_pci" ];
       boot.initrd.kernelModules = [ ];
       boot.extraModulePackages = [ ];
 

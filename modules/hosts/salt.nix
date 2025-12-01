@@ -37,7 +37,10 @@ let
         "docker"
       ];
 
-      environment.systemPackages = [ pkgs.ntfs3g ];
+      environment.systemPackages = [
+        pkgs.ntfs3g
+        pkgs.qemu
+      ];
 
       boot.loader.limine.extraEntries = builtins.concatStringsSep "\n" [
         "/Windows"

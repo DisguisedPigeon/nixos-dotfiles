@@ -13,14 +13,14 @@ let
     {
       imports = [ inputs.niri.nixosModules.niri ];
 
-      programs.niri = {
-        enable = true;
-        package = pkgs'.niri-stable;
-      };
+      programs.niri.enable = true;
+
       environment.systemPackages = [
         pkgs.xdg-desktop-portal-gnome
         pkgs.xwayland-satellite
       ];
+
+      programs.niri.package = pkgs'.niri-stable;
     };
 
   flake.modules.homeManager.niri =
@@ -30,6 +30,8 @@ let
     in
     {
       imports = [ inputs.niri.homeModules.niri ];
+
+      programs.niri.enable = true;
 
       home.packages = with pkgs'; [ swaybg ];
 
@@ -63,9 +65,7 @@ let
               { proportion = 1. / 2.; }
             ];
 
-            default-column-width = {
-              proportion = 1. / 2.;
-            };
+            default-column-width.proportion = 1. / 2.;
           };
 
           outputs = {
@@ -77,7 +77,6 @@ let
                 y = 0;
               };
               scale = 1;
-
             };
 
             "2" = {
@@ -96,15 +95,8 @@ let
           environment.DISPLAY = ":0";
 
           spawn-at-startup = [
-            { argv = [ "xwayland-satellite" ]; }
-            {
-              argv = [
-                "dbus-update-activation-environment"
-                "--systemd"
-                "WAYLAND_DISPLAY"
-                "XDG_CURRENT_DESKTOP"
-              ];
-            }
+            { sh = "xwayland-satellite"; }
+            { sh = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"; }
             { sh = "swaybg -i ~/.config/niri/wallpaper.png"; }
           ];
 
@@ -181,40 +173,20 @@ let
               "Mod+R".hotkey-overlay.title = "Rofi launcher";
               "Mod+Shift+P".hotkey-overlay.title = "Rofi powermenu";
 
-              "Mod+Ctrl+H".hotkey-overlay = {
-                title = "Workspace to left monitor";
-              };
-              "Mod+Ctrl+J".hotkey-overlay = {
-                title = "Move workspace down";
-              };
-              "Mod+Ctrl+K".hotkey-overlay = {
-                title = "Move workspace up";
-              };
-              "Mod+Ctrl+L".hotkey-overlay = {
-                title = "Workspace to right monitor";
-              };
+              "Mod+Ctrl+H".hotkey-overlay.title = "Workspace to left monitor";
+              "Mod+Ctrl+J".hotkey-overlay.title = "Move workspace down";
+              "Mod+Ctrl+K".hotkey-overlay.title = "Move workspace up";
+              "Mod+Ctrl+L".hotkey-overlay.title = "Workspace to right monitor";
 
-              "Mod+BracketLeft".hotkey-overlay = {
-                title = "Focus window up";
-              };
-              "Mod+BracketRight".hotkey-overlay = {
-                title = "Focus window down";
-              };
+              "Mod+BracketLeft".hotkey-overlay.title = "Focus window up";
+              "Mod+BracketRight".hotkey-overlay.title = "Focus window down";
 
-              "Mod+S".hotkey-overlay = {
-                title = "Change column width";
-              };
+              "Mod+S".hotkey-overlay.title = "Change column width";
 
-              "Mod+T".hotkey-overlay = {
-                title = "Toggle from stacked to tabs";
-              };
+              "Mod+T".hotkey-overlay.title = "Toggle from stacked to tabs";
 
-              "Mod+Space".hotkey-overlay = {
-                title = "Toggle focus from float to tiling";
-              };
-              "Mod+Shift+Space".hotkey-overlay = {
-                title = "Toggle window from float to tiling";
-              };
+              "Mod+Space".hotkey-overlay.title = "Toggle focus from float to tiling";
+              "Mod+Shift+Space".hotkey-overlay.title = "Toggle window from float to tiling";
               # \Docs
             };
         };

@@ -2,33 +2,19 @@
   flake.modules.homeManager.nvim =
     { pkgs, ... }:
     {
+      programs.neovim.enable = true;
+
+      home.packages = with pkgs; [
+        ripgrep # file grepping
+        fd # find but easier
+      ];
+
       programs.neovim = {
-        enable = true;
-        plugins = with pkgs.vimPlugins; [ lazy-nvim ];
+        plugins = [ pkgs.vimPlugins.mini-deps ];
         vimAlias = true;
         vimdiffAlias = true;
         withNodeJs = true;
       };
-
-      home.packages = with pkgs; [
-        ripgrep
-        xclip
-
-        clang
-        cmake
-
-        nodePackages.prettier
-        luajitPackages.jsregexp
-        fd
-
-        lua-language-server
-        lua53Packages.luacheck
-        stylua
-
-        tree-sitter
-
-        kdePackages.okular
-      ];
 
       xdg.configFile.nvim = {
         enable = true;

@@ -1,4 +1,4 @@
-let
+{
   flake.modules.nixos.shell = {
     environment = {
       variables.editor = "nvim";
@@ -9,7 +9,4 @@ let
       ];
     };
   };
-in
-{
-  inherit flake;
 }

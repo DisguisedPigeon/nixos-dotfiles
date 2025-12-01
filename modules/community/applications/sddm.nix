@@ -1,30 +1,29 @@
-{
+let
+  wallpaper-location = "sddm-wallpaper.png";
+
   flake.modules.nixos.sddm =
     { pkgs, ... }:
-    let
-      wallpaper-location = "sddm-wallpaper.png";
-      sddm-astronaut-pkg = pkgs.sddm-astronaut;
-    in
     {
-      environment.systemPackages = [ sddm-astronaut-pkg ];
+      services.displayManager.sddm.enable = true;
+
+      environment.systemPackages = with pkgs; [ sddm-astronaut ];
 
       environment.etc.${wallpaper-location}.source = ../../../resources/wallpaper.png;
 
-      services = {
-        displayManager.sddm = {
-          enable = true;
-          wayland.enable = true;
+      services.displayManager.sddm = {
+        wayland.enable = true;
 
-          theme = "sddm-astronaut-theme";
+        theme = "sddm-astronaut-theme";
+        package = pkgs.kdePackages.sddm;
 
-          package = pkgs.kdePackages.sddm;
-
-          extraPackages = with pkgs.kdePackages; [
-            qtmultimedia
-            qtsvg
-            qtvirtualkeyboard
-          ];
-        };
+        extraPackages = with pkgs.kdePackages; [
+          qtmultimedia
+          qtsvg
+          qtvirtualkeyboard
+        ];
       };
     };
+in
+{
+  inherit flake;
 }

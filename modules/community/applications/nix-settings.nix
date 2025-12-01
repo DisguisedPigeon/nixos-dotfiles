@@ -1,12 +1,27 @@
-{
+let
   flake.modules.nixos.nix-settings =
-    { config, lib, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       nixpkgs.config.allowUnfree = true;
 
+      boot.binfmt.emulatedSystems = [
+        # "aarch64-linux"
+      ];
+
+      environment.systemPackages = with pkgs; [
+        qemu
+      ];
+
+      environment.etc."nix/nix.conf".source = lib.mkForce config.sops.templates."nix.conf".path;
+
       sops.templates."nix.conf" = {
         content = ''
-          access-tokens = "github.com=${config.sops.placeholder.github-pat}
+          access-tokens = "github.com=${config.sops.placeholder.github-PAT}
           allowed-users = dpigeon
           auto-optimise-store = true
           builders =
@@ -24,12 +39,11 @@
           trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
           trusted-substituters =
           trusted-users = root dpigeon
-          extra-platforms = aarch64-linux i686-linux
-          extra-sandbox-paths = /run/binfmt /nix/store/ddg3d5ab6rbb9zkzjv10b72qy6ik4xcj-qemu-aarch64-binfmt-P-x86_64-unknown-linux-musl
+          extra-platforms = aarch64-linux
+          extra-sandbox-paths = /run/binfmt
         '';
         mode = "0644";
       };
-      environment.etc."nix/nix.conf".source = lib.mkForce config.sops.templates."nix.conf".path;
 
       nix = {
         # Could be done by home manager's expiration too, but I'm suspicious in case it needs superuser
@@ -67,6 +81,8 @@
   flake.modules.homeManager.nix-settings =
     { pkgs, ... }:
     {
+      services.home-manager.autoExpire.enable = true;
+
       nixpkgs.config.allowUnfree = true;
 
       nix = {
@@ -91,9 +107,9 @@
         };
       };
 
-      services.home-manager.autoExpire = {
-        enable = true;
-        timestamp = "-0 days";
-      };
+      services.home-manager.autoExpire.timestamp = "-0 days";
     };
+in
+{
+  inherit flake;
 }

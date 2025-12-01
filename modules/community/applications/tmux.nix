@@ -2,8 +2,23 @@
   flake.modules.homeManager.tmux =
     { pkgs, ... }:
     {
+      programs.tmux.enable = true;
+
+      home.packages = [
+        (pkgs.writeShellApplication {
+          name = "pux";
+          runtimeInputs = [ pkgs.tmux ];
+          text = ''
+            PRJ="''$(zoxide query -i)"
+            echo "Launching tmux for ''$PRJ"
+            set -x
+            cd "''$PRJ" && \
+              exec tmux -S "''$PRJ".tmux attach
+          '';
+        })
+      ];
+
       programs.tmux = {
-        enable = true;
         baseIndex = 1;
         newSession = true;
         escapeTime = 0;
@@ -26,18 +41,5 @@
           bind c new-window -c "#{pane_current_path}"
         '';
       };
-      home.packages = [
-        (pkgs.writeShellApplication {
-          name = "pux";
-          runtimeInputs = [ pkgs.tmux ];
-          text = ''
-            PRJ="''$(zoxide query -i)"
-            echo "Launching tmux for ''$PRJ"
-            set -x
-            cd "''$PRJ" && \
-              exec tmux -S "''$PRJ".tmux attach
-          '';
-        })
-      ];
     };
 }

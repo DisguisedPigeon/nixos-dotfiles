@@ -20,6 +20,7 @@
           # Lua stuff
           pkgs.stylua
           pkgs.lua-language-server
+          pkgs.lua53Packages.luacheck
 
           pkgs.treefmt
         ];

@@ -1,16 +1,20 @@
 { inputs, ... }:
-{
+let
   flake.modules.nixos.hyprland =
     { pkgs, ... }:
     {
       imports = [ inputs.self.modules.nixos.hyprlock ];
-      environment.systemPackages = [ pkgs.xdg-desktop-portal-hyprland ];
+
       programs.hyprland.enable = true;
+
+      environment.systemPackages = [ pkgs.xdg-desktop-portal-hyprland ];
     };
 
   flake.modules.homeManager.hyprland =
     { pkgs, ... }:
     {
+      wayland.windowManager.hyprland.enable = true;
+
       home.packages = with pkgs; [
         wl-clipboard
         grim
@@ -20,8 +24,6 @@
       ];
 
       wayland.windowManager.hyprland = {
-        enable = true;
-
         settings = {
           "$mod" = "SUPER";
 
@@ -40,16 +42,13 @@
           general = {
             gaps_in = 5;
             gaps_out = 10;
-
             border_size = 1;
-
             layout = "master";
           };
 
           decoration = {
             rounding = 5;
             inactive_opacity = 0.9;
-
             blur = {
               enabled = true;
               vibrancy = 0;
@@ -66,7 +65,6 @@
           };
 
           xwayland.force_zero_scaling = true;
-
           gesture = [ "3, horizontal, workspace" ];
           bindm = [
             "$mod,mouse:272,movewindow"
@@ -84,27 +82,22 @@
             "$mod, V, togglefloating"
             "$mod, m, fullscreen"
             "$mod, Space, exec, wezterm start session-chooser"
-
             "$mod, h, movefocus, l"
             "$mod, l, movefocus, r"
             "$mod, k, movefocus, u"
             "$mod, j, movefocus, d"
-
             "$mod control, h, layoutmsg, orientationleft"
             "$mod control, j, layoutmsg, orientationbottom"
             "$mod control, k, layoutmsg, orientationtop"
             "$mod control, l, layoutmsg, orientationright"
             "$mod control, space, layoutmsg, orientationcenter"
-
             "$mod shift, h, movewindow, l"
             "$mod shift, l, movewindow, r"
             "$mod shift, k, movewindow, u"
             "$mod shift, j, movewindow, d"
             "$mod control, s, swapactiveworkspaces, 0 1"
-
             "$mod shift, down, exec, light -U 30"
             "$mod shift, up, exec, light -A 30"
-
             "shift, Print, exec, grim -g \"$(slurp -d)\" - | wl-copy"
           ]
           ++ (builtins.concatLists (
@@ -126,4 +119,7 @@
         };
       };
     };
+in
+{
+  inherit flake;
 }

@@ -1,5 +1,5 @@
 { inputs, ... }:
-{
+let
   flake-file.inputs.zen = {
     url = "github:0xc000022070/zen-browser-flake";
     inputs.nixpkgs.follows = "nixpkgs";
@@ -8,25 +8,6 @@
 
   flake.modules.homeManager.zen =
     { pkgs, ... }:
-    let
-      mkExtensionEntry =
-        {
-          id,
-          pinned ? false,
-        }:
-        let
-          base = {
-            url = "https://addons.mozilla.org/firefox/downloads/latest/${id}/latest.xpi";
-            installation_mode = "force_installed";
-          };
-        in
-        if pinned then base // { default_area = "navbar"; } else base;
-
-      mkExtensionSettings = builtins.mapAttrs (
-        _: entry: if builtins.isAttrs entry then entry else mkExtensionEntry { id = entry; }
-      );
-
-    in
     {
       imports = [ inputs.zen.homeModules.beta ];
       programs.zen-browser = {
@@ -56,19 +37,28 @@
             FormData = true;
             Cache = true;
           };
-          ExtensionSettings = mkExtensionSettings {
-            "wappalyzer@crunchlabz.com" = "wappalyzer";
-            "uBlock0@raymondhill.net" = "ublock-origin";
-            "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = "github-file-icons";
-            "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = "return-youtube-dislikes";
-            "{74145f27-f039-47ce-a470-a662b129930a}" = "clearurls";
-            "github-no-more@ihatereality.space" = "github-no-more";
-            "@searchengineadremover" = "searchengineadremover";
-            "jid1-BoFifL9Vbdl2zQ@jetpack" = "decentraleyes";
-            "trackmenot@mrl.nyu.edu" = "trackmenot";
-            "{861a3982-bb3b-49c6-bc17-4f50de104da1}" = "custom-user-agent-revived";
-            "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}" = "chameleon-ext";
-          };
+          ExtensionSettings =
+            let
+              mkExtensionSettings = builtins.mapAttrs (
+                _: pluginId: {
+                  install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
+                  installation_mode = "force_installed";
+                }
+              );
+            in
+            {
+              "wappalyzer@crunchlabz.com" = "wappalyzer";
+              "uBlock0@raymondhill.net" = "ublock-origin";
+              "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = "github-file-icons";
+              "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = "return-youtube-dislikes";
+              "{74145f27-f039-47ce-a470-a662b129930a}" = "clearurls";
+              "github-no-more@ihatereality.space" = "github-no-more";
+              "@searchengineadremover" = "searchengineadremover";
+              "jid1-BoFifL9Vbdl2zQ@jetpack" = "decentraleyes";
+              "trackmenot@mrl.nyu.edu" = "trackmenot";
+              "{861a3982-bb3b-49c6-bc17-4f50de104da1}" = "custom-user-agent-revived";
+              "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}" = "chameleon-ext";
+            };
         };
         profiles = {
           "default" = rec {
@@ -311,4 +301,7 @@
         };
       };
     };
+in
+{
+  inherit flake-file flake;
 }
