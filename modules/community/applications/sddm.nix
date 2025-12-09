@@ -36,7 +36,7 @@ let
                   };
             in
             {
-              HeaderText = "WELCOME  ABOARD  CAPTAIN";
+              HeaderText = "Ludum perdidi\\n(╯°□°）╯︵ ┻━┻";
               FontSize = "10.0";
               Background = "/etc/${wallpaper-location}";
               Font = "arcadeclassic";
