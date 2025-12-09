@@ -25,6 +25,9 @@ let
         wl-clip-persist
         wlsunset
         wl-clipboard
+        xdg-desktop-portal
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
       ];
 
       xdg.configFile."mango/wallpaper.png" = {

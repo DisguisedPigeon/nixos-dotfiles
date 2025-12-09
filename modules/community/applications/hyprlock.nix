@@ -38,7 +38,15 @@ let
               };
             }
           else
-            { }
+            {
+              input-field = {
+                outer_color = "#6e6a86";
+                inner_color = "#191724)";
+                font_color = "#e0def4";
+                fail_color = "#eb6f92";
+                check_color = "#ebbcba";
+              };
+            }
         );
       };
     };
