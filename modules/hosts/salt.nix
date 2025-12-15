@@ -45,10 +45,10 @@ let
       boot.loader.limine.extraEntries = builtins.concatStringsSep "\n" [
         "/Windows"
         "\tprotocol: efi"
-        "\tpath: boot():/EFI/microsoft/boot/bootmgfw.efi"
+        "\tpath: boot():/efi/Microsoft/Boot/bootmgfw.efi"
       ];
 
-      fileSystems."/mnt/disk2" = {
+      fileSystems."/disk2" = {
         fsType = "ntfs";
         options = [
           "noatime"
@@ -56,7 +56,7 @@ let
           "user"
           "rw"
         ];
-        device = "/dev/disk/by-uuid/92F44E63F44E49A5";
+        device = "/dev/disk/by-label/SUGON";
       };
 
       services.fstrim.enable = true;

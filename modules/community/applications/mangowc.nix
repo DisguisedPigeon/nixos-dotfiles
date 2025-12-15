@@ -61,7 +61,6 @@ let
 
           # Permission authentication
           /usr/lib/xfce-polkit/xfce-polkit &
-
         '';
 
         settings = ''
@@ -71,6 +70,8 @@ let
 
           # Window effect
           blur=1
+
+          exec-once=~/.config/mango/autostart.sh
 
           border_radius=10
 
