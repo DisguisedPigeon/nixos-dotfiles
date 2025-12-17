@@ -12,7 +12,13 @@
     {
       imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-      boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+      boot.initrd.availableKernelModules = [
+        "xhci_pci"
+        "nvme"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+      ];
       boot.initrd.kernelModules = [ ];
       boot.kernelModules = [ "kvm-amd" ];
       boot.extraModulePackages = [ ];
@@ -20,31 +26,46 @@
       fileSystems."/" = {
         device = "/dev/disk/by-label/ROOT";
         fsType = "btrfs";
-        options = [ "subvol=root" "compress=zstd" ];
+        options = [
+          "subvol=root"
+          "compress=zstd"
+        ];
       };
 
       fileSystems."/nix" = {
         device = "/dev/disk/by-label/ROOT";
         fsType = "btrfs";
-        options = [ "subvol=nix" "compress=zstd" "noatime" ];
+        options = [
+          "subvol=nix"
+          "compress=zstd"
+          "noatime"
+        ];
       };
 
       fileSystems."/boot" = {
         device = "/dev/disk/by-label/BOOT";
         fsType = "vfat";
-        options = [ "fmask=0022" "dmask=0022" ];
+        options = [
+          "fmask=0022"
+          "dmask=0022"
+        ];
       };
 
       fileSystems."/mnt/swap" = {
         device = "/dev/disk/by-label/ROOT";
         fsType = "btrfs";
-        options = [ "subvol=swap" "noatime" ];
+        options = [
+          "subvol=swap"
+          "noatime"
+        ];
       };
 
-      swapDevices = [ {
+      swapDevices = [
+        {
           device = "/swap/swapfile";
-          size = 24*1024;
-      } ];
+          size = 24 * 1024;
+        }
+      ];
 
       nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
       hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

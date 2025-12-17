@@ -23,19 +23,30 @@
           deadnix.enable = true;
           nixf-diagnose.enable = true;
           prettier.enable = true;
+          taplo.enable = true;
         };
+
+        settings.formatter.stylua = {
+          column_width = 100;
+          line_endings = "Unix";
+          indent_type = "Spaces";
+          indent_width = 2;
+          quote_style = "AutoPreferDouble";
+          call_parentheses = "None";
+          collapse_simple_statement = "Always";
+          sort_requires.enabled = true;
+        };
+
         settings.on-unmatched = lib.mkDefault "fatal";
         settings.global.excludes = [
-          "modules/*"
-          "resources/DECORATE.F16"
+          "resources/*.F16"
+          "resources/*.png"
+          # Nvim spell files
+          "resources/*.spl"
           "LICENSE"
           "flake.lock"
           "*/flake.lock"
-          "*.toml"
-          "*.spl"
           "*.sug"
-          "*.diff"
-          "*.png"
           ".envrc"
           ".direnv/*"
           "*/.gitignore"

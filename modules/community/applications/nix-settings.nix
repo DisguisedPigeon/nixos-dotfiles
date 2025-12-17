@@ -85,6 +85,16 @@ let
 
       nixpkgs.config.allowUnfree = true;
 
+      xdg.configFile."nix-sweep/presets.toml" = {
+        text = ''
+          [housekeeping]
+          keep-min = 10
+          remove-older = 14d
+          interactive = true
+          gc = false
+        '';
+      };
+
       nix = {
         package = pkgs.nix;
         # Could be done by home manager's expiration too, but I'm suspicious in case it needs superuser

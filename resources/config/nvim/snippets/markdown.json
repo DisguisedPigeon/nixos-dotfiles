@@ -3,5 +3,5 @@
     "prefix": "li",
     "body": "[$1]($2)$0",
     "description": "Insert link."
-  },
+  }
 }

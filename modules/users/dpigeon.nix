@@ -1,7 +1,12 @@
 { inputs, ... }:
 {
   flake.modules.nixos.dpigeon =
-    { pkgs, config, lib, ... }:
+    {
+      pkgs,
+      config,
+      lib,
+      ...
+    }:
     {
       imports = [ inputs.self.modules.nixos.sops ];
 
