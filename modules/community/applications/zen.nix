@@ -6,10 +6,16 @@ let
     inputs.home-manager.follows = "home-manager";
   };
 
+  flake-file.inputs.firefox-addons = {
+    url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
   flake.modules.homeManager.zen =
-    { ... }:
+    { pkgs, lib, ... }:
     {
       imports = [ inputs.zen.homeModules.beta ];
+
       programs.zen-browser = {
         enable = true;
         nativeMessagingHosts = [ ];
@@ -37,24 +43,20 @@ let
             FormData = true;
             Cache = true;
           };
-          ExtensionSettings = {
-            "wappalyzer@crunchlabz.com" = "wappalyzer";
-            "uBlock0@raymondhill.net" = "ublock-origin";
-            "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = "github-file-icons";
-            "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = "return-youtube-dislikes";
-            "{74145f27-f039-47ce-a470-a662b129930a}" = "clearurls";
-            "github-no-more@ihatereality.space" = "github-no-more";
-            "@searchengineadremover" = "searchengineadremover";
-            "jid1-BoFifL9Vbdl2zQ@jetpack" = "decentraleyes";
-            "trackmenot@mrl.nyu.edu" = "trackmenot";
-            "{861a3982-bb3b-49c6-bc17-4f50de104da1}" = "custom-user-agent-revived";
-            "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}" = "chameleon-ext";
-          };
         };
         profiles = {
           "default" = rec {
             id = 0;
+            extensions.packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
+              ublock-origin
+              github-file-icons
+              return-youtube-dislikes
+              clearurls
+              decentraleyes
+              chameleon-ext
+            ];
             settings = {
+              "extensions.autoDisableScopes" = 0;
               "zen.workspaces.continue-where-left-off" = true;
               "zen.view.compact.hide-tabbar" = true;
               "zen.view.compact.hide-toolbar" = true;
@@ -258,6 +260,22 @@ let
           "music" = rec {
             id = 1;
             pinsForce = true;
+            settings = {
+              "extensions.autoDisableScopes" = 0;
+            };
+            extensions = {
+              packages = with inputs.firefox-addons.packages.${pkgs.stdenv.hostPlatform.system}; [
+                youtube-nonstop
+                youtube-shorts-block
+                ublock-origin
+                refined-github
+                github-file-icons
+                return-youtube-dislikes
+                clearurls
+                decentraleyes
+                chameleon-ext
+              ];
+            };
             pins = {
               "YTM" = {
                 id = "48e8a119-5a14-4826-9545-91c8e8dd3bf6";

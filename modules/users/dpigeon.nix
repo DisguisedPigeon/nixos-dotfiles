@@ -27,6 +27,7 @@
   flake.modules.homeManager.dpigeon-salt = {
     imports = with inputs.self.modules.homeManager; [
       ui
+      bitwarden
       stylix
       kde-connect
       sops

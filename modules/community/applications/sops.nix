@@ -26,7 +26,11 @@ let
     };
 
   flake.modules.homeManager.sops =
-    { pkgs, ... }:
+    {
+      pkgs,
+      config,
+      ...
+    }:
     {
       imports = [ inputs.sops-nix.homeManagerModules.sops ];
 
@@ -35,10 +39,9 @@ let
       sops = {
         defaultSopsFile = ../../../secrets/secrets.yaml;
         defaultSopsFormat = "yaml";
-        age.keyFile = "/sops/age/keys.txt";
+        age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
         secrets = {
-          net-secretsFile = { };
-          github-PAT = { };
+          bitwarden-mail = { };
         };
       };
     };
