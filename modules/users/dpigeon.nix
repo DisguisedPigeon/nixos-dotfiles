@@ -32,6 +32,7 @@
       kde-connect
       sops
       niri
+      dms
       mango
       starship
       rofi

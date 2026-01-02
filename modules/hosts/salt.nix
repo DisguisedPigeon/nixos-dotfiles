@@ -11,6 +11,7 @@ let
         obs
         docker
         git
+        dms
 
         # Secrets
         sops

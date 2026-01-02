@@ -98,6 +98,27 @@
         "type": "github"
       }
     },
+    "dms": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "quickshell": "quickshell"
+      },
+      "locked": {
+        "lastModified": 1767113340,
+        "narHash": "sha256-j2yy6VDDyHsm6CmG0zb97IjZO7rbv4uqGcQjaSCRLiA=",
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "rev": "97a07c399a274b78f466d3401a7b75089f04b32b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "DankMaterialShell",
+        "type": "github"
+      }
+    },
     "firefox-addons": {
       "inputs": {
         "nixpkgs": [
@@ -362,7 +383,9 @@
       "inputs": {
         "cf": "cf",
         "crane": "crane",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1762812396,
@@ -410,22 +433,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1764947035,
-        "narHash": "sha256-EYHSjVM4Ox4lvCXUMiKKs2vETUSL5mx+J2FfutM7T9w=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "a672be65651c80d3f592a89b3945466584a22069",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -451,8 +458,31 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "dms",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1766725085,
+        "narHash": "sha256-O2aMFdDUYJazFrlwL7aSIHbUSEm3ADVZjmf41uBJfHs=",
+        "ref": "refs/heads/master",
+        "rev": "41828c4180fb921df7992a5405f5ff05d2ac2fff",
+        "revCount": 715,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+      },
+      "original": {
+        "rev": "41828c4180fb921df7992a5405f5ff05d2ac2fff",
+        "type": "git",
+        "url": "https://git.outfoxxed.me/quickshell/quickshell"
+      }
+    },
     "root": {
       "inputs": {
+        "dms": "dms",
         "firefox-addons": "firefox-addons",
         "flake-file": "flake-file",
         "flake-parts": "flake-parts",
@@ -463,7 +493,7 @@
         "niri": "niri",
         "nix-auto-follow": "nix-auto-follow",
         "nix-sweep": "nix-sweep",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "nixpkgs-lib": [
           "nixpkgs"
         ],

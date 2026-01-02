@@ -6,6 +6,10 @@
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
+    dms = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:AvengeMedia/DankMaterialShell";
+    };
     firefox-addons = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
@@ -36,7 +40,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:fzakaria/nix-auto-follow";
     };
-    nix-sweep.url = "github:jzbor/nix-sweep";
+    nix-sweep = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:jzbor/nix-sweep";
+    };
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-lib.follows = "nixpkgs";
     sops-nix = {

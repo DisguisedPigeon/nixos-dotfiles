@@ -12,7 +12,7 @@ let
   };
 
   flake.modules.homeManager.zen =
-    { pkgs, lib, ... }:
+    { pkgs, ... }:
     {
       imports = [ inputs.zen.homeModules.beta ];
 

@@ -2,7 +2,6 @@
 let
   flake.modules.homeManager.ui.imports = with inputs.self.modules.homeManager; [
     git
-    waybar
     nvim
     tmux
     wezterm
@@ -13,7 +12,6 @@ let
     {
       imports = with inputs.self.modules.nixos; [
         zsh
-        sddm
         limine
         stylix
         networkmanager

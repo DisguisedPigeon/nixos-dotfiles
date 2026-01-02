@@ -18,7 +18,7 @@ let
       imports = [ inputs.mango.hmModules.mango ];
 
       wayland.windowManager.mango.enable = true;
-      services.swaync.enable = true;
+      # services.swaync.enable = true;
 
       home.packages = with pkgs; [
         swaybg
@@ -41,13 +41,10 @@ let
           set +e
 
           # obs
-          dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots
+          dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=wlroots &
 
           # night light
           wlsunset -l '42.9' -L '-8.5' &
-
-          # wallpaper
-          swaybg -i ~/.config/mango/wallpaper.png &
 
           # keep clipboard content
           wl-clip-persist --clipboard regular --reconnect-tries 0 &
@@ -55,12 +52,10 @@ let
           # clipboard content manager
           wl-paste --type text --watch cliphist store &
 
-          # xwayland dpi scale
-          echo "Xft.dpi: 140" | xrdb -merge #dpi缩放
-          gsettings set org.gnome.desktop.interface text-scaling-factor 1.4
-
           # Permission authentication
           /usr/lib/xfce-polkit/xfce-polkit &
+
+          dms restart &
         '';
 
         settings = ''
@@ -105,11 +100,9 @@ let
           globalcolor=0x31748fff
           overlaycolor=0x9ccfd8ff
 
-          windowrule=isfullscreen:1,appid:wezterm
-
-          tagrule=id:1,layout_name:tile
-          tagrule=id:2,layout_name:tile
-          tagrule=id:3,layout_name:tile
+          tagrule=id:1,layout_name:scroller
+          tagrule=id:2,layout_name:scroller
+          tagrule=id:3,layout_name:scroller
           tagrule=id:4,layout_name:scroller
           tagrule=id:5,layout_name:scroller
           tagrule=id:6,layout_name:scroller
