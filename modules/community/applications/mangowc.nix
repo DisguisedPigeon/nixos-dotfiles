@@ -55,6 +55,7 @@ let
           # Permission authentication
           /usr/lib/xfce-polkit/xfce-polkit &
 
+          export DMS_DISABLE_MATUGEN=1
           dms restart &
         '';
 

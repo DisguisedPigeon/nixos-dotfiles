@@ -27,7 +27,6 @@
         slurp
         transmission_4
         onionshare-gui
-        typora
         vlc
         whatsapp-electron
 
