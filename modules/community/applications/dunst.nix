@@ -1,5 +1,3 @@
 {
-  flake.modules.homeManager.dunst = {
-    services.dunst.enable = true;
-  };
+  flake.modules.homeManager.dunst.services.dunst.enable = true;
 }

@@ -1,14 +1,16 @@
 { inputs, ... }:
 let
-  flake-file.inputs.zen = {
-    url = "github:0xc000022070/zen-browser-flake";
-    inputs.nixpkgs.follows = "nixpkgs";
-    inputs.home-manager.follows = "home-manager";
-  };
+  flake-file.inputs = {
+    zen = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
 
-  flake-file.inputs.firefox-addons = {
-    url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-    inputs.nixpkgs.follows = "nixpkgs";
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   flake.modules.homeManager.zen =
@@ -275,6 +277,10 @@ let
                 decentraleyes
                 chameleon-ext
               ];
+            };
+            search = {
+              force = true;
+              default = "ddg";
             };
             pins = {
               "YTM" = {

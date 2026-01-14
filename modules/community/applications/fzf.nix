@@ -1,5 +1,3 @@
 {
-  flake.modules.homeManager.fzf = {
-    programs.fzf.enable = true;
-  };
+  flake.modules.homeManager.fzf.programs.fzf.enable = true;
 }

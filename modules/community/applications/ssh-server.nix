@@ -1,21 +1,23 @@
 let
   flake.modules.nixos.ssh-server = {
-    services.openssh.enable = true;
-    services.fail2ban.enable = true;
-    services.endlessh.enable = true;
+    services = {
+      openssh.enable = true;
+      fail2ban.enable = true;
+      endlessh.enable = true;
 
-    services.openssh = {
-      ports = [ 6922 ];
-      settings = {
-        PasswordAuthentication = false;
-        KbdInteractiveAuthentication = false;
-        AllowUsers = [ "dpigeon" ];
+      openssh = {
+        ports = [ 6922 ];
+        settings = {
+          PasswordAuthentication = false;
+          KbdInteractiveAuthentication = false;
+          AllowUsers = [ "dpigeon" ];
+        };
       };
-    };
 
-    services.endlessh = {
-      port = 22;
-      openFirewall = true;
+      endlessh = {
+        port = 22;
+        openFirewall = true;
+      };
     };
   };
 in

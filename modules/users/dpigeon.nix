@@ -32,7 +32,7 @@
       kde-connect
       sops
       niri
-      dms
+      noctalia
       mango
       starship
       rofi

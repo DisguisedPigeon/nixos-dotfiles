@@ -117,6 +117,7 @@ now_if_args(function()
     "superhtml",
     "ts_ls",
     "tailwindcss",
+    "ocamllsp",
   })
 end)
 
@@ -148,7 +149,7 @@ end)
 MiniDeps.now(function()
   add({ source = "rose-pine/nvim", name = "rose-pine" })
   require("rose-pine").setup({ styles = { transparency = true } })
-  vim.cmd("color rose-pine-moon")
+  vim.cmd("color rose-pine")
 end)
 
 later(function()

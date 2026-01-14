@@ -1,7 +1,4 @@
 return function(wezterm)
-  local my_rose_pine = wezterm.color.get_builtin_schemes()["Rosé Pine Moon (base16)"]
-  my_rose_pine.background = "#000000"
-
   return {
     font = wezterm.font_with_fallback {
       "Maple Mono NF",
@@ -22,8 +19,6 @@ return function(wezterm)
       inactive_titlebar_bg = "#181825",
     },
 
-    -- colors = require "appearance.colors"
-    color_schemes = { ["RP"] = my_rose_pine },
-    color_scheme = "RP",
+    color_scheme = "Rosé Pine (base16)",
   }
 end
