@@ -3,12 +3,14 @@
 
   imports = [
     inputs.flake-file.flakeModules.nix-auto-follow
+    inputs.flake-aspects.flakeModule
     inputs.treefmt-nix.flakeModule
   ];
 
   flake-file.inputs = {
     treefmt-nix.url = lib.mkDefault "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = lib.mkDefault "nixpkgs";
+    flake-aspects.url = "github:vic/flake-aspects";
   };
 
   perSystem =
@@ -31,7 +33,7 @@
           line_endings = "Unix";
           indent_type = "Spaces";
           indent_width = 2;
-          quote_style = "AutoPreferDouble";
+          quote_style = "ForceDouble";
           call_parentheses = "None";
           collapse_simple_statement = "Always";
           sort_requires.enabled = true;
@@ -41,12 +43,10 @@
         settings.global.excludes = [
           "resources/*.F16"
           "resources/*.png"
-          # Nvim spell files
           "resources/*.spl"
           "LICENSE"
           "flake.lock"
           "*/flake.lock"
-          "*.sug"
           ".envrc"
           ".direnv/*"
           "*/.gitignore"

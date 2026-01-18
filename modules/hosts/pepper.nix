@@ -10,9 +10,12 @@ let
         dpigeon
         locale
         ssh-server
+        podman
         pepper-hardware
         sops
       ];
+
+      nixpkgs.buildPlatform.system = "x86_64-linux";
 
       services.openssh.settings.PermitRootLogin = "yes";
       users.mutableUsers = true;

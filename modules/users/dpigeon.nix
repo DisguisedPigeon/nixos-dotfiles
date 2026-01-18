@@ -26,7 +26,11 @@
 
   flake.modules.homeManager.dpigeon-salt = {
     imports = with inputs.self.modules.homeManager; [
-      ui
+      git
+      nvim
+      tmux
+      wezterm
+      zsh
       bitwarden
       stylix
       kde-connect

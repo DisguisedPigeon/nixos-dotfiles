@@ -12,6 +12,11 @@ let
         docker
         git
         sddm
+        zsh
+        limine
+        stylix
+        networkmanager
+        shell
 
         # Secrets
         sops
@@ -19,9 +24,6 @@ let
         # DMs
         mango
         niri
-
-        # Bundles
-        ui
 
         # Users
         dpigeon
@@ -41,6 +43,8 @@ let
       environment.systemPackages = [
         pkgs.ntfs3g
         pkgs.qemu
+        pkgs.xdg-desktop-portal-gtk
+        pkgs.home-manager
       ];
 
       boot.loader.limine.extraEntries = builtins.concatStringsSep "\n" [
@@ -63,6 +67,35 @@ let
       services.fstrim.enable = true;
 
       system.stateVersion = "24.05";
+
+      xdg.portal = {
+        enable = true;
+        config = {
+          common = {
+            default = [ "gtk" ];
+          };
+          niri = {
+            default = [
+              "gnome"
+              "gtk"
+            ];
+          };
+          hyprland = {
+            default = [
+              "hyprland"
+              "gtk"
+            ];
+          };
+        };
+        extraPortals = [
+          pkgs.xdg-desktop-portal-gtk
+        ];
+      };
+
+      services = {
+        libinput.enable = true;
+        flatpak.enable = true;
+      };
     };
 in
 {
