@@ -29,6 +29,8 @@
           xdg-desktop-portal
           xdg-desktop-portal-wlr
           xdg-desktop-portal-gtk
+          grim
+          slurp
         ];
 
         xdg.configFile."mango/wallpaper.png" = {

@@ -12,6 +12,7 @@
 
       home.packages = [
         inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+        pkgs.pavucontrol
       ];
 
       stylix.targets.noctalia-shell.enable = false;

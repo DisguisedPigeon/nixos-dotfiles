@@ -41,6 +41,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:jzbor/nix-sweep";
     };
+    nix-wrappers = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:BirdeeHub/nix-wrapper-modules";
+    };
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-lib.follows = "nixpkgs";
     noctalia = {

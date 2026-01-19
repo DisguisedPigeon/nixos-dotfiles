@@ -56,6 +56,7 @@ in
         ];
 
         stylix = (stylix_config pkgs) // {
+          targets.firefox.profileNames = [ "default" ];
           targets.zen-browser.enable = false;
           targets.hyprlock.enable = false;
           targets.gtk.enable = false;

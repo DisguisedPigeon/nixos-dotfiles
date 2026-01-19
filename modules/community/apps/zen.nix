@@ -1,16 +1,25 @@
 { inputs, ... }:
-let
+{
+  flake-file.inputs = {
+    zen = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
 
   flake.aspects.zen.homeManager =
     { pkgs, ... }:
-    let
-      currentSystem = pkgs.stdenv.hostPlatform.system;
-    in
     {
       imports = [ inputs.zen.homeModules.beta ];
 
       programs.zen-browser =
         let
+          currentSystem = pkgs.stdenv.hostPlatform.system;
           policies = {
             AutofillAddressEnabled = false;
             AutofillCreditCardEnabled = false;
@@ -319,19 +328,4 @@ let
           };
         };
     };
-in
-{
-  flake-file.inputs = {
-    zen = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-  };
-  inherit flake;
 }

@@ -57,7 +57,7 @@
 
       };
     homeManager =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
       {
         services.home-manager.autoExpire.enable = true;
         nixpkgs.config.allowUnfree = true;

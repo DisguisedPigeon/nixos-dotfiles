@@ -26,33 +26,44 @@
 
   flake.modules.homeManager.dpigeon-salt = {
     imports = with inputs.self.modules.homeManager; [
-      git
-      nvim
-      tmux
-      wezterm
-      zsh
-      bitwarden
-      stylix
+      # apps
+      discord
+      firefox
       kde-connect
-      sops
-      niri
       noctalia
-      mango
-      starship
       rofi
-      wezterm
-      zen
       thunderbird
+      zen
+
+      # nix
+      sops
+      stylix
+
+      # services
+      dunst
+
+      # term
       bat
       eza
       fzf
+      git
+      nvim
+      starship
+      tmux
+      wezterm
       zoxide
+      zsh
+
+      # wms
+      mango
+      niri
+
+      # other
       dpigeon-salt-extra-pkgs
     ];
 
     home.sessionVariables.host = "salt";
     home.sessionVariables.EDITOR = "nvim";
-
     home.username = "dpigeon";
     home.homeDirectory = "/home/dpigeon";
     home.stateVersion = "25.05";
