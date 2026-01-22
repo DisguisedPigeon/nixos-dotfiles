@@ -15,7 +15,7 @@ let
         zsh
         limine
         stylix
-        networkmanager
+        network
         shell
 
         # Secrets
