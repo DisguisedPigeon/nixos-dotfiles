@@ -61,6 +61,7 @@ now_if_args(function()
     "markdown_inline",
     "mermaid",
     "nix",
+    "nu",
     "ocaml",
     "ocaml_interface",
     "ocamllex",
@@ -113,11 +114,12 @@ now_if_args(function()
     "lua_ls",
     "nil_ls",
     "nixd",
+    "nushell",
+    "ocamllsp",
     "rust_analyzer",
     "superhtml",
-    "ts_ls",
     "tailwindcss",
-    "ocamllsp",
+    "ts_ls",
   })
 end)
 
