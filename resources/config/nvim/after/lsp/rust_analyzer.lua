@@ -1,7 +1,7 @@
 return {
-  settings = {
-    ['rust-analyzer'] = {
-      check = { command = "clippy" }
-    }
-  }
+	settings = {
+		["rust-analyzer"] = {
+			check = { command = "clippy" },
+		},
+	},
 }

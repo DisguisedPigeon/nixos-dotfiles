@@ -29,7 +29,6 @@ let
       name = "Banana";
       size = 22;
     };
-
   };
 in
 {
@@ -45,7 +44,7 @@ in
       { pkgs, ... }:
       {
         imports = [ inputs.stylix.nixosModules.stylix ];
-        stylix = (stylix_config pkgs);
+        stylix = stylix_config pkgs;
       };
     homeManager =
       { pkgs, ... }:

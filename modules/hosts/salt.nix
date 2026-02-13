@@ -15,8 +15,8 @@ let
         zsh
         limine
         stylix
-        network
         shell
+        tailscale
 
         # Secrets
         sops
@@ -30,6 +30,7 @@ let
 
         # System
         bluetooth
+        network
         locale
         salt-hardware
         inputs.hardware.nixosModules.asus-zephyrus-ga502
@@ -46,6 +47,8 @@ let
         pkgs.xdg-desktop-portal-gtk
         pkgs.home-manager
       ];
+
+      boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
       boot.loader.limine.extraEntries = builtins.concatStringsSep "\n" [
         "/Windows"

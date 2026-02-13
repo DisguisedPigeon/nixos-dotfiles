@@ -20,14 +20,19 @@
 
           secrets = {
             user-password.neededForUsers = true;
-            net-secretsFile = { };
             github-PAT = { };
+            home-pass = { };
+            home-ssid = { };
           };
         };
       };
 
     homeManager =
-      { pkgs, config, ... }:
+      {
+        pkgs,
+        config,
+        ...
+      }:
       {
         imports = [ inputs.sops-nix.homeManagerModules.sops ];
 

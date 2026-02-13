@@ -25,7 +25,11 @@
       };
 
     homeManager =
-      { pkgs, config, ... }:
+      {
+        pkgs,
+        config,
+        ...
+      }:
       let
         pkgs' = pkgs.extend inputs.niri.overlays.niri;
       in
@@ -145,7 +149,7 @@
                 "Mod+F".action = spawn "zen";
                 "Mod+Return".action = spawn "wezterm";
                 "Mod+Shift+P".action = sh "$HOME/.config/rofi/powermenu.sh";
-                "Mod+R".action = (sh "rofi -show drun -modi run,drun,ssh,window");
+                "Mod+R".action = sh "rofi -show drun -modi run,drun,ssh,window";
 
                 "Mod+O" = {
                   action = toggle-overview;

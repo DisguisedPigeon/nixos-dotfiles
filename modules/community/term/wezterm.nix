@@ -27,11 +27,15 @@
               mkdir ~/Uni
             fi
 
+            if ! [ -d ~/Projects ]; then
+              mkdir ~/Projects
+            fi
+
             if [ -v git ] && ! [ -d /home/.nixos-config ]; then
               git clone --depth=1 --single-branch https://github.com/DisguisedPigeon/nixos-dotfiles .nixos-config
             fi
 
-            if chosen=$((find ~/Personal ~/Uni -mindepth 1 -maxdepth 1 -type d; echo /home/.nixos-config) | fzf); then
+            if chosen=$((find ~/Projects ~/Personal ~/Uni -mindepth 1 -maxdepth 1 -type d; echo /home/.nixos-config) | fzf); then
               wezterm start --cwd="$chosen" && wezterm cli kill-pane
             else
               echo "No value chosen"

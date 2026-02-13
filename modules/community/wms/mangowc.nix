@@ -61,14 +61,11 @@
           '';
 
           settings = ''
-            #           name      masterfactor numbermasters layout    transform scale x     y  width height refreshrate
-            monitorrule=eDP-1,    0.5,         1,            scroller, 0,        1,    0,    0, 1920, 1080,  120
-            monitorrule=HDMI-A-1, 0.5,         1,            scroller, 0,        1,    1920, 0, 1920, 1080,  80
+            monitorrule=name:eDP-1, masterfactor:0.5, numbermasters:1, layout:scroller, transform:0, scale:1, x:0, y:0, width:1920, height:1080, refreshrate:120
+            monitorrule=name:HDMI-A-1, masterfactor:0.5, numbermasters:1, layout:scroller, transform:0, scale:1, x:1920, y:0, width:1920, height:1080,  refreshrate:80
 
             # Window effect
             blur=1
-
-            exec-once=~/.config/mango/autostart.sh
 
             border_radius=10
 

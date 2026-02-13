@@ -1,4 +1,8 @@
-{ inputs, self, ... }:
+{
+  inputs,
+  self,
+  ...
+}:
 let
   linux = self.lib.mk-os.linux;
   linux-arm = self.lib.mk-os.linux-arm;

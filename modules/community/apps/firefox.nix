@@ -53,7 +53,7 @@
 
           nativeMessagingHosts = [ ];
           profiles = {
-            default = rec {
+            default = {
               inherit extensions;
 
               id = 0;

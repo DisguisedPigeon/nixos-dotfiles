@@ -20,7 +20,10 @@ let
       };
     };
   gen-config =
-    { has-stylix, stylix-colors }:
+    {
+      has-stylix,
+      stylix-colors,
+    }:
     {
       theme = "japanese_aesthetic";
       themeConfig = {
@@ -97,7 +100,11 @@ let
 in
 {
   flake.aspects.sddm.nixos =
-    { pkgs, config, ... }:
+    {
+      pkgs,
+      config,
+      ...
+    }:
     {
       services.displayManager.sddm.enable = true;
 

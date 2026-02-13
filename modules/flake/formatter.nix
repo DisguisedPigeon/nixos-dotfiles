@@ -1,6 +1,9 @@
-{ inputs, lib, ... }:
 {
-
+  inputs,
+  lib,
+  ...
+}:
+{
   imports = [
     inputs.flake-file.flakeModules.nix-auto-follow
     inputs.flake-aspects.flakeModule
@@ -53,5 +56,4 @@
         ];
       };
     };
-
 }

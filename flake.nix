@@ -45,7 +45,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:BirdeeHub/nix-wrapper-modules";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-lib.follows = "nixpkgs";
     noctalia = {
       inputs.nixpkgs.follows = "nixpkgs";
@@ -76,5 +76,4 @@
       url = "github:0xc000022070/zen-browser-flake";
     };
   };
-
 }
