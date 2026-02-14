@@ -1,17 +1,13 @@
 { inputs, ... }:
-let
-  flake-file.inputs.hardware.url = "github:nixos/nixos-hardware";
+{
   flake.modules.nixos.pepper =
-    {
-      pkgs,
-      lib,
-      ...
-    }:
+    { pkgs, lib, ... }:
     {
       imports = with inputs.self.modules.nixos; [
         # Apps
         docker
         ssh-server
+        tailscale
 
         # Secrets
         sops
@@ -20,10 +16,9 @@ let
         dpigeon
 
         # System
-        network
         locale
+        network-pepper
         pepper-hardware
-        inputs.hardware.nixosModules.raspberry-pi-4
       ];
 
       nixpkgs.buildPlatform.system = "x86_64-linux";
@@ -40,7 +35,4 @@ let
 
       users.users.dpigeon.shell = lib.mkForce pkgs.bashInteractive;
     };
-in
-{
-  inherit flake flake-file;
 }

@@ -67,18 +67,20 @@
             # Window effect
             blur=1
 
+            exec-once=~/.config/mango/autostart.sh
+
             border_radius=10
 
             animation_type_open=zoom
             animation_type_close=zoom
 
-            scroller_structs=25
             scroller_default_proportion=0.5
-            edge_scroller_pointer_focus=1
-            scroller_default_proportion_single=1.0
+            scroller_prefer_center=1
+            edge_scroller_pointer_focus=0
             scroller_proportion_preset=0.5,1.0
+            scroller_ignore_proportion_single=0
 
-            default_mfact=0.5
+            default_mfact=0.7
 
             xkb_rules_layout=us
             xkb_rules_variant=altgr-intl

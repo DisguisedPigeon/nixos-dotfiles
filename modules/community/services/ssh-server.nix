@@ -13,11 +13,11 @@
         };
       };
 
-      endlessh = {
-        enable = true;
-        port = 22;
-        openFirewall = true;
-      };
+      # endlessh = {
+      #   enable = true;
+      #   port = 22;
+      #   openFirewall = true;
+      # };
     };
   };
 }

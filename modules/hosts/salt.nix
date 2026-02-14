@@ -30,8 +30,8 @@ let
 
         # System
         bluetooth
-        network
         locale
+        network-salt
         salt-hardware
         inputs.hardware.nixosModules.asus-zephyrus-ga502
       ];

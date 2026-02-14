@@ -5,26 +5,27 @@
   ...
 }:
 let
-  linux = mkNixos "x86_64-linux";
-  linux-arm = mkNixos "aarch64-linux";
-
-  mkNixos =
-    architecture: name:
+  # Declares all needed options for a nixos system
+  mkNixos = (
+    arch: name: stateVersion:
     inputs.nixpkgs.lib.nixosSystem {
-      system = architecture;
+      system = arch;
       modules = [
         self.modules.nixos.nixos
         self.modules.nixos.${name}
         {
           networking.hostName = lib.mkDefault name;
-          nixpkgs.hostPlatform = lib.mkDefault architecture;
-          system.stateVersion = lib.mkDefault "25.05";
+          nixpkgs.hostPlatform = lib.mkDefault arch;
+          system = { inherit stateVersion; };
         }
       ];
-    };
+    }
+  );
 
-  mkHome =
-    name: hostname: stateVersion:
+  # Declares all needed options for a home manager config
+  mkHome = (
+    username: hostname: stateVersion:
+
     let
       host = self.nixosConfigurations.${hostname};
     in
@@ -35,18 +36,22 @@ let
 
       modules = [
         self.modules.homeManager.home-manager
-        self.modules.homeManager."${name}-${hostname}"
+        self.modules.homeManager."${username}-${hostname}"
         {
-          home.username = name;
-          home.homeDirectory = "/home/${name}";
-          home.stateVersion = stateVersion;
+          home = {
+            inherit stateVersion username;
+            homeDirectory = "/home/${username}";
+          };
         }
+
       ];
-    };
+    }
+  );
 in
 {
   flake.lib = {
-    mk-home = { inherit mkHome; };
-    mk-os = { inherit mkNixos linux linux-arm; };
+    inherit mkNixos mkHome;
+    mkLinux = mkNixos "x86_64-linux";
+    mkLinuxArm = mkNixos "aarch64-linux";
   };
 }
