@@ -13,7 +13,7 @@ in
 
   flake = {
     nixosConfigurations = {
-      salt = mkLinux "salt" "25.05";
+      salt = mkLinux "salt" "24.05";
       pepper = mkLinuxArm "pepper" "25.05";
     };
   };

@@ -40,6 +40,7 @@
         kde-connect
         noctalia
         rofi
+        emacs
         thunderbird
         zen
 

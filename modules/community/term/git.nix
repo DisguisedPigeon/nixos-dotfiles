@@ -8,15 +8,40 @@
       environment.variables.PAGER = null;
     };
 
-    homeManager = {
+    homeManager = rec {
       programs.git.enable = true;
-      programs.jujutsu.enable = true;
+
+      programs.jujutsu = {
+        enable = true;
+        settings = {
+          user = {
+            name = programs.git.settings.user;
+            email = programs.git.settings.email;
+          };
+          ui = {
+            default-command = "st";
+            editor = "nvim";
+            diff-editor = "vimdiff";
+            pager = "less -FRX";
+            show-cryptographic-signatures = true;
+          };
+          signing =
+            let
+              gitCfg = programs.git.settings;
+            in
+            {
+              backend = "ssh";
+              behaviour = "own";
+              key = gitCfg.user.signing.key;
+            };
+        };
+      };
 
       programs.git.settings = {
         user = {
           email = "rubcessis.unofficial@gmail.com";
           name = "Disguised Pigeon";
-          signingkey = "/home/dpigeon/.ssh/signing_ed25519.pub";
+          signing.key = "/home/dpigeon/.ssh/signing_ed25519.pub";
         };
 
         maintenance.repo = "/home/.nixos-config";

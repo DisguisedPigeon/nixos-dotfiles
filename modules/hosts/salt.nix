@@ -17,6 +17,7 @@ let
         stylix
         shell
         tailscale
+        emacs
 
         # Secrets
         sops
@@ -46,6 +47,7 @@ let
         pkgs.qemu
         pkgs.xdg-desktop-portal-gtk
         pkgs.home-manager
+        pkgs.noto-fonts
       ];
 
       boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -68,8 +70,6 @@ let
       };
 
       services.fstrim.enable = true;
-
-      system.stateVersion = "24.05";
 
       xdg.portal = {
         enable = true;

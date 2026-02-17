@@ -1,9 +1,5 @@
 {
-  flake.aspects.tmux.homeManager =
-    { ... }:
-    {
-      programs.zellij = {
-        enable = true;
-      };
-    };
+  flake.aspects.tmux.homeManager = {
+    programs.zellij.enable = true;
+  };
 }

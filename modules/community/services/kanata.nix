@@ -28,7 +28,7 @@
         ;;)
 
         (defalias
-          caps esc
+          caps ctrl
           ' (tap-hold $tap-time $hold-time ' C-S-u)
         )
         (deflayer base @caps @')
