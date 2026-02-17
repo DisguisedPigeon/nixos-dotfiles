@@ -49,10 +49,7 @@ in
     homeManager =
       { pkgs, ... }:
       {
-        imports = [
-          inputs.stylix.homeModules.stylix
-          inputs.self.modules.homeManager.ui-theming
-        ];
+        imports = [ inputs.stylix.homeModules.stylix ];
 
         stylix = (stylix_config pkgs) // {
           targets.firefox.profileNames = [ "default" ];

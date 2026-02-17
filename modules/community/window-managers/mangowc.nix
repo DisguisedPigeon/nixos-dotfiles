@@ -26,12 +26,16 @@
           wl-clip-persist
           wlsunset
           wl-clipboard
-          xdg-desktop-portal
-          xdg-desktop-portal-wlr
-          xdg-desktop-portal-gtk
           grim
           slurp
         ];
+        xdg.portal = {
+          extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
+          config.wlr.default = [
+            "wlr"
+            "gtk"
+          ];
+        };
 
         xdg.configFile."mango/wallpaper.png" = {
           enable = true;

@@ -1,9 +1,8 @@
-{ self, ... }:
 {
-  flake.modules.nixos.nixos =
-    { pkgs, ... }:
-    {
-      imports = [ self.modules.nixos.nix-settings ];
-      environment.systemPackages = [ pkgs.neovim ];
+  flake.modules.nixos.nixos = {
+    programs.neovim = {
+      enable = true;
+      defaultEditor = true;
     };
+  };
 }

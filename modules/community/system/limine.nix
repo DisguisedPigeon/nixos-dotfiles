@@ -1,10 +1,7 @@
-{ inputs, ... }:
 {
   flake.aspects.limine.nixos =
     { lib, ... }:
     {
-      imports = [ inputs.self.modules.nixos.boot ];
-
       boot.loader = {
         generic-extlinux-compatible.enable = false;
 

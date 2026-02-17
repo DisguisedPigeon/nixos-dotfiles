@@ -1,38 +1,33 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.pepper =
-    { pkgs, lib, ... }:
-    {
-      imports = with inputs.self.modules.nixos; [
-        # Apps
-        docker
-        ssh-server
-        tailscale
+  flake-file.inputs = {
+    hardware.url = "github:nixos/nixos-hardware";
+  };
 
-        # Secrets
-        sops
+  flake.modules.nixos.pepper = {
+    programs.bash.enable = true;
+    imports = with inputs.self.modules.nixos; [
+      pepper-hardware
+      inputs.hardware.nixosModules.raspberry-pi-4
 
-        # Users
-        dpigeon
+      immutable-users
 
-        # System
-        locale
-        network-pepper
-        pepper-hardware
-      ];
+      # Users
+      dpigeon
+      remote-build
 
-      nixpkgs.buildPlatform.system = "x86_64-linux";
+      # Services
+      docker
+      ssh-server
+      tailscale
 
-      services.openssh.settings.PermitRootLogin = "yes";
-      users.mutableUsers = true;
+      # nix
+      nix-settings
+      sops
 
-      networking.interfaces.wlan0.ipv4.addresses = [
-        {
-          address = "192.168.1.3";
-          prefixLength = 24;
-        }
-      ];
-
-      users.users.dpigeon.shell = lib.mkForce pkgs.bashInteractive;
-    };
+      # System
+      locale
+      network-pepper
+    ];
+  };
 }

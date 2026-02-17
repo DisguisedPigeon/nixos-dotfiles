@@ -13,28 +13,28 @@
 
       programs.jujutsu = {
         enable = true;
-        settings = {
-          user = {
-            name = programs.git.settings.user;
-            email = programs.git.settings.email;
-          };
-          ui = {
-            default-command = "st";
-            editor = "nvim";
-            diff-editor = "vimdiff";
-            pager = "less -FRX";
-            show-cryptographic-signatures = true;
-          };
-          signing =
-            let
-              gitCfg = programs.git.settings;
-            in
-            {
+        settings =
+          let
+            gitCfg = programs.git.settings;
+          in
+          {
+            user = {
+              name = gitCfg.user.name;
+              email = gitCfg.user.email;
+            };
+            ui = {
+              default-command = "st";
+              editor = "nvim";
+              diff-editor = "vimdiff";
+              pager = "less -FRX";
+              show-cryptographic-signatures = true;
+            };
+            signing = {
               backend = "ssh";
               behaviour = "own";
               key = gitCfg.user.signing.key;
             };
-        };
+          };
       };
 
       programs.git.settings = {
@@ -59,6 +59,8 @@
         };
 
         column.ui = "auto";
+
+        commit.gpgSign = true;
 
         branch.sort = "-committerdate";
 

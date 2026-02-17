@@ -9,44 +9,44 @@
     nixos =
       { pkgs, ... }:
       let
-        pkgs' = pkgs.extend inputs.niri.overlays.niri;
+        currentSystem = pkgs.stdenv.hostPlatform.system;
       in
       {
         imports = [ inputs.niri.nixosModules.niri ];
 
-        programs.niri.enable = true;
+        environment.systemPackages = [ pkgs.xwayland-satellite ];
+        xdg.portal = {
+          extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+          config.niri.default = [
+            "gnome"
+            "gtk"
+          ];
+        };
 
-        environment.systemPackages = [
-          pkgs.xdg-desktop-portal-gnome
-          pkgs.xwayland-satellite
-        ];
+        programs.niri = {
+          enable = true;
+          package = inputs.niri.packages.${currentSystem}.niri-stable;
+        };
 
-        programs.niri.package = pkgs'.niri-stable;
       };
 
     homeManager =
-      {
-        pkgs,
-        config,
-        ...
-      }:
+      { pkgs, config, ... }:
       let
-        pkgs' = pkgs.extend inputs.niri.overlays.niri;
+        currentSystem = pkgs.stdenv.hostPlatform.system;
       in
       {
         imports = [ inputs.niri.homeModules.niri ];
 
-        programs.niri.enable = true;
-
-        home.packages = with pkgs'; [ swaybg ];
-
+        home.packages = with pkgs; [ swaybg ];
         xdg.configFile."niri/wallpaper.png" = {
           enable = true;
           source = ../../../resources/wallpaper.png;
         };
 
         programs.niri = {
-          package = pkgs'.niri-stable;
+          enable = true;
+          package = inputs.niri.packages.${currentSystem}.niri-stable;
           settings = {
             hotkey-overlay.skip-at-startup = true;
 

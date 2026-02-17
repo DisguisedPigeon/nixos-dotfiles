@@ -7,7 +7,13 @@
         imports = [ inputs.self.modules.nixos.hyprlock ];
 
         programs.hyprland.enable = true;
-        environment.systemPackages = [ pkgs.xdg-desktop-portal-hyprland ];
+        xdg.portal = {
+          extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
+          config.hyprland.default = [
+            "hyprland"
+            "gtk"
+          ];
+        };
       };
 
     homeManager =

@@ -1,15 +1,8 @@
-# Based on the auto-generated hardware-configuration.nix
-{ inputs, ... }:
 {
-  flake-file.inputs.hardware.url = "github:nixos/nixos-hardware";
-
   flake.modules.nixos.pepper-hardware =
     { modulesPath, ... }:
     {
-      imports = [
-        inputs.hardware.nixosModules.raspberry-pi-4
-        (modulesPath + "/installer/scan/not-detected.nix")
-      ];
+      imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
       boot = {
         extraModulePackages = [ ];

@@ -11,40 +11,34 @@
       {
         imports = [ inputs.sops-nix.nixosModules.sops ];
 
-        environment.systemPackages = [ pkgs.sops ];
+        sops.secrets = {
+          user-password.neededForUsers = true;
+          github-PAT = { };
+          home-pass = { };
+          home-ssid = { };
+        };
 
+        environment.systemPackages = [ pkgs.sops ];
         sops = {
           defaultSopsFile = ../../../secrets/secrets.yaml;
           defaultSopsFormat = "yaml";
           age.keyFile = "/sops/age/keys.txt";
-
-          secrets = {
-            user-password.neededForUsers = true;
-            github-PAT = { };
-            home-pass = { };
-            home-ssid = { };
-          };
         };
       };
 
     homeManager =
-      {
-        pkgs,
-        config,
-        ...
-      }:
+      { config, ... }:
       {
         imports = [ inputs.sops-nix.homeManagerModules.sops ];
 
-        home.packages = [ pkgs.sops ];
+        sops.secrets = {
+          bitwarden-mail = { };
+        };
 
         sops = {
           defaultSopsFile = ../../../secrets/secrets.yaml;
           defaultSopsFormat = "yaml";
           age.keyFile = "${config.xdg.configHome}/sops/age/keys.txt";
-          secrets = {
-            bitwarden-mail = { };
-          };
         };
       };
   };

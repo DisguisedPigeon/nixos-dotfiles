@@ -11,7 +11,6 @@
           statix
           deadnix
           nil
-          nixd
           nixfmt-tree
           nixf-diagnose
 

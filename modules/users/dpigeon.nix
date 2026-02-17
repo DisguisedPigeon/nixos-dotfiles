@@ -1,82 +1,68 @@
 { inputs, ... }:
 {
   flake.modules.nixos.dpigeon =
-    {
-      pkgs,
-      config,
-      lib,
-      ...
-    }:
+    { pkgs, config, ... }:
+    let
+      containers-enabled = (config.virtualisation.podman.enable || config.virtualisation.docker.enable);
+    in
     {
       imports = [ inputs.self.modules.nixos.sops ];
 
-      users = {
-        mutableUsers = lib.mkDefault false;
-        users.dpigeon = {
-          shell = pkgs.bash;
-          hashedPasswordFile = config.sops.secrets.user-password.path;
-          isNormalUser = true;
-          extraGroups = [
-            "dpigeon"
-            "user"
-          ];
-        };
+      users.users.dpigeon = {
+        shell = pkgs.bash;
+        hashedPasswordFile = config.sops.secrets.user-password.path;
+        isNormalUser = true;
+        extraGroups = [
+          "dpigeon"
+          "wheel"
+          "user"
+        ]
+        ++ (if containers-enabled then [ "docker" ] else [ ]);
       };
 
-      programs.bash.interactiveShellInit = ''
-        if ! [ "$TERM" = "dumb" ] && [ -z "$BASH_EXECUTION_STRING" ]; then
-          exec nu
-        fi
-      '';
     };
 
-  flake.modules.homeManager.dpigeon-salt =
-    { pkgs, ... }:
-    {
-      imports = with inputs.self.modules.homeManager; [
-        # apps
-        discord
-        firefox
-        kde-connect
-        noctalia
-        rofi
-        emacs
-        thunderbird
-        zen
+  flake.modules.homeManager.dpigeon-salt = {
+    home.sessionVariables.host = "salt";
+    home.username = "dpigeon";
+    home.homeDirectory = "/home/dpigeon";
+    home.stateVersion = "25.05";
 
-        # nix
-        sops
-        stylix
+    imports = with inputs.self.modules.homeManager; [
+      # apps
+      discord
+      noctalia
+      emacs
+      thunderbird
+      zen
 
-        # services
-        dunst
+      # nix
+      stylix
+      # sops # I'm not using it right now
 
-        # term
-        bat
-        eza
-        fzf
-        git
-        nvim
-        starship
-        tmux
-        wezterm
-        zoxide
-        # zsh
-        nush
+      # services
+      # dunst # noctalia shell already handles notifications
 
-        # wms
-        mango
-        niri
+      # term
+      wezterm
+      nush
+      zoxide
+      direnv
+      bat
+      eza
+      fzf
+      git
+      nvim
+      starship
+      tmux
 
-        # other
-        dpigeon-salt-extra-pkgs
-      ];
+      # wms
+      mango
+      niri
 
-      home.packages = [ pkgs.nushell ];
-      home.sessionVariables.host = "salt";
-      home.sessionVariables.EDITOR = "nvim";
-      home.username = "dpigeon";
-      home.homeDirectory = "/home/dpigeon";
-      home.stateVersion = "25.05";
-    };
+      # other
+      dpigeon-salt-extra-pkgs
+    ];
+
+  };
 }

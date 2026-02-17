@@ -2,9 +2,18 @@
   flake.aspects.network-salt.nixos =
     { config, lib, ... }:
     {
-      environment.etc."NetworkManager/system-connections/HomeWifi.nmconnection".source = (
-        lib.mkForce config.sops.templates."HomeWifi-Salt".path
-      );
+      networking.networkmanager = {
+        enable = true;
+        wifi.powersave = true;
+        insertNameservers = [
+          "1.1.1.1"
+          "1.0.0.1"
+        ];
+      };
+
+      environment.etc."NetworkManager/system-connections/HomeWifi.nmconnection".source =
+        lib.mkForce
+          config.sops.templates."HomeWifi-Salt".path;
 
       sops.templates."HomeWifi-Salt" = {
         content = ''
@@ -37,22 +46,28 @@
         mode = "0600";
       };
 
-      networking.networkmanager = {
-        enable = true;
-        wifi.powersave = true;
-        insertNameservers = [
-          "1.1.1.1"
-          "1.0.0.1"
-        ];
-      };
     };
 
   flake.aspects.network-pepper.nixos =
     { config, lib, ... }:
     {
-      environment.etc."NetworkManager/system-connections/HomeWifi.nmconnection".source = (
-        lib.mkForce config.sops.templates."HomeWifi-Pepper".path
-      );
+      # Set IP address
+      networking.interfaces.wlan0.ipv4.addresses = lib.toList {
+        address = "192.168.1.3";
+        prefixLength = 24;
+      };
+
+      networking.networkmanager = {
+        enable = true;
+        insertNameservers = [
+          "1.1.1.1"
+          "1.0.0.1"
+        ];
+      };
+
+      environment.etc."NetworkManager/system-connections/HomeWifi.nmconnection".source =
+        lib.mkForce
+          config.sops.templates."HomeWifi-Pepper".path;
 
       sops.templates."HomeWifi-Pepper" = {
         content = ''
@@ -85,12 +100,5 @@
         mode = "0600";
       };
 
-      networking.networkmanager = {
-        enable = true;
-        insertNameservers = [
-          "1.1.1.1"
-          "1.0.0.1"
-        ];
-      };
     };
 }
