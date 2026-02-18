@@ -4,7 +4,7 @@ Nixos unstable dendritic-style config with standalone home manager buzzword buzz
 
 ### Images
 
-[<img src="./resources/wallpaper.png">](https://wallhaven.cc/w/5g22q5)
+![No app open](./resources/no-app.png)
 ![Terminal stuff](./resources/screenshot_nvim_neofetch.png)
 ![Browser](./resources/screenshot_zen.png)
 
