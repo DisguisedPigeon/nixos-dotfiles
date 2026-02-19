@@ -26,6 +26,7 @@
       sops
 
       # System
+      hosts
       locale
       network-pepper
     ];

@@ -65,14 +65,15 @@
         # Services
         bluetooth
         kanata
-        network-salt
         #docker
         #dunst
 
         # System
-        locale
-        limine
         boot
+        hosts
+        limine
+        locale
+        network-salt
         shell
 
         # Term
