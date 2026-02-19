@@ -81,7 +81,7 @@
 
         # Compositors / Window Managers
         mango
-        niri
+        cosmic
 
         # Theming
         xdg
