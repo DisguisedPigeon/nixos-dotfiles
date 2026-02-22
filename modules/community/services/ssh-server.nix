@@ -9,7 +9,10 @@
         settings = {
           PasswordAuthentication = false;
           KbdInteractiveAuthentication = false;
-          AllowUsers = [ "dpigeon" ];
+          AllowUsers = [
+            "dpigeon"
+            "remotebuild"
+          ];
         };
       };
 
