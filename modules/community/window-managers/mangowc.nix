@@ -120,8 +120,8 @@
             # bind=SUPER,r,spawn,rofi -show drun -modi run,drun,ssh,window
             bind=SUPER,r,spawn,noctalia-shell ipc call launcher toggle
             bind=SUPER,Return,spawn,wezterm
-            bind=SUPER,f,spawn,zen -P default
-            bind=SUPER,m,spawn,zen -P music
+            bind=SUPER,f,spawn,zen-beta -P default
+            bind=SUPER,m,spawn,zen-beta -P music
             bind=SUPER+SHIFT,Print,spawn_shell,grim -g "$(slurp -d)" - | wl-copy
             bind=SUPER,space,spawn,wezterm start session-chooser
 

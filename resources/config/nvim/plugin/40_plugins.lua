@@ -120,6 +120,7 @@ now_if_args(function()
 		"superhtml",
 		"tailwindcss",
 		"ts_ls",
+		"basedpyright",
 	})
 end)
 

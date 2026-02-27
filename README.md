@@ -11,7 +11,7 @@ Nixos unstable dendritic-style config with standalone home manager buzzword buzz
 ### System Info:
 
 - OS: NixOS
-- DE: Hyprland, Niri, MangoWC(WIP).
+- DE: Hyprland, Niri, MangoWC.
 - Shell: ZSH
 - Terminal: Wezterm
 - Editor: Neovim BTW

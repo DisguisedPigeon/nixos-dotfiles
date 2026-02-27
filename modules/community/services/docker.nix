@@ -4,10 +4,13 @@
     {
       virtualisation = {
         containers.enable = true;
-        podman = {
+        # podman = {
+        #   enable = true;
+        #   defaultNetwork.settings.dns_enabled = true;
+        # };
+        docker = {
           enable = true;
-          dockerCompat = true;
-          defaultNetwork.settings.dns_enabled = true;
+          enableOnBoot = true;
         };
       };
       environment.systemPackages = [ pkgs.podman-compose ];

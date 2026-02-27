@@ -6,10 +6,7 @@
         gimp3
         obsidian
         tor
-        transmission_4
-        onionshare-gui
         vlc
-        whatsapp-electron
       ];
     };
 }

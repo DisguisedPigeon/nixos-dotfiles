@@ -36,6 +36,7 @@
       "resources/*.F16"
       "resources/*.png"
       "resources/*.spl"
+      "resources/*.pub"
       "LICENSE"
       "flake.lock"
       "*/flake.lock"

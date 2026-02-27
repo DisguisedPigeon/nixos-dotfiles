@@ -31,8 +31,6 @@
         shellAliases = {
           ":q" = "exit";
 
-          "git" = "echo no";
-
           n = "nvim";
           cat = "bat";
         };

@@ -65,7 +65,8 @@
         # Services
         bluetooth
         kanata
-        #docker
+        tailscale
+        docker
         #dunst
 
         # System

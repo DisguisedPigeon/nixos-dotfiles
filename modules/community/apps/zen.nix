@@ -72,6 +72,8 @@
           inherit policies;
 
           nativeMessagingHosts = [ ];
+          suppressXdgMigrationWarning = true;
+
 
           profiles = {
             "default" = rec {

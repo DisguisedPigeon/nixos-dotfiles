@@ -2,9 +2,9 @@
 {
   flake.modules.nixos.dpigeon =
     { pkgs, config, ... }:
-    let
-      containers-enabled = (config.virtualisation.podman.enable || config.virtualisation.docker.enable);
-    in
+    #let
+    #  containers-enabled = (config.virtualisation.podman.enable || config.virtualisation.docker.enable);
+    #in
     {
       imports = [ inputs.self.modules.nixos.sops ];
 
@@ -15,9 +15,11 @@
         extraGroups = [
           "dpigeon"
           "wheel"
+          "docker"
           "user"
         ]
-        ++ (if containers-enabled then [ "docker" ] else [ ]);
+        #++ (if containers-enabled then [ "docker" ] else [ ])
+        ;
       };
 
     };
@@ -30,35 +32,33 @@
 
     imports = with inputs.self.modules.homeManager; [
       # apps
+      chromium
       discord
-      noctalia
       emacs
+      noctalia
       thunderbird
       zen
 
       # nix
-      stylix
       # sops # I'm not using it right now
-
-      # services
-      # dunst # noctalia shell already handles notifications
+      stylix
 
       # term
-      wezterm
-      nush
-      zoxide
-      direnv
       bat
+      direnv
       eza
       fzf
       git
+      nush
       nvim
       starship
       tmux
+      wezterm
+      zoxide
 
       # wms
       mango
-      niri
+      # niri
 
       # other
       dpigeon-salt-extra-pkgs
