@@ -11,13 +11,6 @@
       {
         imports = [ inputs.sops-nix.nixosModules.sops ];
 
-        sops.secrets = {
-          user-password.neededForUsers = true;
-          github-PAT = { };
-          home-pass = { };
-          home-ssid = { };
-        };
-
         environment.systemPackages = [ pkgs.sops ];
         sops = {
           defaultSopsFile = ../../../secrets/secrets.yaml;
@@ -31,9 +24,7 @@
       {
         imports = [ inputs.sops-nix.homeManagerModules.sops ];
 
-        sops.secrets = {
-          bitwarden-mail = { };
-        };
+        sops.secrets = { };
 
         sops = {
           defaultSopsFile = ../../../secrets/secrets.yaml;

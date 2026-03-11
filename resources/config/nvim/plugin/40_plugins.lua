@@ -109,6 +109,7 @@ now_if_args(function()
 	add("neovim/nvim-lspconfig")
 	vim.lsp.enable({
 		"cssls",
+		"elixirls",
 		"elp",
 		"gleam",
 		"lua_ls",
@@ -120,7 +121,7 @@ now_if_args(function()
 		"superhtml",
 		"tailwindcss",
 		"ts_ls",
-		"basedpyright",
+		"pyright",
 	})
 end)
 

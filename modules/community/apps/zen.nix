@@ -17,6 +17,7 @@
     {
       imports = [ inputs.zen.homeModules.beta ];
 
+
       programs.zen-browser =
         let
           currentSystem = pkgs.stdenv.hostPlatform.system;
@@ -73,7 +74,6 @@
 
           nativeMessagingHosts = [ ];
           suppressXdgMigrationWarning = true;
-
 
           profiles = {
             "default" = rec {

@@ -32,7 +32,7 @@
             signing = {
               backend = "ssh";
               behaviour = "own";
-              key = gitCfg.user.signing.key;
+              key = gitCfg.user.signingkey;
             };
           };
       };
@@ -41,7 +41,7 @@
         user = {
           email = "rubcessis.unofficial@gmail.com";
           name = "Disguised Pigeon";
-          signing.key = "/home/dpigeon/.ssh/signing_ed25519.pub";
+          signingkey = "/home/dpigeon/.ssh/signing_ed25519.pub";
         };
 
         maintenance.repo = "/home/.nixos-config";

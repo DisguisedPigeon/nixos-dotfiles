@@ -1,15 +1,15 @@
 {
   flake.aspects.ui-theming.homeManager =
-    { pkgs, ... }:
+    { pkgs, lib, ... }:
     {
       gtk = {
-        enable = true;
+        enable = lib.mkDefault true;
         iconTheme = {
-          package = pkgs.papirus-icon-theme;
-          name = "Papirus-Dark";
+          package = lib.mkDefault pkgs.papirus-icon-theme;
+          name = lib.mkDefault "Papirus-Dark";
         };
       };
 
-      qt.enable = true;
+      qt.enable = lib.mkDefault true;
     };
 }

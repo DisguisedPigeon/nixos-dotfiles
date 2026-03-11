@@ -1,9 +1,11 @@
 { inputs, ... }:
 {
-  flake.modules.homeManager.home-manager = {
-    imports = [ inputs.self.modules.homeManager.nix-settings ];
+  flake.modules.homeManager.home-manager =
+    { lib, ... }:
+    {
+      imports = [ inputs.self.modules.homeManager.nix-settings ];
 
-    systemd.user.startServices = "sd-switch";
-    programs.home-manager.enable = true;
-  };
+      systemd.user.startServices = lib.mkDefault "sd-switch";
+      programs.home-manager.enable = lib.mkDefault true;
+    };
 }

@@ -7,47 +7,52 @@
 
   flake.aspects.niri = {
     nixos =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
       let
         currentSystem = pkgs.stdenv.hostPlatform.system;
       in
       {
         imports = [ inputs.niri.nixosModules.niri ];
 
-        environment.systemPackages = [ pkgs.xwayland-satellite ];
+        environment.systemPackages = lib.mkDefault [ pkgs.xwayland-satellite ];
         xdg.portal = {
-          extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
-          config.niri.default = [
+          extraPortals = lib.mkDefault [ pkgs.xdg-desktop-portal-gnome ];
+          config.niri.default = lib.mkDefault [
             "gnome"
             "gtk"
           ];
         };
 
         programs.niri = {
-          enable = true;
-          package = inputs.niri.packages.${currentSystem}.niri-stable;
+          enable = lib.mkDefault true;
+          package = lib.mkDefault inputs.niri.packages.${currentSystem}.niri-stable;
         };
 
       };
 
     homeManager =
-      { pkgs, config, ... }:
+      {
+        pkgs,
+        config,
+        lib,
+        ...
+      }:
       let
         currentSystem = pkgs.stdenv.hostPlatform.system;
       in
       {
         imports = [ inputs.niri.homeModules.niri ];
 
-        home.packages = with pkgs; [ swaybg ];
+        home.packages = lib.mkDefault (with pkgs; [ swaybg ]);
         xdg.configFile."niri/wallpaper.png" = {
           enable = true;
-          source = ../../../resources/wallpaper.png;
+          source = lib.mkDefault ../../../resources/wallpaper.png;
         };
 
         programs.niri = {
-          enable = true;
-          package = inputs.niri.packages.${currentSystem}.niri-stable;
-          settings = {
+          enable = lib.mkDefault true;
+          package = lib.mkDefault inputs.niri.packages.${currentSystem}.niri-stable;
+          settings = lib.mkDefault {
             hotkey-overlay.skip-at-startup = true;
 
             # IO-Settings

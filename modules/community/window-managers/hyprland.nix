@@ -2,14 +2,14 @@
 {
   flake.aspects.hyprland = {
     nixos =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
       {
         imports = [ inputs.self.modules.nixos.hyprlock ];
 
-        programs.hyprland.enable = true;
+        programs.hyprland.enable = lib.mkDefault true;
         xdg.portal = {
-          extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-          config.hyprland.default = [
+          extraPortals = lib.mkDefault [ pkgs.xdg-desktop-portal-hyprland ];
+          config.hyprland.default = lib.mkDefault [
             "hyprland"
             "gtk"
           ];
@@ -17,20 +17,23 @@
       };
 
     homeManager =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
       {
-        wayland.windowManager.hyprland.enable = true;
 
-        home.packages = with pkgs; [
-          wl-clipboard
-          grim
-          slurp
-          dunst
-          rofi
-        ];
+        home.packages = lib.mkDefault (
+          with pkgs;
+          [
+            wl-clipboard
+            grim
+            slurp
+            dunst
+            rofi
+          ]
+        );
 
         wayland.windowManager.hyprland = {
-          settings = {
+          enable = lib.mkDefault true;
+          settings = lib.mkDefault {
             "$mod" = "SUPER";
 
             exec-once = [

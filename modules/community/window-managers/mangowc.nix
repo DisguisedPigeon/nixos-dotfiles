@@ -7,31 +7,36 @@
   };
 
   flake.aspects.mango = {
-    nixos = {
-      imports = [ inputs.mango.nixosModules.mango ];
+    nixos =
+      { lib, ... }:
+      {
+        imports = [ inputs.mango.nixosModules.mango ];
 
-      programs.mango.enable = true;
-    };
+        programs.mango.enable = lib.mkDefault true;
+      };
 
     homeManager =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
       {
         imports = [ inputs.mango.hmModules.mango ];
 
-        wayland.windowManager.mango.enable = true;
+        wayland.windowManager.mango.enable = lib.mkDefault true;
         # services.swaync.enable = true;
 
-        home.packages = with pkgs; [
-          swaybg
-          wl-clip-persist
-          wlsunset
-          wl-clipboard
-          grim
-          slurp
-        ];
+        home.packages = lib.mkDefault (
+          with pkgs;
+          [
+            swaybg
+            wl-clip-persist
+            wlsunset
+            wl-clipboard
+            grim
+            slurp
+          ]
+        );
         xdg.portal = {
-          extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
-          config.wlr.default = [
+          extraPortals = lib.mkDefault [ pkgs.xdg-desktop-portal-wlr ];
+          config.wlr.default = lib.mkDefault [
             "wlr"
             "gtk"
           ];
@@ -39,11 +44,11 @@
 
         xdg.configFile."mango/wallpaper.png" = {
           enable = true;
-          source = ../../../resources/wallpaper.png;
+          source = lib.mkDefault ../../../resources/wallpaper.png;
         };
 
         wayland.windowManager.mango = {
-          autostart_sh = ''
+          autostart_sh = lib.mkDefault ''
             # see autostart.sh
             set +e
 
@@ -64,7 +69,7 @@
             noctalia-shell -d
           '';
 
-          settings = ''
+          settings = lib.mkDefault ''
             monitorrule=name:eDP-1, masterfactor:0.5, numbermasters:1, layout:scroller, transform:0, scale:1, x:0, y:0, width:1920, height:1080, refreshrate:120
             monitorrule=name:HDMI-A-1, masterfactor:0.5, numbermasters:1, layout:scroller, transform:0, scale:1, x:1920, y:0, width:1920, height:1080,  refreshrate:80
 

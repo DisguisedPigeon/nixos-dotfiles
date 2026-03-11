@@ -1,68 +1,74 @@
 { inputs, ... }:
 {
   flake.modules.nixos.dpigeon =
-    { pkgs, config, ... }:
-    #let
-    #  containers-enabled = (config.virtualisation.podman.enable || config.virtualisation.docker.enable);
-    #in
+    { config, lib, ... }:
     {
-      imports = [ inputs.self.modules.nixos.sops ];
+      imports = [ ];
 
       users.users.dpigeon = {
-        shell = pkgs.bash;
-        hashedPasswordFile = config.sops.secrets.user-password.path;
-        isNormalUser = true;
-        extraGroups = [
+        hashedPasswordFile = lib.mkDefault config.sops.secrets.user-password.path;
+        isNormalUser = lib.mkDefault true;
+        extraGroups = lib.mkDefault [
           "dpigeon"
           "wheel"
           "docker"
+          "podman"
           "user"
-        ]
-        #++ (if containers-enabled then [ "docker" ] else [ ])
-        ;
+        ];
       };
-
     };
 
-  flake.modules.homeManager.dpigeon-salt = {
-    home.sessionVariables.host = "salt";
-    home.username = "dpigeon";
-    home.homeDirectory = "/home/dpigeon";
-    home.stateVersion = "25.05";
+  flake.modules.homeManager.dpigeon-salt =
+    { pkgs, ... }:
+    {
+      home.sessionVariables.host = "salt";
+      home.username = "dpigeon";
+      home.homeDirectory = "/home/dpigeon";
+      home.stateVersion = "25.05";
 
-    imports = with inputs.self.modules.homeManager; [
-      # apps
-      chromium
-      discord
-      emacs
-      noctalia
-      thunderbird
-      zen
+      home.packages = (
+        with pkgs;
+        [
+          gimp3
+          obsidian
+          tor
+          vlc
+        ]
+      );
 
-      # nix
-      # sops # I'm not using it right now
-      stylix
+      imports = (
+        with inputs.self.modules.homeManager;
+        [
+          # apps
+          chromium
+          discord
+          emacs
+          noctalia
+          thunderbird
+          zen
 
-      # term
-      bat
-      direnv
-      eza
-      fzf
-      git
-      nush
-      nvim
-      starship
-      tmux
-      wezterm
-      zoxide
+          # nix
+          stylix
 
-      # wms
-      mango
-      # niri
+          # term
+          bat
+          direnv
+          eza
+          fzf
+          git
+          nush
+          nvim
+          starship
+          tmux
+          wezterm
+          zoxide
 
-      # other
-      dpigeon-salt-extra-pkgs
-    ];
+          # wms
+          mango
+          # niri
 
-  };
+        ]
+      );
+
+    };
 }

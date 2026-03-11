@@ -4,20 +4,6 @@
     {
       programs.tmux.enable = true;
 
-      home.packages = [
-        (pkgs.writeShellApplication {
-          name = "pux";
-          runtimeInputs = [ pkgs.tmux ];
-          text = ''
-            PRJ="''$(zoxide query -i)"
-            echo "Launching tmux for ''$PRJ"
-            set -x
-            cd "''$PRJ" && \
-              exec tmux -S "''$PRJ".tmux attach
-          '';
-        })
-      ];
-
       programs.tmux = {
         baseIndex = 1;
         newSession = true;

@@ -1,12 +1,14 @@
 {
-  flake.aspects.shell.nixos = {
-    environment = {
-      variables.editor = "nvim";
-      pathsToLink = [
-        "/share/zsh"
-        "/share/xdg-desktop-portal"
-        "/share/applications"
-      ];
+  flake.aspects.shell.nixos =
+    { lib, ... }:
+    {
+      environment = {
+        variables.editor = lib.mkDefault "nvim";
+        pathsToLink = lib.mkDefault [
+          "/share/zsh"
+          "/share/xdg-desktop-portal"
+          "/share/applications"
+        ];
+      };
     };
-  };
 }

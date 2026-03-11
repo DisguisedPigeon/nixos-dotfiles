@@ -5,12 +5,18 @@
   };
 
   flake.modules.nixos.pepper = {
-    programs.bash.enable = true;
+    sops.secrets = {
+      user-password.neededForUsers = true;
+      github-PAT = { };
+      home-pass = { };
+      home-ssid = { };
+      pepper-nextcloud = { };
+      pepper-dpigeon-nextcloud = { };
+    };
+
     imports = with inputs.self.modules.nixos; [
       pepper-hardware
       inputs.hardware.nixosModules.raspberry-pi-4
-
-      immutable-users
 
       # Users
       dpigeon
@@ -20,6 +26,8 @@
       docker
       ssh-server
       tailscale
+      nextcloud
+      tmux
 
       # nix
       nix-settings

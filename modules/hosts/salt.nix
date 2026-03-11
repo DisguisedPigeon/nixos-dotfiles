@@ -7,6 +7,15 @@
   flake.modules.nixos.salt =
     { pkgs, ... }:
     {
+      sops.secrets = {
+        user-password = {
+          neededForUsers = true;
+        };
+        github-PAT = { };
+        home-pass = { };
+        home-ssid = { };
+      };
+
       environment.systemPackages = [
         pkgs.ntfs3g
         pkgs.qemu
@@ -46,8 +55,6 @@
       imports = with inputs.self.modules.nixos; [
         salt-hardware
         inputs.hardware.nixosModules.asus-zephyrus-ga502
-
-        immutable-users
 
         # Users
         dpigeon

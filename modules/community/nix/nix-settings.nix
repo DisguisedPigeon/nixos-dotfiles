@@ -23,7 +23,7 @@
             builders =
             cores = 0
             experimental-features = nix-command flakes
-            extra-platforms = aarch64-linux
+            extra-platforms = aarch64-linux x86_64-linux
             extra-sandbox-paths = /run/binfmt
             http-connections = 128
             keep-derivations = false
@@ -43,53 +43,40 @@
 
         nix = {
           gc = {
-            automatic = true;
-            options = "-d";
-            dates = "daily";
+            automatic = lib.mkDefault true;
+            options = lib.mkDefault "-d";
+            dates = lib.mkDefault "daily";
           };
           optimise = {
-            automatic = true;
-            dates = "daily";
+            automatic = lib.mkDefault true;
+            dates = lib.mkDefault "daily";
           };
-          channel.enable = false;
+          channel.enable = lib.mkDefault false;
         };
       };
     homeManager =
-      { pkgs, ... }:
+      { pkgs, lib, ... }:
       {
-        services.home-manager.autoExpire.enable = true;
-        nixpkgs.config.allowUnfree = true;
-
-        xdg.configFile."nix-sweep/presets.toml" = {
-          text = ''
-            [housekeeping]
-            keep-min = 10
-            remove-older = "14d"
-            interactive = true
-            gc = true
-          '';
-        };
+        services.home-manager.autoExpire.enable = lib.mkDefault true;
+        nixpkgs.config.allowUnfree = lib.mkDefault true;
 
         nix = {
-          package = pkgs.nix;
+          package = lib.mkDefault pkgs.nix;
           gc = {
-            automatic = true;
-            options = "-d";
-            dates = "daily";
+            automatic = lib.mkDefault true;
+            options = lib.mkDefault "-d";
+            dates = lib.mkDefault "daily";
           };
 
           settings = {
-            experimental-features = [
+            experimental-features = lib.mkDefault [
               "nix-command"
               "flakes"
             ];
-
-            bash-prompt-prefix = ";\\[\\e[93m\\]DevShell\\[\\e[0m\\]-";
-            bash-prompt = "\\[\\e[91m\\]\\h\\[\\e[0m\\]-\\[\\e[32m\\]\\u\\[\\e[0m\\]: \\[\\e[35m\\]\\w\\n\\[\\e[96;1m\\]> \\[\\e[0m\\]";
           };
         };
 
-        services.home-manager.autoExpire.timestamp = "-0 days";
+        services.home-manager.autoExpire.timestamp = lib.mkDefault "-0 days";
       };
   };
 }
