@@ -5,21 +5,26 @@
       package = pkgs.nextcloud33;
     in
     {
-      networking.firewall.allowedTCPPorts = [ 80 443];
+      networking.firewall.allowedTCPPorts = [
+        80
+        443
+      ];
       networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
-      services
-        .nginx
-        .virtualHosts
-        ."${config.services.nextcloud.hostName}" = {
-          listen = [ { addr = "0.0.0.0"; port = 80; } ];
-          extraConfig = ''
-            allow 100.64.0.0/10;
-            allow 127.0.0.1;
-            allow ::1;
-            deny all;
-          '';
-        };
+      services.nginx.virtualHosts."${config.services.nextcloud.hostName}" = {
+        listen = [
+          {
+            addr = "0.0.0.0";
+            port = 80;
+          }
+        ];
+        extraConfig = ''
+          allow 100.64.0.0/10;
+          allow 127.0.0.1;
+          allow ::1;
+          deny all;
+        '';
+      };
 
       services.nextcloud = {
         enable = true;
@@ -35,7 +40,10 @@
         };
 
         settings = {
-          trusted_domains = ["localhost" "100.94.189.75"];
+          trusted_domains = [
+            "localhost"
+            "100.94.189.75"
+          ];
 
         };
 
