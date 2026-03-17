@@ -56,7 +56,7 @@
             appName = "news";
             appVersion = "28.1.0";
             url = "https://github.com/nextcloud/news/releases/download/28.1.0/news.tar.gz";
-            hash = "sha256-53zwBxm/vUqQvc3h9od73RYxqJhh0M6lVS4//bJHMuA=";
+            hash = "sha256-KsHV3zN6kB391wIngALJLCgqcYLRw0PnU9JTDBM/lxo=";
             license = "agpl3Plus";
           };
         };

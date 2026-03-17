@@ -87,6 +87,7 @@
         # Term
         git
         zsh
+        tmux
 
         # Compositors / Window Managers
         mango

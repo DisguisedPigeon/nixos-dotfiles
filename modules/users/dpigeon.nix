@@ -59,7 +59,6 @@
           nush
           nvim
           starship
-          tmux
           wezterm
           zoxide
 
