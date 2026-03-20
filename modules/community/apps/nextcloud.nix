@@ -9,6 +9,7 @@
         80
         443
       ];
+
       networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
       services.nginx.virtualHosts."${config.services.nextcloud.hostName}" = {
@@ -46,8 +47,6 @@
           ];
 
         };
-
-        secretFile = "/run/secrets/pepper-nextcloud";
 
         extraAppsEnable = true;
         extraApps = {
