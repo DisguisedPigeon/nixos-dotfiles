@@ -91,7 +91,6 @@
 
         # Compositors / Window Managers
         mango
-        cosmic
 
         # Theming
         xdg

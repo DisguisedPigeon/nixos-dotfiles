@@ -4,7 +4,6 @@
     {
       programs.chromium = {
         enable = true;
-        defaultSearchProviderEnabled = false;
         package = pkgs.ungoogled-chromium;
         extensions = [
           { id = "nngceckbapebfimnlniiiahkandclblb"; } # Bitwarden
