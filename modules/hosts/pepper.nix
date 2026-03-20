@@ -28,7 +28,7 @@
       tailscale
       nextcloud
       tmux
-      git
+      gitea
 
       # nix
       nix-settings
