@@ -10,16 +10,10 @@
       # Dependency declaration and dendritic pattern
       flake-file.url = "github:vic/flake-file";
       flake-aspects.url = "github:vic/flake-aspects";
-      flake-parts = {
-        url = "github:hercules-ci/flake-parts";
-        inputs.nixpkgs-lib.follows = "nixpkgs-lib";
-      };
+      flake-parts.url = "github:hercules-ci/flake-parts";
 
       # Config wrappers -- TODO
-      nix-wrappers = {
-        url = "github:BirdeeHub/nix-wrapper-modules";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
+      nix-wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
     };
   };
 

@@ -1,7 +1,6 @@
 {
   flake-file.inputs = {
     nix-sweep.url = "github:jzbor/nix-sweep";
-    nix-sweep.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   perSystem =

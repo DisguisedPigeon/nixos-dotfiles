@@ -5,6 +5,7 @@
         enable = true;
         database.type = "postgres";
       };
+      users.users.gitea.openssh.authorizedKeys.keyFiles = [ ../../resources/gitea.pub ];
     };
   };
 }

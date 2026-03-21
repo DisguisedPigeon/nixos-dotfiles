@@ -1,8 +1,17 @@
 { inputs, ... }:
 {
-  flake-file.inputs.niri = {
-    url = "github:sodiboo/niri-flake";
-    inputs.nixpkgs.follows = "nixpkgs";
+  flake-file.inputs = {
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.niri-stable.follows = "niri-raw";
+      inputs.niri-unstable.follows = "niri-raw";
+      inputs.xwayland-satellite-stable.follows = "xwayland-satellite";
+      inputs.xwayland-satellite-unstable.follows = "xwayland-satellite";
+    };
+
+    niri-raw.url = "github:YaLTeR/niri";
+    xwayland-satellite.url = "github:Supreeeme/xwayland-satellite";
   };
 
   flake.aspects.niri = {
