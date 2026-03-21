@@ -36,7 +36,7 @@ in
     url = "github:danth/stylix";
     inputs.nixpkgs.follows = "nixpkgs";
     inputs.flake-parts.follows = "flake-parts";
-    inputs.systems.follows = "systems";
+    #inputs.systems.follows = "systems";
   };
 
   flake.aspects.stylix = {

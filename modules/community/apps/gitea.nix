@@ -1,7 +1,7 @@
 {
   flake.aspects.gitea = {
     nixos = {
-      programs.gitea = {
+      services.gitea = {
         enable = true;
         database.type = "postgres";
       };

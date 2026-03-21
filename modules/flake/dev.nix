@@ -1,29 +1,40 @@
+{ inputs, ... }:
 {
+  flake-file.inputs = {
+    devenv.url = "github:cachix/devenv";
+  };
+
+  imports = [ inputs.devenv.flakeModule ];
+
   perSystem =
-    { inputs', ... }:
-    let
-      pkgs = inputs'.nixpkgs.legacyPackages;
-    in
+    { ... }:
     {
-      devShells.default = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          # Nix tools
-          statix
-          deadnix
-          nil
-          nixfmt-tree
-          nixf-diagnose
+      devenv.shells.default = {
+        languages = {
+          nix.enable = true;
+          lua.enable = true;
+        };
 
-          # Lua tools
-          stylua
-          lua-language-server
-          lua53Packages.luacheck
+        enterTest = ''
+          echo "Running tests"
+          nix flake check
+        '';
 
-          # General
-          treefmt
-          prettier
-          taplo
-        ];
+        git-hooks.hooks = {
+          treefmt.enable = true;
+        };
+
+        treefmt = {
+          enable = true;
+          config.programs = {
+            stylua.enable = true;
+            nixfmt.enable = true;
+            deadnix.enable = true;
+            nixf-diagnose.enable = true;
+            prettier.enable = true;
+            taplo.enable = true;
+          };
+        };
       };
     };
 }
