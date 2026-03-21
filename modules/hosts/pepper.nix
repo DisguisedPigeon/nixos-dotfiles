@@ -29,6 +29,7 @@
       nextcloud
       tmux
       gitea
+      git
 
       # nix
       nix-settings
