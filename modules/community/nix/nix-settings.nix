@@ -1,3 +1,14 @@
+let
+  static-nix-conf-content = ''
+    allowed-users = root dpigeon remotebuild
+    builders =
+    cores = 0
+    experimental-features = nix-command flakes
+    max-jobs = auto
+    substituters = https://niri.cachix.org?priority=1 https://nix-community.cachix.org?priority=2 https://aseipp-nix-cache.global.ssl.fastly.net?priority=3 https://cache.nixos.org?priority=4 https://devenv.cachix.org
+    trusted-users = root remotebuild
+  '';
+in
 {
   flake.aspects.nix-settings = {
     nixos =
@@ -7,6 +18,28 @@
         pkgs,
         ...
       }:
+      let
+        system-only-nix-conf-content = ''
+          auto-optimise-store = true
+          extra-platforms = aarch64-linux x86_64-linux
+          http-connections = 128
+          keep-derivations = false
+          max-substitution-jobs = 128
+          require-sigs = true
+          sandbox = true
+          sandbox-fallback = false
+          extra-sandbox-paths = /run/binfmt
+          system-features = nixos-test benchmark big-parallel kvm
+          trusted-public-keys = niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+          use-xdg-base-directories = true
+        '';
+
+        nix-conf-content = ''
+          access-tokens = "github.com=${config.sops.placeholder.github-PAT}
+        ''
+        + system-only-nix-conf-content
+        + static-nix-conf-content;
+      in
       {
         nixpkgs.config.allowUnfree = true;
 
@@ -16,28 +49,7 @@
         };
 
         sops.templates."nix.conf" = {
-          content = ''
-            access-tokens = "github.com=${config.sops.placeholder.github-PAT}
-            allowed-users = root dpigeon remotebuild
-            auto-optimise-store = true
-            builders =
-            cores = 0
-            experimental-features = nix-command flakes
-            extra-platforms = aarch64-linux x86_64-linux
-            extra-sandbox-paths = /run/binfmt
-            http-connections = 128
-            keep-derivations = false
-            max-jobs = auto
-            max-substitution-jobs = 128
-            require-sigs = true
-            sandbox = true
-            sandbox-fallback = false
-            system-features = nixos-test benchmark big-parallel kvm
-            substituters = https://niri.cachix.org?priority=1 https://nix-community.cachix.org?priority=2 https://aseipp-nix-cache.global.ssl.fastly.net?priority=3 https://cache.nixos.org?priority=4 https://devenv.cachix.org
-            trusted-public-keys = niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964= nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
-            trusted-users = root remotebuild
-            use-xdg-base-directories = true
-          '';
+          content = nix-conf-content;
           mode = "0644";
         };
 
@@ -55,10 +67,34 @@
         };
       };
     homeManager =
-      { pkgs, lib, ... }:
       {
+        pkgs,
+        lib,
+        config,
+        ...
+      }:
+      let
+        nix-conf-content = ''
+          access-tokens = "github.com=${config.sops.placeholder.github-PAT}
+        ''
+        + static-nix-conf-content;
+      in
+      {
+        systemd.user.services.home-manager-auto-expire.Unit.After = [ "sops-nix.service" ];
+        systemd.user.timers.nix-gc.Unit.After = [ "sops-nix.service" ];
+
         services.home-manager.autoExpire.enable = lib.mkDefault true;
         nixpkgs.config.allowUnfree = lib.mkDefault true;
+
+        sops.templates."nix-conf" = {
+          content = nix-conf-content;
+          mode = "0644";
+        };
+
+        xdg.configFile."nix-conf" = {
+          target = "nix/nix.conf";
+          source = config.lib.file.mkOutOfStoreSymlink config.sops.templates."nix-conf".path;
+        };
 
         nix = {
           package = lib.mkDefault pkgs.nix;
@@ -66,13 +102,6 @@
             automatic = lib.mkDefault true;
             options = lib.mkDefault "-d";
             dates = lib.mkDefault "daily";
-          };
-
-          settings = {
-            experimental-features = lib.mkDefault [
-              "nix-command"
-              "flakes"
-            ];
           };
         };
 

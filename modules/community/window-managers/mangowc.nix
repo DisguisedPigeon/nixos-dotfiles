@@ -23,17 +23,14 @@
         wayland.windowManager.mango.enable = lib.mkDefault true;
         # services.swaync.enable = true;
 
-        home.packages = lib.mkDefault (
-          with pkgs;
-          [
-            swaybg
-            wl-clip-persist
-            wlsunset
-            wl-clipboard
-            grim
-            slurp
-          ]
-        );
+        home.packages = with pkgs; [
+          swaybg
+          wl-clip-persist
+          wlsunset
+          wl-clipboard
+          grim
+          slurp
+        ];
         xdg.portal = {
           extraPortals = lib.mkDefault [ pkgs.xdg-desktop-portal-wlr ];
           config.wlr.default = lib.mkDefault [

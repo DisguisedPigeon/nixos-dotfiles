@@ -49,6 +49,7 @@
 
           # nix
           stylix
+          sops
 
           # term
           bat
@@ -65,9 +66,9 @@
           # wms
           mango
           # niri
-
         ]
       );
+      sops.secrets.github-PAT = { };
 
     };
 }

@@ -6,10 +6,7 @@
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
-    crate2nix = {
-      url = "github:nix-community/crate2nix";
-      inputs.crate2nix_stable.follows = "crate2nix";
-    };
+    crate2nix.url = "github:nix-community/crate2nix";
     devenv = {
       url = "github:cachix/devenv";
       inputs = {

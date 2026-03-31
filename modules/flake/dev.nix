@@ -11,10 +11,7 @@
       };
     };
     git-hooks.url = "github:cachix/git-hooks.nix";
-    crate2nix = {
-      url = "github:nix-community/crate2nix";
-      inputs.crate2nix_stable.follows = "crate2nix";
-    };
+    crate2nix.url = "github:nix-community/crate2nix";
   };
 
   perSystem = {
