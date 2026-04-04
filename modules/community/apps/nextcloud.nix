@@ -11,7 +11,12 @@
 
       services.nginx.virtualHosts."${config.services.nextcloud.hostName}" = {
 
-        listen = [ { addr = "0.0.0.0"; port = 80; } ];
+        listen = [
+          {
+            addr = "0.0.0.0";
+            port = 80;
+          }
+        ];
 
         extraConfig = ''
           allow 100.64.0.0/10;
