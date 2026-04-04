@@ -5,20 +5,14 @@
       package = pkgs.nextcloud33;
     in
     {
-      networking.firewall.allowedTCPPorts = [
-        80
-        443
-      ];
+      networking.firewall.allowedTCPPorts = [ 80 ];
 
       networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
       services.nginx.virtualHosts."${config.services.nextcloud.hostName}" = {
-        listen = [
-          {
-            addr = "0.0.0.0";
-            port = 80;
-          }
-        ];
+
+        listen = [ { addr = "0.0.0.0"; port = 80; } ];
+
         extraConfig = ''
           allow 100.64.0.0/10;
           allow 127.0.0.1;
@@ -29,7 +23,7 @@
 
       services.nextcloud = {
         enable = true;
-        hostName = "pepper";
+        hostName = "nextcloud";
 
         package = package;
 
@@ -60,26 +54,26 @@
           };
         };
 
-        #settings.enabledPreviewProviders = [
-        #  "OC\\Preview\\BMP"
-        #  "OC\\Preview\\GIF"
-        #  "OC\\Preview\\JPEG"
-        #  "OC\\Preview\\Krita"
-        #  "OC\\Preview\\MarkDown"
-        #  "OC\\Preview\\MP3"
-        #  "OC\\Preview\\OpenDocument"
-        #  "OC\\Preview\\PNG"
-        #  "OC\\Preview\\TXT"
-        #  "OC\\Preview\\XBitmap"
-        #  "OC\\Preview\\HEIC"
-        #];
+        settings.enabledPreviewProviders = [
+          "OC\\Preview\\BMP"
+          "OC\\Preview\\GIF"
+          "OC\\Preview\\JPEG"
+          "OC\\Preview\\Krita"
+          "OC\\Preview\\MarkDown"
+          "OC\\Preview\\MP3"
+          "OC\\Preview\\OpenDocument"
+          "OC\\Preview\\PNG"
+          "OC\\Preview\\TXT"
+          "OC\\Preview\\XBitmap"
+          "OC\\Preview\\HEIC"
+        ];
       };
 
       systemd.services.nextcloud-custom-config = {
         path = [ config.services.nextcloud.occ ];
         script = ''
           nextcloud-occ theming:config name "PigeonCloud"
-          nextcloud-occ theming:config url "https://pepper";
+          nextcloud-occ theming:config url "https://nextcloud";
           nextcloud-occ theming:config privacyUrl "https://pepper/privacy";
           nextcloud-occ theming:config color "#6400aa";
           nextcloud-occ theming:config logo ${../../../resources/logo.png}
