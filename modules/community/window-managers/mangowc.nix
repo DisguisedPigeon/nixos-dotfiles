@@ -67,8 +67,8 @@
           '';
 
           settings = lib.mkDefault ''
-            monitorrule=name:eDP-1, masterfactor:0.5, numbermasters:1, layout:scroller, transform:0, scale:1, x:0, y:0, width:1920, height:1080, refreshrate:120
-            monitorrule=name:HDMI-A-1, masterfactor:0.5, numbermasters:1, layout:scroller, transform:0, scale:1, x:1920, y:0, width:1920, height:1080,  refreshrate:80
+            monitorrule=name:eDP-1, scale:1, x:0, y:0, width:1920, height:1080, refresh:120, vrr:1
+            monitorrule=name:HDMI-A-1, scale:1, x:1920, y:0, width:1920, height:1080, refresh:80, vrr:1
 
             # Window effect
             blur=1

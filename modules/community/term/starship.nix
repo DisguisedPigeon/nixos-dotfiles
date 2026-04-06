@@ -62,7 +62,7 @@
           symbol = "󰦥 ";
         };
         golang = {
-          format = "$symbol($version)]($style) ";
+          format = "[$symbol($version)]($style) ";
           symbol = " ";
         };
         haskell = {

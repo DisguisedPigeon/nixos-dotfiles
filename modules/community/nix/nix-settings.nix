@@ -5,8 +5,7 @@ let
     cores = 0
     experimental-features = nix-command flakes
     max-jobs = auto
-    substituters = https://niri.cachix.org?priority=1 https://nix-community.cachix.org?priority=2 https://aseipp-nix-cache.global.ssl.fastly.net?priority=4 https://cache.nixos.org?priority=3 https://devenv.cachix.org https://raspberry-pi-nix.cachix.org
-    trusted-users = root remotebuild
+    trusted-users = root dpigeon remotebuild
   '';
 in
 {
@@ -22,10 +21,8 @@ in
         system-features-static = "system-features = nixos-test benchmark kvm";
         system-features =
           if config.networking.hostName != "pepper" then
-            system-features-static
-            + ''
-              big-parallel
-            ''
+            system-features-static + " big-parallel
+"
           else
             system-features-static + "";
         system-only-nix-conf-content = ''
