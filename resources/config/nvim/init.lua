@@ -26,11 +26,18 @@ end, "open term in new tab")
 
 lib.nmap("<C-u>", "<C-u>zz", "Scroll up half screen, center")
 
+vim.cmd("packadd nohlsearch")
+vim.cmd("packadd nvim.tohtml")
+vim.cmd("packadd nvim.undotree")
+vim.cmd("packadd nvim.difftool")
+
+local spell = require("nvim.spellfile")
+
+spell.get("gl")
+spell.get("es")
+spell.get("en")
+
 vim.pack.add({
-  "nohlsearch",
-  "nvim.tohtml",
-  "nvim.undotree",
-  "https://github.com/stevearc/oil.nvim",
   "https://github.com/stevearc/oil.nvim",
   "https://github.com/neovim/nvim-lspconfig",
   "https://github.com/rose-pine/nvim",
