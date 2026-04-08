@@ -11,7 +11,6 @@
       imports = [ inputs.noctalia.homeModules.default ];
 
       home.packages = [
-        inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
         pkgs.pavucontrol
       ];
 
@@ -19,6 +18,7 @@
 
       programs.noctalia-shell = {
         enable = true;
+        package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
         systemd.enable = false;
         settings = {
           appLauncher = {

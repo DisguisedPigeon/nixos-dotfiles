@@ -32,16 +32,19 @@
 
     settings.on-unmatched = lib.mkDefault "fatal";
     settings.global.excludes = [
-      "resources/*.F16"
-      "resources/*.png"
-      "resources/*.spl"
-      "resources/*.pub"
       "LICENSE"
-      "flake.lock"
-      "*/flake.lock"
       ".envrc"
-      ".direnv/*"
-      "*/.gitignore"
+      "flake.lock"
+      ".direnv"
+      ".gitignore"
+      ".editorconfig"
+      "*.conf"
+      "*.F16"
+      "*.png"
+      "*.spl"
+      "*.pub"
+      "*.so"
+      "*.scm"
     ];
   };
 }

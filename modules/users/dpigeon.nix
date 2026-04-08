@@ -64,7 +64,6 @@
           zoxide
 
           # wms
-          mango
           # niri
         ]
       );

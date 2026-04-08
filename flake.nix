@@ -28,13 +28,6 @@
     hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
     import-tree.url = "github:vic/import-tree";
-    mango = {
-      url = "github:DreamMaoMao/mangowc";
-      inputs = {
-        flake-parts.follows = "flake-parts";
-        nixpkgs.follows = "nixpkgs";
-      };
-    };
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs = {
@@ -51,7 +44,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-sweep.url = "github:jzbor/nix-sweep";
-    nix-wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-lib.follows = "nixpkgs";
     noctalia = {
@@ -70,6 +62,10 @@
       };
     };
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    wrappers = {
+      url = "github:BirdeeHub/nix-wrapper-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     xwayland-satellite.url = "github:Supreeeme/xwayland-satellite";
     zen = {
       url = "github:0xc000022070/zen-browser-flake";

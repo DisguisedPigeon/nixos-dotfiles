@@ -74,6 +74,8 @@
         kanata
         tailscale
         docker
+        logind
+        power-profiles
         #dunst
 
         # System

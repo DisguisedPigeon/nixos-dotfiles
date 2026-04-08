@@ -12,8 +12,6 @@
       flake-aspects.url = "github:vic/flake-aspects";
       flake-parts.url = "github:hercules-ci/flake-parts";
 
-      # Config wrappers -- TODO
-      nix-wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
     };
   };
 

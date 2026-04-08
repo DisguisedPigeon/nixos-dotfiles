@@ -70,6 +70,7 @@
         {
           enable = true;
           inherit policies;
+          package = inputs.zen.packages.${currentSystem}.beta;
 
           nativeMessagingHosts = [ ];
 
