@@ -1,16 +1,12 @@
 {
   flake.aspects.xdg.nixos =
-    { pkgs, lib, ... }:
+    { pkgs, ... }:
     {
       xdg = {
         portal = {
-          enable = lib.mkDefault true;
-          config = {
-            common = {
-              default = lib.mkDefault [ "gtk" ];
-            };
-          };
-          extraPortals = lib.mkDefault [ pkgs.xdg-desktop-portal-gtk ];
+          enable = true;
+          config.common.default = [ "gtk" ];
+          extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
         };
         mime.defaultApplications = {
           "application/pdf" = [

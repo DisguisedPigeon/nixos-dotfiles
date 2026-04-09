@@ -54,6 +54,9 @@ inputs.wrappers.wrappers.mangowc.wrap {
       writeShellScriptBin "mango-startup.sh" ''
         set +e
 
+        dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=mango
+        systemctl --user restart xdg-desktop-portal &
+
         ${lib.getExe wl-clip-persist} --clipboard regular --reconnect-tries 0 &
         ${lib.getExe' wl-clipboard "wl-paste"} --type text --watch cliphist store &
 

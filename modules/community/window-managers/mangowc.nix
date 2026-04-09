@@ -18,10 +18,11 @@ in
     { pkgs, config, ... }:
     {
       xdg.portal = {
-        extraPortals = [ pkgs.xdg-desktop-portal-wlr ];
-        config.wlr.default = [
-          "wlr"
-          "gtk"
+        extraPortals = with pkgs; [
+          xdg-desktop-portal
+          xdg-desktop-portal-gtk
+          xdg-desktop-portal-wlr
+          gnome-keyring
         ];
       };
 

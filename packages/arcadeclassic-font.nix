@@ -1,8 +1,5 @@
-{
-  mkDerivation,
-  fetchzip,
-}:
-mkDerivation {
+{ stdenv, fetchzip }:
+stdenv.mkDerivation {
   name = "arcadeclassic-font";
 
   src = fetchzip {

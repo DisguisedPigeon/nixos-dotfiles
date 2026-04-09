@@ -1,90 +1,29 @@
+{ inputs, ... }:
+let
+  wrapped-nvim = ../../../packages/wrapped-nvim.nix;
+in
 {
-  flake.modules.homeManager.nvim =
+  flake-file.inputs.wrappers = {
+    url = "github:BirdeeHub/nix-wrapper-modules";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  perSystem =
+    { pkgs, ... }:
+    {
+      packages.neovim-custom = pkgs.callPackage wrapped-nvim { inherit inputs; };
+    };
+
+  flake.modules.nixos.nvim =
     { pkgs, ... }:
     {
       programs.neovim = {
         enable = true;
 
-        plugins = [ pkgs.vimPlugins.mini-deps ];
+        viAlias = true;
         vimAlias = true;
-        vimdiffAlias = true;
-        withNodeJs = true;
-      };
 
-      home.packages =
-        (with pkgs; [
-          ripgrep # file grepping
-          fd # find but easier
-
-          tree-sitter
-        ])
-        # Treesitter parsers
-        ++ (with pkgs.vimPlugins.nvim-treesitter-parsers; [
-          bash
-          bibtex
-          c
-          cmake
-          cpp
-          css
-          csv
-          desktop
-          diff
-          dockerfile
-          elixir
-          erlang
-          git_config
-          git_rebase
-          gitattributes
-          gitcommit
-          gitignore
-          gleam
-          go
-          gomod
-          heex
-          html
-          http
-          java
-          javadoc
-          javascript
-          jq
-          jsdoc
-          json
-          json5
-          latex
-          lua
-          luadoc
-          make
-          markdown
-          markdown_inline
-          mermaid
-          nix
-          ocaml
-          ocaml_interface
-          ocamllex
-          python
-          query
-          regex
-          rust
-          sql
-          ssh_config
-          tmux
-          typescript
-          typespec
-          typst
-          vim
-          vimdoc
-          xcompose
-          xml
-          xresources
-          yaml
-          yuck
-          zig
-        ]);
-
-      xdg.configFile.nvim = {
-        enable = true;
-        source = ../../../resources/config/nvim;
-        recursive = true;
+        package = pkgs.callPackage wrapped-nvim { inherit inputs; };
       };
     };
 }

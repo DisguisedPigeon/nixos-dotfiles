@@ -18,6 +18,11 @@
         fsType = "ext4";
       };
 
+      fileSystems."/mnt" = {
+        device = "/dev/disk/by-label/EXTERNAL";
+        fsType = "ext4";
+      };
+
       swapDevices = [ ];
     };
 }

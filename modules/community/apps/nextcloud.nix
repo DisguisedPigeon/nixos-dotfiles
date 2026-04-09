@@ -29,6 +29,7 @@
       services.nextcloud = {
         enable = true;
         hostName = "nextcloud";
+        datadir = "/mnt/nextcloud-data";
 
         package = package;
 

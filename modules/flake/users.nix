@@ -12,8 +12,6 @@ in
   imports = [ inputs.home-manager.flakeModules.home-manager ];
 
   flake = {
-    homeConfigurations = {
-      dpigeon-salt = mkHome "dpigeon" "salt" "25.05";
-    };
+    homeConfigurations.dpigeon-salt = mkHome "dpigeon" "salt" "25.05";
   };
 }

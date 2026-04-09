@@ -58,10 +58,13 @@
           fzf
           git
           nush
-          nvim
           starship
           wezterm
           zoxide
+          fd
+          rg
+          rga
+          treesitter
 
           # wms
           # niri

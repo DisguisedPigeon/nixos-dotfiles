@@ -89,6 +89,7 @@
         # Term
         git
         zsh
+        nvim
         tmux
 
         # Compositors / Window Managers

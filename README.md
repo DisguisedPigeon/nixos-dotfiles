@@ -1,17 +1,17 @@
 # Disguised Pigeon's NixOS Dotfiles
 
-Nixos unstable dendritic-style config with standalone home manager buzzword buzzword.
+NixOS unstable dendritic-style config with standalone home manager (migrating to wrappers) buzzword buzzword.
 
 ### Images
 
 ![No app open](./resources/no-app.png)
-![Terminal stuff](./resources/screenshot_nvim_neofetch.png)
+![Terminal stuff](./resources/screenshot_xnvim_neofetch.png)
 ![Browser](./resources/screenshot_zen.png)
 
 ### System Info:
 
 - OS: NixOS
-- DE: Hyprland, Niri, MangoWC.
+- DE: MangoWC + Noctalia-shell.
 - Shell: ZSH
 - Terminal: Wezterm
 - Editor: Neovim BTW
@@ -21,12 +21,9 @@ Nixos unstable dendritic-style config with standalone home manager buzzword buzz
 - flake.nix: main flake definition - generated with [flake-file](https://github.com/).
 - modules/: Nix modules, following the dendritic pattern - one file per-feature.
   - modules/\_/\_.nix: Name/Structure should be descriptive. Sorry if it's not.
+- packages/: Nix packages, including wrappers among others.
 
 ### Instalation instructions
-
-#### 0. Prerequisites
-
-- Working NixOS installation.
 
 #### 1. Installation
 
@@ -37,55 +34,46 @@ cd /home/.nixos-dotfiles
 
 At this point, you may use this config as your own.
 
+> ![NOTE]
+> HOST is any hostname defined on modules/flake/systems.nix under flake.nixosConfigurations.  
+> USERNAME is any user defined on modules/flake/users.nix under flake.homeConfigurations.
+
 To apply the changes to the whole system, run:
 
 ```sh
-# HOST is any hostname defined on Configs.nix under flake.nixosConfigurations
-nixos-rebuild switch --flake .#{HOST}
+nixos-rebuild switch --flake .#<HOST>
 ```
 
 To apply the changes to the user config, run:
 
 ```sh
-# HOST is any hostname defined on Configs.nix under flake.nixosConfigurations
-# USERNAME is any user defined on Configs.nix under flake.homeConfigurations
 home-manager switch -b backup --flake .#{HOST}-{USERNAME}
 ```
 
-You may change the name of any of these everywhere.
-
 #### 2. Daily life
 
-To add an app, create a new module and add two attributes, one for flake.modules.nixos and other for flake.modules.homeManager. There you can configure it. Feel free to ask if you have any questions.
+You can add an app by creating a modules/community/\*.nix file and configuring it there. Either through [nixos options](https://search.nixos.org/options?channel=unstable), [home manager options](https://home-manager-options.extranix.com/?query&release=master) or by making a [nix-wrapper](https://github.com/BirdeeHub/nix-wrapper-modules) and installing it as a package on either nixos or home-manager.
 
-If you want to add an input, use `flake-file` to install it in the module where you want to use it, remember running `nix run .#write-flake` after.
+If you want to add an input, use `flake-file.inputs.<name>` to install it in the module where you want to use it and run `nix run .#write-flake` after declaring it.
 
-To update the flake use `nix flake update`.
+To update the system use `nix flake update` followed by a system rebuild.
 
-Remember you can delete home-manager and NixOS generations if you are running out of disk space. You should have the config backed up on git anyways, so if something happens you can always restore the state through a live USB.
+Remember you can delete home-manager and NixOS generations if you are running out of disk space. You should have the config backed up on git anyways, so if something happens you can always restore the system by reinstalling.
 
 ```sh
-nix shell --impure github:jzbor/nix-sweep
-# clean up nix roots across all the system
-sudo nix-sweep tidyup-gc-roots
-# delete old generations
-sudo nix-sweep cleanout system --remove-older 1m
-nix-sweep cleanout user --remove-older 1m
-nix-sweep cleanout home --remove-older 1m
-# collect garbage
-nix-sweep gc
+nix-collect-garbage -d
+nix shell github:jzbor/nix-sweep
 ```
 
 The nix store is optimized and cleaned periodically if configured, but nix stores every bootable nixos generation and rollback-able home-manager config.
 
 ### Aditional notes
 
-- This is a permanent WIP. Modularity should help fixing the changes I commit, but I would recommend forking as soon as you get to a point where you are happy with your current config to avoid breaking changes. The config is yours after all, why let me change it?
+- This is a permanent WIP. Fork when you start using it or you will run into conflicts. Why would you let me change your config?
 - I use NixOS BTW
-- I will probably forget updating this readme (Indeed i did, LAST UPDATE: 19/10/2025, PREVIOUS: 09/05/2025). Installation success rate should stabilize now that the structure freezez, but be weary nontheless.
-- There are probably some programs with incomplete configurations, either due to lazyness or me forgetting.
+- I will probably forget updating this readme (LAST UPDATE: Apr 9th 2026).
 - I use NeoVim BTW
-- I don't expect nobody to use this. It's probably better for you to use another better-maintained config. This is just my own, but if someone wants to use it, go ahead. I did, in fact, write this README for this purpose.
+- I don't expect anybody to use this. Breakages may happen.
 
 ### WTH do all those words mean?
 
