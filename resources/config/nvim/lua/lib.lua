@@ -1,17 +1,17 @@
 local M = {}
 
 M.nmap = function(lhs, rhs, desc)
-	vim.keymap.set("n", lhs, rhs, { desc = desc })
+  vim.keymap.set("n", lhs, rhs, { desc = desc })
 end
 
-M.list_from_dir = function(directory)
-	local acc = {}
+M.iter_directory = function(directory)
+  local acc = {}
 
-	for file_name in vim.fs.dir(directory) do
-		table.insert(acc, file_name)
-	end
+  for file_name in vim.fs.dir(directory) do
+    table.insert(acc, file_name)
+  end
 
-	return acc
+  return vim.iter(acc)
 end
 
 return M
