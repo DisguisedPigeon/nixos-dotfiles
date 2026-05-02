@@ -22,7 +22,7 @@
     flake-file.url = "github:vic/flake-file";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
-      inputs.nixpkgs-lib.follows = "nixpkgs-lib";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
     git-hooks.url = "github:cachix/git-hooks.nix";
     hardware.url = "github:nixos/nixos-hardware";
@@ -43,12 +43,10 @@
       url = "github:fzakaria/nix-auto-follow";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-sweep.url = "github:jzbor/nix-sweep";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-lib.follows = "nixpkgs";
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
+    noctalia-plugins = {
+      url = "github:noctalia-dev/noctalia-plugins";
+      flake = false;
     };
     sops-nix = {
       url = "github:Mic92/sops-nix";
