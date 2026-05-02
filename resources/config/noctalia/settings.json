@@ -80,7 +80,7 @@
           "unfocusedIconsOpacity": 1
         },
         {
-          "colorizeIcons": true,
+          "colorizeIcons": false,
           "hideMode": "hidden",
           "id": "ActiveWindow",
           "maxWidth": 390,

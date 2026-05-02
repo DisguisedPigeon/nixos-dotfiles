@@ -22,8 +22,12 @@
 let
   host = stdenv.hostPlatform.system;
 
-  has-noctalia = builtins.hasAttr "noctalia" inputs;
-  noctalia = if has-noctalia then lib.getExe inputs.noctalia.packages.${host}.default else "";
+  # I tried querying environment.systemPackages, but since this gets installed
+  # there, it evaluated to infinite recursion.
+
+  has-noctalia = true;
+
+  noctalia = if has-noctalia then "noctalia-shell" else "false";
 
   launcher-cmd =
     if has-noctalia then
