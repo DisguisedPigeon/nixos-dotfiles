@@ -15,7 +15,7 @@
 
           extraConfig = ''
             term_font = boot():/font
-            remember_last_entry:yes
+            default_entry = 1
           '';
 
           style = {
