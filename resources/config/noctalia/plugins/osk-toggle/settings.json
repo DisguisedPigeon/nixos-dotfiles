@@ -1,0 +1,6 @@
+{
+  "backend": "wvkbd",
+  "hideWhenUnavailable": false,
+  "disableHoverIcon": false,
+  "wvkbdBin": "wvkbd-mobintl"
+}

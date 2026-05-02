@@ -1,0 +1,16 @@
+{
+  "refreshInterval": 60000,
+  "compactMode": true,
+  "showIpAddress": false,
+  "showPeerCount": false,
+  "hideDisconnected": false,
+  "hideMullvadExitNodes": true,
+  "terminalCommand": "wezterm",
+  "sshUsername": "",
+  "pingCount": 5,
+  "defaultPeerAction": "copy-ip",
+  "taildropEnabled": true,
+  "taildropDownloadDir": "~/Downloads",
+  "taildropReceiveMode": "operator",
+  "loginServer": ""
+}

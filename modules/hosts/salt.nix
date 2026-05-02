@@ -62,7 +62,7 @@
         # Apps
         # obs
         sddm
-        emacs
+        noctalia
 
         # Nix
         nix-settings

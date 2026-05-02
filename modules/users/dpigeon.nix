@@ -42,8 +42,6 @@
           # apps
           chromium
           discord
-          emacs
-          noctalia
           thunderbird
           zen
 

@@ -1,0 +1,9 @@
+{
+  "autoMount": false,
+  "fileBrowser": "yazi",
+  "terminalCommand": "wezterm",
+  "showNotifications": true,
+  "hideWhenEmpty": false,
+  "showBadge": true,
+  "iconColor": "primary"
+}
