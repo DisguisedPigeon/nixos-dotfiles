@@ -19,7 +19,12 @@
       };
 
       fileSystems."/mnt" = {
-        device = "/dev/disk/by-label/EXTERNAL";
+        device = "/dev/disk/by-label/EXTERNAL_DATA";
+        fsType = "ext4";
+      };
+
+      fileSystems."/nix" = {
+        device = "/dev/disk/by-label/NIX_STORE";
         fsType = "ext4";
       };
 
