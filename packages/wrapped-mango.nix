@@ -49,10 +49,12 @@ inputs.wrappers.wrappers.mangowc.wrap {
 
   sourcedFiles = [ ../resources/config/mango/config.conf ];
 
-  extraContent = ''
+  extraConfig = ''
     exec-once = ${lib.getExe (
       writeShellScriptBin "mango-startup.sh" ''
         set +e
+
+        noctalia-shell -d
 
         dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=mango
         systemctl --user restart xdg-desktop-portal &
@@ -60,7 +62,6 @@ inputs.wrappers.wrappers.mangowc.wrap {
         ${lib.getExe wl-clip-persist} --clipboard regular --reconnect-tries 0 &
         ${lib.getExe' wl-clipboard "wl-paste"} --type text --watch cliphist store &
 
-        noctalia-shell -d
       ''
     )}
 
