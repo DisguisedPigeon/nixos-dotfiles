@@ -1,6 +1,8 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+require("vim._core.ui2").enable({})
+
 -- Enable some included plugins
 vim.cmd("packadd nohlsearch")
 vim.cmd("packadd nvim.tohtml")

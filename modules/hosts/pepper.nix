@@ -28,7 +28,7 @@
       tailscale
       nextcloud
       tmux
-      gitea
+      forgejo
       git
 
       # nix

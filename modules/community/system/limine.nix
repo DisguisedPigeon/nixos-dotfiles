@@ -14,18 +14,20 @@
           additionalFiles.font = ../../../resources/DECORATE.F16;
 
           extraConfig = ''
-            term_font = boot():/font
-            default_entry = 1
+            term_font: boot():/font
+            default_entry: 2
+            interface_branding_colour: C4A7E7
+            interface_help_hidden: yes
+            # Colors for the booting in [n] seconds prompt.
+            interface_help_colour_bright: 9CCFD8
+            interface_help_colour: 31748F
           '';
 
           style = {
             wallpapers = [ ../../../resources/wallpaper.png ];
 
             backdrop = lib.mkForce "1E1E2E";
-            interface = {
-              branding = "DPigeon MacOS";
-              helpHidden = true;
-            };
+            interface.branding = "DPigeon's Salt";
 
             graphicalTerminal = {
               foreground = lib.mkForce "CDD6F4";
