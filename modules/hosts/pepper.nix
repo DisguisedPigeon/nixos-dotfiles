@@ -1,9 +1,5 @@
 { inputs, ... }:
 {
-  flake-file.inputs = {
-    hardware.url = "github:nixos/nixos-hardware";
-  };
-
   flake.modules.nixos.pepper = {
     sops.secrets = {
       user-password.neededForUsers = true;
