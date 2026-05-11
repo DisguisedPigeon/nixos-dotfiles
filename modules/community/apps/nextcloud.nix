@@ -37,7 +37,7 @@
 
         config = {
           adminpassFile = "/run/secrets/pepper-nextcloud";
-          dbtype = "pgsql";
+          dbtype = "sqlite";
         };
 
         settings = {
@@ -51,28 +51,28 @@
         extraAppsEnable = true;
         extraApps = {
           inherit (package.packages.apps) calendar tasks;
-          news = pkgs.fetchNextcloudApp {
-            appName = "news";
-            appVersion = "28.1.0";
-            url = "https://github.com/nextcloud/news/releases/download/28.1.0/news.tar.gz";
-            hash = "sha256-KsHV3zN6kB391wIngALJLCgqcYLRw0PnU9JTDBM/lxo=";
-            license = "agpl3Plus";
-          };
+          # news = pkgs.fetchNextcloudApp {
+          #   appName = "news";
+          #   appVersion = "28.1.0";
+          #   url = "https://github.com/nextcloud/news/releases/download/28.1.0/news.tar.gz";
+          #   hash = "sha256-KsHV3zN6kB391wIngALJLCgqcYLRw0PnU9JTDBM/lxo=";
+          #   license = "agpl3Plus";
+          # };
         };
 
-        settings.enabledPreviewProviders = [
-          "OC\\Preview\\BMP"
-          "OC\\Preview\\GIF"
-          "OC\\Preview\\JPEG"
-          "OC\\Preview\\Krita"
-          "OC\\Preview\\MarkDown"
-          "OC\\Preview\\MP3"
-          "OC\\Preview\\OpenDocument"
-          "OC\\Preview\\PNG"
-          "OC\\Preview\\TXT"
-          "OC\\Preview\\XBitmap"
-          "OC\\Preview\\HEIC"
-        ];
+        # settings.enabledPreviewProviders = [
+        #   "OC\\Preview\\BMP"
+        #   "OC\\Preview\\GIF"
+        #   "OC\\Preview\\JPEG"
+        #   "OC\\Preview\\Krita"
+        #   "OC\\Preview\\MarkDown"
+        #   "OC\\Preview\\MP3"
+        #   "OC\\Preview\\OpenDocument"
+        #   "OC\\Preview\\PNG"
+        #   "OC\\Preview\\TXT"
+        #   "OC\\Preview\\XBitmap"
+        #   "OC\\Preview\\HEIC"
+        # ];
       };
 
       systemd.services.nextcloud-custom-config = {

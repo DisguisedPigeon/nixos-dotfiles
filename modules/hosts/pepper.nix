@@ -10,9 +10,12 @@
       pepper-dpigeon-nextcloud = { };
     };
 
+    boot.zfs.forceImportRoot = false;
+
     imports = with inputs.self.modules.nixos; [
       pepper-hardware
-      inputs.hardware.nixosModules.raspberry-pi-4
+      rpi-specific
+      # inputs.hardware.nixosModules.raspberry-pi-4
 
       # Users
       dpigeon
