@@ -6,8 +6,8 @@
       imports = [ ];
 
       users.users.dpigeon = {
-        hashedPasswordFile = lib.mkDefault config.sops.secrets.user-password.path;
         isNormalUser = lib.mkDefault true;
+        hashedPasswordFile = lib.mkDefault config.sops.secrets.user-password.path;
         extraGroups = lib.mkDefault [
           "dpigeon"
           "wheel"
@@ -24,51 +24,41 @@
       home.sessionVariables.host = "salt";
       home.username = "dpigeon";
       home.homeDirectory = "/home/dpigeon";
-      home.stateVersion = "25.05";
+      home.packages = with pkgs; [
+        gimp3
+        obsidian
+        tor
+        vlc
+      ];
 
-      home.packages = (
-        with pkgs;
-        [
-          gimp3
-          obsidian
-          tor
-          vlc
-        ]
-      );
+      imports = with inputs.self.modules.homeManager; [
+        # apps
+        chromium
+        discord
+        thunderbird
+        zen
 
-      imports = (
-        with inputs.self.modules.homeManager;
-        [
-          # apps
-          chromium
-          discord
-          thunderbird
-          zen
+        # nix
+        stylix
+        sops
 
-          # nix
-          stylix
-          sops
-
-          # term
-          bat
-          direnv
-          eza
-          fzf
-          git
-          nush
-          starship
-          wezterm
-          zoxide
-          fd
-          rg
-          rga
-          treesitter
-
-          # wms
-          # niri
-        ]
-      );
+        # term
+        bat
+        direnv
+        eza
+        fzf
+        git
+        nush
+        starship
+        wezterm
+        zoxide
+        fd
+        rg
+        rga
+        treesitter
+      ];
       sops.secrets.github-PAT = { };
 
+      home.stateVersion = "25.05";
     };
 }

@@ -10,16 +10,18 @@
       pepper-dpigeon-nextcloud = { };
     };
 
-    boot.zfs.forceImportRoot = false;
+    i18n = {
+      defaultLocale = "en_US.UTF-8";
+      extraLocales = [ ];
+    };
 
     imports = with inputs.self.modules.nixos; [
-      pepper-hardware
-      rpi-specific
-      # inputs.hardware.nixosModules.raspberry-pi-4
+      # Userland
+      nvim
 
       # Users
       dpigeon
-      remote-build
+      remotebuild
 
       # Services
       docker
@@ -38,6 +40,7 @@
       hosts
       locale
       network-pepper
+      pepper-hardware
     ];
   };
 }

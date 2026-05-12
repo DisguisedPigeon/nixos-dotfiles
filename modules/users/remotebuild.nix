@@ -1,16 +1,15 @@
 {
-  flake.modules.nixos.remote-build =
-    { lib, ... }:
-    {
-      users.users.remotebuild = {
-        isSystemUser = lib.mkDefault true;
+  flake.modules.nixos.remotebuild = {
+    users = {
+      groups.remotebuild = { };
+
+      users.remotebuild = {
+        isSystemUser = true;
         group = "remotebuild";
-        useDefaultShell = lib.mkDefault true;
+        useDefaultShell = true;
         openssh.authorizedKeys.keyFiles = [ ../../resources/remotebuild.pub ];
       };
-
-      users.groups.remotebuild = lib.mkDefault { };
-
-      nix.settings.trusted-users = lib.mkDefault [ "remotebuild" ];
     };
+    nix.settings.trusted-users = [ "remotebuild" ];
+  };
 }
