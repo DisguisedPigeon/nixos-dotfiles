@@ -5,13 +5,10 @@
   flake-file.inputs = {
     devenv = {
       url = "github:cachix/devenv";
-      inputs = {
-        crate2nix.follows = "crate2nix";
-        git-hooks.follows = "git-hooks";
-      };
     };
+    cachix.url = "github:cachix/cachix.nix";
     git-hooks.url = "github:cachix/git-hooks.nix";
-    crate2nix.url = "github:nix-community/crate2nix";
+    crate2nix.url = "github:rossng/crate2nix";
   };
 
   perSystem = {

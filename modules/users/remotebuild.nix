@@ -1,15 +1,10 @@
 {
-  flake.modules.nixos.remotebuild = {
-    users = {
-      groups.remotebuild = { };
-
-      users.remotebuild = {
-        isSystemUser = true;
-        group = "remotebuild";
-        useDefaultShell = true;
-        openssh.authorizedKeys.keyFiles = [ ../../resources/remotebuild.pub ];
-      };
+  flake.aspects.remotebuild.nixos = {
+    nix.sshServe = {
+      enable = true;
+      keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE+GPT8+aH7YzqgtuXA+hvbDyqprRuj74/FNNkcmFNBg root@salt"
+      ];
     };
-    nix.settings.trusted-users = [ "remotebuild" ];
   };
 }

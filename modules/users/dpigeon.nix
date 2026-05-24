@@ -1,6 +1,6 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.dpigeon =
+  flake.aspects.dpigeon.nixos =
     { config, lib, ... }:
     {
       imports = [ ];
@@ -18,7 +18,7 @@
       };
     };
 
-  flake.modules.homeManager.dpigeon-salt =
+  flake.aspects.dpigeon-salt.homeManager =
     { pkgs, ... }:
     {
       home.sessionVariables.host = "salt";

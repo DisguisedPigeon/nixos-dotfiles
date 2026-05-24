@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.pepper-hardware =
+  flake.aspects.pepper-hardware.nixos =
     { lib, modulesPath, ... }:
     {
       imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];

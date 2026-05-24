@@ -1,105 +1,55 @@
+{ inputs, ... }:
 {
-  flake.aspects.git = {
-    nixos = {
-      programs.git = {
-        enable = true;
-        config.gpg.format = "ssh";
-      };
-      environment.variables.PAGER = null;
-    };
-
-    homeManager = rec {
-      programs.git.enable = true;
-
-      programs.jujutsu = {
-        enable = true;
-        settings =
-          let
-            gitCfg = programs.git.settings;
-          in
-          {
-            user = {
-              name = gitCfg.user.name;
-              email = gitCfg.user.email;
-            };
-            ui = {
-              default-command = "st";
-              editor = "nvim";
-              diff-editor = "vimdiff";
-              pager = "less -FRX";
-              show-cryptographic-signatures = true;
-            };
-            signing = {
-              backend = "ssh";
-              behaviour = "own";
-              key = gitCfg.user.signingkey;
-            };
+  flake.aspects = {
+    git = {
+      nixos =
+        { pkgs, ... }:
+        let
+          wrapped-git = pkgs.callPackage ../../../packages/wrapped-git.nix { inherit inputs; };
+          wrapped-jj = pkgs.callPackage ../../../packages/wrapped-jj.nix { inherit inputs; };
+        in
+        {
+          environment.systemPackages = [ wrapped-jj ];
+          programs.git = {
+            enable = true;
+            package = wrapped-git;
           };
-      };
 
-      programs.git.settings = {
-        user = {
-          email = "rubcessis.unofficial@gmail.com";
-          name = "Disguised Pigeon";
-          signingkey = "/home/dpigeon/.ssh/signing_ed25519.pub";
+          # fix for jujutsu pager
+          environment.variables.PAGER = null;
         };
 
-        maintenance.repo = "/home/.nixos-config";
-
-        aliases = {
-          ls = "log --graph --pretty=format:'%Cred%h%C(yellow)%d%Creset - %Cblue%an%Creset - %Cgreen%s'";
-          ll = "log --graph --pretty=format:'%Cred%H%C(yellow)%d%Creset - %Cblue%an%n%CgreenAuthor email: %ae%n%CgreenAuthor date: %ah%n%CgreenCommitter: %cn%n%CgreenCommitter email: %ce%n%CgreenCommit date: %ch%n%CgreenSigner: %GS%n%n%s%n%n%b'";
-          pl = "pull";
-          ps = "push";
-          st = "status -s";
-          sta = "stash";
-          stp = "stash pop";
-          d = "diff";
-          ds = "diff --staged";
-        };
-
-        column.ui = "auto";
-
-        commit.gpgSign = true;
-
-        branch.sort = "-committerdate";
-
-        tag.sort = "version:refname";
-
-        init.defaultBranch = "main";
-
-        diff = {
-          algorithm = "histogram";
-          colorMoved = "plain";
-          mnemonicPrefix = true;
-          renames = true;
-        };
-
-        push = {
-          default = "simple";
-          autoSetupRemote = true;
-          followTags = true;
-        };
-
-        help.autocorrect = "prompt";
-
-        rerere = {
-          enabled = true;
-          autoupdate = true;
-        };
-
-        core.excludesfile = "~/.config/git/ignore";
-
-        rebase = {
-          autoSquash = true;
-          autoStash = true;
-          updateRefs = true;
-        };
-
-        merge.conflictstyle = "zdiff3";
-
-        pull.rebase = true;
+      homeManager = {
+        xdg.configFile."git/config".text = ''
+          [maintenance]
+          repo = "~/nixos-dotfiles"
+        '';
       };
     };
+    git-server.nixos =
+      { pkgs, ... }:
+      let
+        wrapped-git = pkgs.callPackage ../../../packages/wrapped-git.nix { inherit inputs; };
+      in
+      {
+        programs.git = {
+          enable = true;
+          package = wrapped-git;
+        };
+
+        users.groups.git = { };
+        users.users.git = {
+          description = "User accessible for a ssh git server.";
+          isSystemUser = true;
+          group = "git";
+          useDefaultShell = false;
+          shell = "sh";
+          createHome = true;
+          homeMode = "700";
+        };
+
+        # fix for jujutsu pager
+        environment.variables.PAGER = null;
+      };
   };
 }

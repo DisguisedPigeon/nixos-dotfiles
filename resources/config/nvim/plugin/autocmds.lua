@@ -13,6 +13,9 @@ end)
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function()
     lib.nmap("grf", vim.lsp.buf.format, "Format file")
+    lib.nmap("gd", vim.lsp.buf.definition, "Go to definition")
+
+    vim.lsp.inlay_hint.enable()
   end,
 })
 

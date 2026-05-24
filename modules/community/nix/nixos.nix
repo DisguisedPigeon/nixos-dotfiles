@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.nixos =
+  flake.aspects.nixos.nixos =
     { lib, ... }:
     {
       users.mutableUsers = lib.mkDefault false;

@@ -1,34 +1,31 @@
 { inputs, ... }:
 let
-  wrapped-mango = ../../../packages/wrapped-mango.nix;
+  mango-wrap = ../../../packages/wrapped-mango.nix;
 in
 {
-  flake-file.inputs.wrappers = {
-    url = "github:BirdeeHub/nix-wrapper-modules";
-    inputs.nixpkgs.follows = "nixpkgs";
+  flake-file.inputs = {
+    wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
   };
 
   perSystem =
     { pkgs, ... }:
     {
-      packages.mango-custom = pkgs.callPackage wrapped-mango { inherit inputs; };
+      packages.mango-custom = pkgs.callPackage mango-wrap { inherit inputs; };
     };
 
-  flake.aspects.mango.nixos =
+  flake.aspects.mangowm.nixos =
     { pkgs, config, ... }:
     {
-      xdg.portal = {
-        extraPortals = with pkgs; [
-          xdg-desktop-portal
-          xdg-desktop-portal-gtk
-          xdg-desktop-portal-wlr
-          gnome-keyring
-        ];
-      };
+      xdg.portal.extraPortals = with pkgs; [
+        xdg-desktop-portal
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+        gnome-keyring
+      ];
 
       programs.mangowc = {
         enable = true;
-        package = pkgs.callPackage wrapped-mango { inherit config inputs; };
+        package = pkgs.callPackage mango-wrap { inherit inputs config; };
       };
     };
 }

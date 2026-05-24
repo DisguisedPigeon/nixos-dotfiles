@@ -1,6 +1,9 @@
 { inputs, ... }:
 {
-  flake.modules.nixos.pepper = {
+  flake.aspects.pepper.nixos = {
+    custom.network.ip = "192.168.1.3/24";
+    custom.network.net-interface = "wlan0";
+
     sops.secrets = {
       user-password.neededForUsers = true;
       github-PAT = { };
@@ -15,7 +18,10 @@
       extraLocales = [ ];
     };
 
-    imports = with inputs.self.modules.nixos; [
+    imports = [
+      ./hardware
+    ]
+    ++ (with inputs.self.modules.nixos; [
       # Userland
       nvim
 
@@ -30,7 +36,7 @@
       nextcloud
       tmux
       forgejo
-      git
+      git-server
 
       # nix
       nix-settings
@@ -39,8 +45,8 @@
       # System
       hosts
       locale
-      network-pepper
+      nm
       pepper-hardware
-    ];
+    ]);
   };
 }

@@ -80,7 +80,10 @@ in
     {
       packages.sddm-custom = pkgs.callPackage sddm-astronaut-theme {
         theme = "japanese_aesthetic";
-        themeConfig = gen-config { has-stylix = false; };
+        themeConfig = gen-config {
+          has-stylix = false;
+          stylix-colors = { };
+        };
       };
     };
   flake.aspects.sddm.nixos =

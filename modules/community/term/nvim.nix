@@ -1,29 +1,26 @@
 { inputs, ... }:
 let
-  wrapped-nvim = ../../../packages/wrapped-nvim.nix;
+  wrapped-nvim = pkgs: pkgs.callPackage ../../../packages/wrapped-nvim.nix { inherit inputs; };
 in
 {
   flake-file.inputs.wrappers = {
     url = "github:BirdeeHub/nix-wrapper-modules";
-    inputs.nixpkgs.follows = "nixpkgs";
   };
 
   perSystem =
     { pkgs, ... }:
     {
-      packages.neovim-custom = pkgs.callPackage wrapped-nvim { inherit inputs; };
+      packages.neovim-custom = wrapped-nvim pkgs;
     };
 
-  flake.modules.nixos.nvim =
+  flake.aspects.nvim.nixos =
     { pkgs, ... }:
     {
       programs.neovim = {
         enable = true;
-
+        package = wrapped-nvim pkgs;
         viAlias = true;
         vimAlias = true;
-
-        package = pkgs.callPackage wrapped-nvim { inherit inputs; };
       };
     };
 }

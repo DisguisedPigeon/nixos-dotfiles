@@ -4,10 +4,12 @@ vim.g.maplocalleader = " "
 require("vim._core.ui2").enable({})
 
 -- Enable some included plugins
-vim.cmd("packadd nohlsearch")
 vim.cmd("packadd nvim.tohtml")
 vim.cmd("packadd nvim.undotree")
 vim.cmd("packadd nvim.difftool")
+
+vim.o.ut = 2000
+vim.cmd("packadd nohlsearch")
 
 -- Set colorscheme
 require("rose-pine").setup({ styles = { transparency = true } })
