@@ -5,6 +5,12 @@
 
 local lib = require("lib")
 
+lib.nmap("<leader>y", '"+y', "Yank to system")
+lib.nmap("<leader>d", '"+d', "Cut to system")
+lib.nmap("<leader>D", '"_d', "Delete to void")
+
+lib.nmap("<leader>p", '"+p', "Paste from system")
+
 lib.nmap("<C-d>", "<C-d>zz", "Scroll down half screen, center")
 lib.nmap("<C-u>", "<C-u>zz", "Scroll up half screen, center")
 
