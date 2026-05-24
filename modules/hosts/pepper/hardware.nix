@@ -1,16 +1,21 @@
 {
   flake.aspects.pepper-hardware.nixos =
-    { lib, modulesPath, ... }:
+    { modulesPath, ... }:
     {
       imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-      boot.initrd.availableKernelModules = [
-        "xhci_pci"
-        "usbhid"
-      ];
-      boot.initrd.kernelModules = [ ];
-      boot.kernelModules = [ ];
-      boot.extraModulePackages = [ ];
+      boot = {
+        kernelModules = [ ];
+        extraModulePackages = [ ];
+
+        initrd = {
+          kernelModules = [ ];
+          availableKernelModules = [
+            "xhci_pci"
+            "usbhid"
+          ];
+        };
+      };
 
       fileSystems."/" = {
         device = "/dev/disk/by-label/NIXOS_SD";
@@ -19,7 +24,5 @@
       # fileSystems."/nix" = { device = "/dev/disk/by-label/NIX_STORE"; fsType = "ext4"; };
 
       swapDevices = [ ];
-
-      nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
     };
 }

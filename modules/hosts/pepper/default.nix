@@ -1,16 +1,10 @@
 { inputs, ... }:
 {
   flake.aspects.pepper.nixos = {
-    custom.network.ip = "192.168.1.3/24";
-    custom.network.net-interface = "wlan0";
-
-    sops.secrets = {
-      user-password.neededForUsers = true;
-      github-PAT = { };
-      home-pass = { };
-      home-ssid = { };
-      pepper-nextcloud = { };
-      pepper-dpigeon-nextcloud = { };
+    custom.network = {
+      install_home_wifi = true;
+      ip = "192.168.1.3/24";
+      interface = "wlan0";
     };
 
     i18n = {
@@ -18,10 +12,7 @@
       extraLocales = [ ];
     };
 
-    imports = [
-      ./hardware
-    ]
-    ++ (with inputs.self.modules.nixos; [
+    imports = with inputs.self.modules.nixos; [
       # Userland
       nvim
 
@@ -47,6 +38,6 @@
       locale
       nm
       pepper-hardware
-    ]);
+    ];
   };
 }

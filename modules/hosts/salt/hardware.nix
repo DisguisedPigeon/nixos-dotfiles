@@ -1,11 +1,6 @@
 {
   flake.aspects.salt-hardware.nixos =
-    {
-      config,
-      lib,
-      modulesPath,
-      ...
-    }:
+    { config, modulesPath, ... }:
     {
       imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
@@ -88,6 +83,6 @@
         }
       ];
 
-      hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+      hardware.cpu.amd.updateMicrocode = config.hardware.enableRedistributableFirmware;
     };
 }
