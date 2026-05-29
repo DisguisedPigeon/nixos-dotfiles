@@ -1,16 +1,27 @@
-{ inputs, pkgs, zoxide, starship, direnv, lib, runCommand}:
+{
+  inputs,
+  pkgs,
+  zoxide,
+  starship,
+  direnv,
+  lib,
+  runCommand,
+}:
 
 inputs.wrappers.wrappers.nushell.wrap {
   inherit pkgs;
 
-  "config.nu".content =
-    lib.strings.readFile ../resources/config/nu/config.nu + ''
-    source ${runCommand "zoxide-nushell-config.nu" { } ''
-      ${lib.getExe zoxide} init nushell --cmd cd >> "$out"
-    ''}
-    use ${pkgs.runCommand "starship-nushell-config.nu" { } ''
-      ${lib.getExe starship} init nu >> "$out"
-    ''}
+  "config.nu".content = lib.strings.readFile ../resources/config/nu/config.nu + ''
+    source ${
+      runCommand "zoxide-nushell-config.nu" { } ''
+        ${lib.getExe zoxide} init nushell --cmd cd >> "$out"
+      ''
+    }
+    use ${
+      pkgs.runCommand "starship-nushell-config.nu" { } ''
+        ${lib.getExe starship} init nu >> "$out"
+      ''
+    }
     $env.config.hooks.pre_prompt = (
         $env.config.hooks.pre_prompt?
         | default []

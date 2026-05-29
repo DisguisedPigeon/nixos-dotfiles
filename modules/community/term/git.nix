@@ -38,18 +38,17 @@
         };
 
         users.groups.git = { };
+
         users.users.git = {
-          description = "User accessible for a ssh git server.";
-          isSystemUser = true;
           group = "git";
-          useDefaultShell = false;
-          shell = "sh";
+
+          description = "User accessible for a ssh git server.";
+
+          isSystemUser = true;
+
           createHome = true;
           homeMode = "700";
         };
-
-        # fix for jujutsu pager
-        environment.variables.PAGER = null;
       };
   };
 }

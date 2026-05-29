@@ -39,3 +39,9 @@ vim.keymap.set(
   "<C-x><C-o>",
   { desc = "Easier omnifunc completion access (~lsp completion)" }
 )
+
+lib.nmap(
+  "<leader>c",
+  ":vne<CR>35<C-W>|<C-W>l:vert rightb new<CR>35<C-W>|<C-W>h",
+  "Center window (only on single maximized)"
+)

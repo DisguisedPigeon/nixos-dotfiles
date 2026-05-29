@@ -1,7 +1,7 @@
 let
   nush-wrap = ../../../packages/wrapped-nush.nix;
 in
-{inputs, ...}:
+{ inputs, ... }:
 {
   perSystem =
     { pkgs, ... }:

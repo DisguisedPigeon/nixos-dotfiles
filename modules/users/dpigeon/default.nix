@@ -8,9 +8,9 @@
         extraGroups = [
           "dpigeon"
           "wheel"
-          "docker"
           "podman"
           "user"
+          "trusted"
         ];
       };
     };

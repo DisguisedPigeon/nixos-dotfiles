@@ -16,6 +16,7 @@ inputs.wrappers.wrappers.neovim.wrap {
       nvim-lspconfig
       rose-pine
       mini-nvim
+      todo-comments-nvim
     ];
   };
 }

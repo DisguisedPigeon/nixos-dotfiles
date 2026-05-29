@@ -15,6 +15,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     lib.nmap("grf", vim.lsp.buf.format, "Format file")
     lib.nmap("gd", vim.lsp.buf.definition, "Go to definition")
 
+    --vim.diagnostic.config({
+    --  underline = { severity = { min = vim.diagnostic.severity.INFO } },
+    --})
+
     vim.lsp.inlay_hint.enable()
   end,
 })

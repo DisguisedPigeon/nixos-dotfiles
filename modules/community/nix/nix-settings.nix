@@ -5,7 +5,7 @@ let
     cores = 0
     experimental-features = nix-command flakes
     max-jobs = auto
-    trusted-users = root dpigeon remotebuild
+    trusted-users = root @trusted
   '';
 in
 {
