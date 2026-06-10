@@ -23,6 +23,7 @@
 
       # Users
       dpigeon
+      dpigeon-pepper
       remotebuild
 
       # Services
