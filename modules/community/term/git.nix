@@ -37,17 +37,19 @@
           package = wrapped-git;
         };
 
-        users.groups.git = { };
+        users = {
+          groups.git = { };
 
-        users.users.git = {
-          group = "git";
-          isSystemUser = true;
-          createHome = true;
-          homeMode = "700";
+          users.git = {
+            group = "git";
+            isNormalUser = true;
+            createHome = true;
+            homeMode = "700";
 
-          openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2usCLJudA5GvpM9UdDZJoxh+JUBeHcpWTVvyqHdTGn dpigeon@salt"
-          ];
+            openssh.authorizedKeys.keys = [
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF2usCLJudA5GvpM9UdDZJoxh+JUBeHcpWTVvyqHdTGn dpigeon@salt"
+            ];
+          };
         };
       };
   };
