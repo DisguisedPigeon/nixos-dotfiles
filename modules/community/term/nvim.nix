@@ -1,6 +1,6 @@
 { inputs, ... }:
 let
-  wrapped-nvim = pkgs: pkgs.callPackage ../../../packages/wrapped-nvim.nix { inherit inputs; };
+  wrapped-nvim = ../../../packages/wrapped-nvim.nix;
 in
 {
   flake-file.inputs = {
@@ -10,12 +10,15 @@ in
   perSystem =
     { pkgs, ... }:
     {
-      packages.neovim-custom = wrapped-nvim pkgs;
+      packages.neovim-custom = pkgs.callPackage wrapped-nvim { inherit inputs; };
     };
 
   flake.aspects.nvim.nixos =
     { pkgs, ... }:
     {
-      environment.systemPackages = [ (wrapped-nvim pkgs) ];
+      programs.neovim = {
+        enable = true;
+        package = pkgs.callPackage wrapped-nvim { inherit inputs; };
+      };
     };
 }

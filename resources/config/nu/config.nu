@@ -4,12 +4,12 @@ alias "eza" = eza --icons auto --git
 alias "n" = nvim
 
 # === Env vars ===
-$env = {
+load-env {
   PROMPT_INDICATOR: "❯ "
   PROMPT_INDICATOR_VI_INSERT: "❯ "
   PROMPT_INDICATOR_VI_NORMAL: "❮ "
   PROMPT_MULTILINE_INDICATOR: "   :"
-  PATH: $env.PATH | split row (char esep) | append /usr/bin/env
+  PATH: ($env.PATH | split row (char esep) | append /usr/bin/env)
   CARAPACE_BRIDGES: 'bash'
 }
 
@@ -112,7 +112,7 @@ def nupdate [host?: string] {
   sudo nixos-rebuild --flake .#($host) switch
 }
 
-def fupdate {
+def fupdate [] {
   nix flake update
 }
 
@@ -127,7 +127,6 @@ $env.config = {
   buffer_editor: "nvim"
   edit_mode: "vi"
   show_banner: false
-  show_banner: false,
   completions: {
     case_sensitive: false
     quick: true

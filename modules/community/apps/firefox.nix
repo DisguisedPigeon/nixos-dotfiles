@@ -1,9 +1,7 @@
 { inputs, ... }:
 {
   flake-file.inputs = {
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-    };
+    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
   };
 
   flake.aspects.firefox.homeManager =

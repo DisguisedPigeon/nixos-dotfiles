@@ -19,6 +19,17 @@
           environment.variables.PAGER = null;
         };
 
+      programs.ssh = {
+        enable = true;
+        settings = {
+          "pepper" = {
+            HostName = "pepper";
+            IdentityFile = "~/.ssh/pepper-git";
+            User = "git";
+            IdentitiesOnly = "yes";
+          };
+        };
+      };
       homeManager = {
         xdg.configFile."git/config".text = ''
           [maintenance]
