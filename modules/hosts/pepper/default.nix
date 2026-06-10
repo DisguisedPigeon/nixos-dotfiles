@@ -12,6 +12,11 @@
       extraLocales = [ ];
     };
 
+    boot.loader = {
+      grub.enable = false;
+      generic-extlinux-compatible.enable = true;
+    };
+
     imports = with inputs.self.modules.nixos; [
       # Userland
       nvim
@@ -30,10 +35,10 @@
 
       # nix
       nix-settings
+      pepper-sops
       sops
 
       # System
-      hosts
       locale
       nm
       pepper-hardware
