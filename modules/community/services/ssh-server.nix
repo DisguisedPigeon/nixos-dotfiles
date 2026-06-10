@@ -10,7 +10,6 @@
         settings = {
           PasswordAuthentication = false;
           KbdInteractiveAuthentication = false;
-          AllowUsers = [ "dpigeon@salt" "root@salt" ];
         };
       };
 
