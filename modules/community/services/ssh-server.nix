@@ -1,7 +1,8 @@
 {
   flake.aspects.ssh-server.nixos = {
+
     services = {
-      fail2ban.enable = true;
+      # fail2ban.enable = true;
 
       openssh = {
         enable = true;
@@ -9,18 +10,15 @@
         settings = {
           PasswordAuthentication = false;
           KbdInteractiveAuthentication = false;
-          AllowUsers = [
-            "dpigeon"
-            "git"
-          ];
+          AllowUsers = [ "dpigeon@salt" "root@salt" ];
         };
       };
 
-      # endlessh = {
-      #   enable = true;
-      #   port = 22;
-      #   openFirewall = true;
-      # };
+      endlessh = {
+        enable = true;
+        port = 22;
+        openFirewall = true;
+      };
     };
   };
 }
