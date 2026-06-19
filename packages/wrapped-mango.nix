@@ -50,6 +50,7 @@ let
 in
 inputs.wrappers.wrappers.mangowc.wrap {
   inherit pkgs;
+  package = pkgs.mango;
 
   sourcedFiles = [ ../resources/config/mango/config.conf ];
 

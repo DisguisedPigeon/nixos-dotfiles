@@ -3,12 +3,12 @@
   qt6,
   lib,
   fetchFromGitHub,
-  formats,
   theme ? "astronaut",
-  themeConfig ? null,
+  themeConfig ? { },
 }:
 let
-  overwriteConfig = (formats.ini { }).generate "${theme}.conf.user" themeConfig;
+  config = lib.generators.toINI { } themeConfig;
+  config-file = builtins.toFile "${theme}.conf.user" config;
 in
 stdenvNoCC.mkDerivation rec {
   name = "sddm-astronaut-theme";
@@ -46,7 +46,7 @@ stdenvNoCC.mkDerivation rec {
     # Create theme.conf.user of the selected theme. To overwrite its configuration.
     ${lib.optionalString (lib.isAttrs themeConfig) ''
       install -dm755 "$themeDir/Themes"
-      cp ${overwriteConfig} $themeDir/Themes/${theme}.conf.user
+      cp ${config-file} $themeDir/Themes/${theme}.conf.user
     ''}
   '';
 

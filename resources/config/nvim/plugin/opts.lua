@@ -12,6 +12,10 @@ vim.o.ignorecase = true
 
 vim.o.scrolloff = 10
 
+vim.o.tabstop = 4
+vim.o.expandtab = true
+vim.o.shiftwidth = 0
+
 vim.opt.formatoptions:remove("o")
 
 function FoldText()

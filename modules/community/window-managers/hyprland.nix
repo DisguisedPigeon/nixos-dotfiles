@@ -33,6 +33,7 @@
 
         wayland.windowManager.hyprland = {
           enable = lib.mkDefault true;
+          configType = "hyprlang";
           settings = lib.mkDefault {
             "$mod" = "SUPER";
 

@@ -25,7 +25,7 @@
         zen
 
         # nix
-        stylix
+        # stylix
         sops
 
         # term
@@ -42,6 +42,7 @@
         rg
         rga
         treesitter
+        ui-theming
       ];
 
       home.stateVersion = "25.05";

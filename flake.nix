@@ -19,8 +19,6 @@
     hardware.url = "github:nixos/nixos-hardware";
     home-manager.url = "github:nix-community/home-manager";
     import-tree.url = "github:vic/import-tree";
-    niri.url = "github:sodiboo/niri-flake";
-    niri-raw.url = "github:YaLTeR/niri";
     nix-auto-follow = {
       url = "github:fzakaria/nix-auto-follow";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,10 +29,8 @@
       flake = false;
     };
     sops-nix.url = "github:Mic92/sops-nix";
-    stylix.url = "github:danth/stylix";
     treefmt-nix.url = "github:numtide/treefmt-nix";
     wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
-    xwayland-satellite.url = "github:Supreeeme/xwayland-satellite";
     zen.url = "github:0xc000022070/zen-browser-flake";
   };
 }

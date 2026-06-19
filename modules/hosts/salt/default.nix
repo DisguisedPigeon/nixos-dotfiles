@@ -61,7 +61,7 @@
         sops
         nix-settings
         home-manager
-        stylix
+        ui-theming
       ])
       ++ [ inputs.hardware.nixosModules.asus-zephyrus-ga502 ];
 

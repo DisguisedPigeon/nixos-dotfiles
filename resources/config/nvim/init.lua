@@ -11,6 +11,7 @@ vim.cmd("packadd nvim.difftool")
 vim.o.ut = 2000
 vim.cmd("packadd nohlsearch")
 
+require("todo-comments").setup()
 -- Set colorscheme
 require("rose-pine").setup({ styles = { transparency = true } })
 vim.cmd.colorscheme("rose-pine")
