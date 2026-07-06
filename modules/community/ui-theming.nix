@@ -1,6 +1,10 @@
 {
   flake.aspects.ui-theming = {
     nixos = { pkgs, ... }: {
+      environment = {
+        systemPackages = [ pkgs.banana-cursor ];
+        variables.XCURSOR_SIZE = 22;
+      };
       fonts = {
         packages = with pkgs; [ maple-mono.NF ];
 
@@ -16,6 +20,13 @@
     homeManager =
       { pkgs, lib, ... }:
       {
+        home.pointerCursor = {
+          name = "Banana";
+          size = 22;
+          package = pkgs.banana-cursor;
+          x11.enable = true;
+          gtk.enable = true;
+        };
         gtk = {
           enable = lib.mkDefault true;
           iconTheme = {
