@@ -40,6 +40,7 @@
         kanata
         flatpak
         power-profiles
+        ssh-client
 
         # Term
         git

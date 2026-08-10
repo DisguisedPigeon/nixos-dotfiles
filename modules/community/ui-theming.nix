@@ -21,6 +21,7 @@
       { pkgs, lib, ... }:
       {
         home.pointerCursor = {
+          enable = true;
           name = "Banana";
           size = 22;
           package = pkgs.banana-cursor;

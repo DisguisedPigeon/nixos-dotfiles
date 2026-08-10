@@ -23,7 +23,7 @@ in
         gnome-keyring
       ];
 
-      programs.mangowc = {
+      programs.mango = {
         enable = true;
         package = pkgs.callPackage mango-wrap { inherit inputs config; };
       };

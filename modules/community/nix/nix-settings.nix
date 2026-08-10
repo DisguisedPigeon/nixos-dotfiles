@@ -74,6 +74,10 @@ in
           };
           channel.enable = lib.mkDefault false;
         };
+
+        users.groups = {
+          trusted = { };
+        };
       };
     homeManager =
       {

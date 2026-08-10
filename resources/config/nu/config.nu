@@ -118,7 +118,7 @@ def fupdate [] {
     | date to-timezone GMT
     | format date "%Y/%m/%d @ %H:%M:%S"
 
-  jj commit -m $"UPDATE FLAKE, GMT: (GMT_DATE)"
+  jj commit -m $"UPDATE FLAKE, GMT: ($GMT_DATE)"
 }
 
 def update [username?: string, host?: string] {
