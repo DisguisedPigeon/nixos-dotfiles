@@ -2,6 +2,12 @@
   flake.aspects.nixos.nixos =
     { lib, ... }:
     {
+      nixpkgs.overlays = [
+        (_final: prev: {
+          buildGo125Module = prev.buildGoModule;
+        })
+      ];
+
       environment.sessionVariables = rec {
         XDG_CACHE_HOME = "$HOME/.cache";
         XDG_CONFIG_HOME = "$HOME/.config";
