@@ -41,6 +41,7 @@
         flatpak
         power-profiles
         ssh-client
+        proton-vpn
 
         # Term
         git
@@ -54,6 +55,7 @@
         sddm
         llama-cpp
         obs
+        kde-connect
 
         # Theming
         xdg

@@ -63,6 +63,17 @@
           ];
         };
 
+        "/disk2-linux" = {
+          fsType = "ext4";
+          device = "/dev/disk/by-label/LIGMA";
+
+          options = [
+            "noatime"
+            "defaults"
+            "user"
+            "rw"
+          ];
+        };
         "/disk2" = {
           fsType = "ntfs";
           device = "/dev/disk/by-label/SUGON";

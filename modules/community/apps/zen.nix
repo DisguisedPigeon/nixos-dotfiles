@@ -4,9 +4,6 @@
     zen = {
       url = "github:0xc000022070/zen-browser-flake";
     };
-    firefox-addons = {
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-    };
   };
 
   flake.aspects.zen.homeManager =
@@ -17,52 +14,55 @@
       programs.zen-browser =
         let
           currentSystem = pkgs.stdenv.hostPlatform.system;
-          policies = {
-            AutofillAddressEnabled = false;
-            AutofillCreditCardEnabled = false;
-            DisableAppUpdate = true;
-            DisableFeedbackCommands = true;
-            DisableFirefoxStudies = true;
-            DisablePocket = true;
-            DisableTelemetry = true;
-            DontCheckDefaultBrowser = true;
-            EnableTrackingProtection = {
-              Value = true;
-              Locked = true;
-              Cryptomining = true;
-              Fingerprinting = true;
-              EmailTracking = true;
-              SuspectedFingerptinting = true;
-              BaselineExceptions = true;
+          policies =
+            let
+              mkExtensionSettings = builtins.mapAttrs (
+                _: pluginId: {
+                  install_url = "https://addons.mozilla.org/firefox/downloads/latest/${pluginId}/latest.xpi";
+                  installation_mode = "force_installed";
+                }
+              );
+            in
+            {
+              AutofillAddressEnabled = false;
+              AutofillCreditCardEnabled = false;
+              DisableAppUpdate = true;
+              DisableFeedbackCommands = true;
+              DisableFirefoxStudies = true;
+              DisablePocket = true;
+              DisableTelemetry = true;
+              DontCheckDefaultBrowser = true;
+              EnableTrackingProtection = {
+                Value = true;
+                Locked = true;
+                Cryptomining = true;
+                Fingerprinting = true;
+                EmailTracking = true;
+                SuspectedFingerptinting = true;
+                BaselineExceptions = true;
+              };
+              # NoDefaultBookmarks = true;
+              OfferToSaveLogins = false;
+              SanitizeOnShutdown = {
+                FormData = true;
+                Cache = true;
+              };
+              ExtensionSettings = mkExtensionSettings {
+                "vimium-c@gdh1995.cn" = "vimium-c";
+                "addon@darkreader.org" = "darkreader";
+                "uBlock0@raymondhill.net" = "ublock-origin";
+                "jid1-BoFifL9Vbdl2zQ@jetpack" = "decentraleyes";
+                "{3579f63b-d8ee-424f-bbb6-6d0ce3285e6a}" = "chameleon-ext";
+                "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
+                "{74145f27-f039-47ce-a470-a662b129930a}" = "clearurls";
+                "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = "github-file-icons";
+                "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = "return-youtube-dislikes";
+                "{0d7cafdd-501c-49ca-8ebb-e3341caaa55e}" = "youtube-nonstop";
+                "{34daeb50-c2d2-4f14-886a-7160b24d66a4}" = "youtube-shorts-block";
+                "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = "refined-github-";
+                "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = "styl-us";
+              };
             };
-            # NoDefaultBookmarks = true;
-            OfferToSaveLogins = false;
-            SanitizeOnShutdown = {
-              FormData = true;
-              Cache = true;
-            };
-          };
-          extensions.packages = with inputs.firefox-addons.packages.${currentSystem}; [
-            chameleon-ext
-            clearurls
-            decentraleyes
-            ublock-origin
-            ublock-origin
-            github-file-icons
-            return-youtube-dislikes
-            clearurls
-            decentraleyes
-            chameleon-ext
-            youtube-nonstop
-            youtube-shorts-block
-            ublock-origin
-            refined-github
-            github-file-icons
-            return-youtube-dislikes
-            clearurls
-            decentraleyes
-            chameleon-ext
-          ];
         in
         {
           enable = true;
@@ -79,7 +79,6 @@
               spacesForce = true;
               containersForce = true;
               id = 0;
-              inherit extensions;
 
               settings = {
                 "extensions.autoDisableScopes" = 0;
@@ -280,7 +279,6 @@
             };
             "music" = rec {
               id = 1;
-              inherit extensions;
 
               pinsForce = true;
               search.force = true;

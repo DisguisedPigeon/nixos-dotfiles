@@ -34,11 +34,13 @@ let
       "${noctalia} ipc call launcher toggle"
     else
       "${lib.getExe rofi} -show drun -modi run,drun,ssh,window";
+
   term-cmd =
     if builtins.hasAttr "environment" config && builtins.hasAttr "term" config.environment then
       config.environment.term
     else
       lib.getExe wezterm;
+
   browser-pkg = if builtins.hasAttr "zen" inputs then inputs.zen.packages.${host}.beta else firefox;
   browser-cmd = lib.getExe browser-pkg;
 
@@ -61,7 +63,6 @@ inputs.wrappers.wrappers.mangowc.wrap {
 
         noctalia-shell -d
 
-        dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=mango
         systemctl --user restart xdg-desktop-portal &
 
         ${lib.getExe wl-clip-persist} --clipboard regular --reconnect-tries 0 &

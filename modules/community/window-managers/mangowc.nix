@@ -16,6 +16,16 @@ in
   flake.aspects.mangowm.nixos =
     { pkgs, config, ... }:
     {
+      environment.systemPackages = with pkgs; [
+        pipewire
+        slurp
+
+        xdg-desktop-portal
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+        gnome-keyring
+      ];
+
       xdg.portal.extraPortals = with pkgs; [
         xdg-desktop-portal
         xdg-desktop-portal-gtk

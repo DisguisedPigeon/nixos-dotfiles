@@ -1,10 +1,7 @@
 {
-  flake.aspects.kde-connect.homeManager =
-    { pkgs, ... }:
-    {
-      services.kdeconnect = {
-        enable = true;
-        package = pkgs.kdePackages.kdeconnect-kde;
-      };
+  flake.aspects.kde-connect.nixos = {
+    programs.kdeconnect = {
+      enable = true;
     };
+  };
 }
