@@ -1,0 +1,388 @@
+[accessibility]
+ui_scale = 1.1500000096857548
+
+[bar]
+order = ["main"]
+
+[bar.main]
+background_opacity = 0.69999998435378075
+border = "primary"
+capsule = true
+capsule_thickness = 0.79999998584389687
+end = [
+  "tray",
+  "brightness",
+  "battery",
+  "volume",
+  "bar",
+  "status_3",
+  "badge",
+  "screenshot",
+  "clipboard",
+  "notifications",
+  "control-center",
+  "session",
+]
+font_family = "DejaVu Sans"
+font_weight = 400
+icon_color = "primary"
+margin_ends = 10
+margin_opposite_edge = 5
+radius = 15
+start = ["launcher", "workspaces", "status_2", "status", "mail", "media"]
+thickness = 35
+widget_spacing = 10
+
+[brightness]
+minimum_brightness = 0.099999997764825821
+sync_all_monitors = true
+
+[calendar]
+enabled = true
+
+[control_center]
+width = 800
+
+[desktop_widgets]
+schema_version = 2
+widget_order = [
+  "desktop-widget-0000000000000001",
+  "desktop-widget-0000000000000004",
+  "desktop-widget-0000000000000005",
+]
+
+[desktop_widgets.grid]
+cell_size = 64
+major_interval = 4
+visible = true
+
+[desktop_widgets.widget.desktop-widget-0000000000000001]
+box_height = 256.0
+box_width = 256.0
+cx = 960.0
+cy = 348.0
+output = "eDP-1"
+placement_height = 1080.0
+placement_width = 1920.0
+rotation = 0.0
+type = "clock"
+
+[desktop_widgets.widget.desktop-widget-0000000000000001.settings]
+background = true
+background_color = "on_primary"
+background_opacity = 0.70000000000000007
+background_padding = 0
+background_radius = 32
+circle = false
+clock_style = "analog"
+color = "primary"
+font_family = "DejaVu Sans"
+timezone = ""
+
+[desktop_widgets.widget.desktop-widget-0000000000000004]
+box_height = 0.0
+box_width = 0.0
+cx = 960.0
+cy = 1005.0
+output = "eDP-1"
+placement_height = 1080.0
+placement_width = 1920.0
+rotation = 0.0
+type = "media_player"
+
+[desktop_widgets.widget.desktop-widget-0000000000000005]
+box_height = 128.0
+box_width = 1920.0
+cx = 960.0
+cy = 1016.0
+output = "eDP-1"
+placement_height = 1080.0
+placement_width = 1920.0
+rotation = 0.0
+type = "audio_visualizer"
+
+[desktop_widgets.widget.desktop-widget-0000000000000005.settings]
+background = false
+bands = 128
+centered = false
+color_1 = "primary"
+color_2 = "secondary"
+mirrored = true
+reversed = true
+show_when_idle = false
+
+[dock]
+active_monitor_only = true
+background_opacity = 0.79999998211860657
+border = "primary"
+border_width = 0.5
+cross_axis_padding = 0
+enabled = true
+item_spacing = 0
+magnification = false
+main_axis_padding = 0
+margin_ends = 30
+position = "left"
+radius = 15
+reserve_space = false
+shadow = false
+smart_auto_hide = true
+
+[location]
+address = "Santiago de Compostela, España"
+
+[lockscreen]
+fingerprint = false
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = ["lockscreen-login-box@HDMI-A-1", "lockscreen-login-box@eDP-1"]
+
+[lockscreen_widgets.grid]
+cell_size = 16
+major_interval = 4
+visible = true
+
+[lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+box_height = 196.0
+box_width = 810.0
+cx = 960.0
+cy = 898.0
+output = "HDMI-A-1"
+placement_height = 1080.0
+placement_width = 1920.0
+rotation = 0.0
+type = "login_box"
+
+[lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+background_color = "surface_variant"
+background_opacity = 0.88
+background_radius = 12.0
+center_password_text = false
+input_opacity = 1.0
+input_radius = 6.0
+layout = "regular"
+show_caps_lock = true
+show_keyboard_layout = true
+show_login_button = true
+show_media = true
+show_session_buttons = true
+show_unlock_hint = true
+show_weather = true
+
+[lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+box_height = 196.0
+box_width = 810.0
+cx = 960.0
+cy = 898.0
+output = "eDP-1"
+placement_height = 1080.0
+placement_width = 1920.0
+rotation = 0.0
+type = "login_box"
+
+[lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+background_color = "surface_variant"
+background_opacity = 0.88
+background_radius = 12.0
+center_password_text = false
+input_opacity = 1.0
+input_radius = 6.0
+layout = "regular"
+show_caps_lock = true
+show_keyboard_layout = true
+show_login_button = true
+show_media = true
+show_session_buttons = true
+show_unlock_hint = true
+show_weather = true
+
+[nightlight]
+enabled = true
+
+[plugin_settings."davemhammer/obsidian"]
+daily_folder = "day_notes"
+manager_placement = "attached"
+vault_path = "/disk2/Vault"
+
+[plugin_settings."davemhammer/tailscale"]
+manager_placement = "attached"
+
+[plugin_settings."mindnbytes/nix-status"]
+flake_dir = "/home/dpigeon/nixos-config"
+nixos_configuration = "salt"
+use_themed_logos = true
+
+[plugin_settings."noctalia/bitwarden"]
+auto_serve = false
+clear_clipboard_seconds = 60
+fields_position = "auto"
+gen_special = true
+login_position = "auto"
+server_url = "https://vault.bitwarden.eu"
+unlock_position = "auto"
+
+[plugins]
+auto_update = "official"
+enabled = [
+  "icefish/phone-connect",
+  "noctalia/bitwarden",
+  "mindnbytes/nix-status",
+  "davemhammer/obsidian",
+  "nilsonlinux/rss-notifier",
+  "davemhammer/tailscale",
+  "mdj2812/thunderbird-companion",
+]
+
+[shell]
+app_icon_color = "secondary"
+button_borders = false
+card_borders = false
+corner_radius_scale = 0.5000000074505806
+font_family = "DejaVu Sans"
+input_borders = false
+panel_anchor_bar = "main"
+password_style = "random"
+polkit_agent = true
+popup_borders = false
+popup_shadows = false
+settings_window_translucent = true
+
+[shell.animation]
+speed = 2.0000000298023224
+
+[shell.launcher]
+app_grid = true
+show_app_actions = true
+
+[shell.launcher.providers.emoji]
+global = true
+
+[shell.launcher.providers.panels]
+global = true
+
+[shell.launcher.providers.session]
+global = true
+
+[shell.launcher.providers.wallpaper]
+global = true
+
+[shell.launcher.providers.windows]
+global = true
+
+[shell.panel]
+borders = false
+clipboard_placement = "attached"
+launcher_placement = "attached"
+launcher_position = "top_center"
+open_near_click_clipboard = true
+open_near_click_control_center = true
+open_near_click_session = true
+open_near_click_wallpaper = true
+polkit_placement = "attached"
+shadow = false
+transparency_mode = "soft"
+
+[shell.screen_corners]
+size = 30
+
+[shell.screenshot]
+annotate = true
+
+[shell.shadow]
+direction = "down_right"
+
+[system.monitor]
+cpu_poll_seconds = 10
+disk_poll_seconds = 30
+gpu_poll_seconds = 20
+memory_poll_seconds = 10
+network_poll_seconds = 20
+
+[theme]
+builtin = "Noctalia"
+community_palette = "Oxocarbon"
+mode = "dark"
+source = "wallpaper"
+wallpaper_scheme = "vibrant"
+
+[wallpaper]
+directory = "/home/dpigeon/.local/share/backgrounds/Eduardo"
+transition_on_startup = true
+
+[wallpaper.automation]
+enabled = true
+recursive = true
+
+[wallpaper.default]
+path = "/home/dpigeon/.local/share/backgrounds/Eduardo/IMG_4981.jpg"
+
+[wallpaper.last]
+path = "/home/dpigeon/.local/share/backgrounds/Eduardo/IMG_4981.jpg"
+
+[wallpaper.monitors.HDMI-A-1]
+path = "/home/dpigeon/.local/share/backgrounds/Eduardo/IMG_4981.jpg"
+
+[wallpaper.monitors.eDP-1]
+path = "/home/dpigeon/.local/share/backgrounds/Eduardo/IMG_4981.jpg"
+
+[widget.badge]
+type = "nilsonlinux/rss-notifier:badge"
+
+[widget.bar]
+type = "icefish/phone-connect:bar"
+
+[widget.battery]
+capsule = true
+capsule_opacity = 0.0
+
+[widget.brightness]
+capsule = true
+capsule_opacity = 0.0
+
+[widget.clock]
+capsule = true
+capsule_opacity = 0.0
+format = "%H:%M"
+tooltip_format = "%A %d/%m/%Y"
+
+[widget.control-center]
+glyph = "settings"
+
+[widget.launcher]
+capsule_radius = "auto"
+glyph = "brand-powershell"
+
+[widget.launcher.actions]
+middle = "none"
+
+[widget.mail]
+type = "mdj2812/thunderbird-companion:mail"
+
+[widget.media]
+art_size = 30
+hide_when_no_media = true
+show_progress = true
+title_scroll = "on_hover"
+
+[widget.status]
+type = "mindnbytes/nix-status:status"
+
+[widget.status_2]
+type = "davemhammer/obsidian:status"
+
+[widget.status_3]
+flag_problem = true
+hide_when_healthy = true
+show_counts = false
+type = "davemhammer/tailscale:status"
+
+[widget.volume]
+capsule = true
+capsule_opacity = 0.0
+
+[widget.workspaces]
+active_pill_size = 2.0
+hide_when_empty = true
+max_label_chars = 2

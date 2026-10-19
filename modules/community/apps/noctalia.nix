@@ -1,34 +1,15 @@
-{ inputs, ... }:
-let
-  wrapped-noctalia = ../../../packages/wrapped-noctalia.nix;
-in
 {
-  flake-file.inputs = {
-    wrappers = {
-      url = "github:BirdeeHub/nix-wrapper-modules";
+
+  flake.aspects.noctalia = {
+    nixos = {
+      programs.noctalia.enable = true;
     };
-    noctalia-plugins = {
-      url = "github:noctalia-dev/noctalia-plugins";
-      flake = false;
+    homeManager = {
+      programs.noctalia = {
+        enable = true;
+        settings = ../../../resources/config/noctalia/noctalia-config-no-extra-theming.toml;
+      };
+
     };
   };
-
-  perSystem =
-    { pkgs, ... }:
-    {
-      packages.noctalia-custom = pkgs.callPackage wrapped-noctalia { inherit inputs; };
-    };
-
-  flake.aspects.noctalia.nixos =
-    { pkgs, ... }:
-    {
-      environment.systemPackages =
-        with pkgs;
-        [
-          pavucontrol
-          wvkbd
-          swappy
-        ]
-        ++ [ (pkgs.callPackage wrapped-noctalia { inherit inputs; }) ];
-    };
 }
