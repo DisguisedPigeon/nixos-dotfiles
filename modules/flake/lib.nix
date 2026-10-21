@@ -10,12 +10,32 @@ let
     arch: name: stateVersion:
     inputs.nixpkgs.lib.nixosSystem {
       system = arch;
+
       modules = [
         self.modules.nixos.nixos
         self.modules.nixos.${name}
         {
           networking.hostName = lib.mkDefault name;
           nixpkgs.hostPlatform = lib.mkDefault arch;
+
+          nixpkgs.overlays = [
+            (_final: prev: {
+              kernelPackagesExtensions = prev.kernelPackagesExtensions ++ [
+                (_: kernelPrev: {
+                  # TODO: Wait for patch to be merged upstream, then remove this overlay
+                  # Workaround for v4l2loopback modules.alias conflict on kernel 6.18.57+
+                  # Issue: https://github.com/NixOS/nixpkgs/issues/575851
+                  # Pull: https://github.com/NixOS/nixpkgs/pull/575861
+                  v4l2loopback = kernelPrev.v4l2loopback.overrideAttrs (oldAttrs: {
+                    postInstall = (oldAttrs.postInstall or "") + ''
+                      find "$out/lib/modules" -type f -name 'modules.*' -delete
+                    '';
+                  });
+                })
+              ];
+            })
+          ];
+
           system = { inherit stateVersion; };
         }
       ];

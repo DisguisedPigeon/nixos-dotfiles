@@ -57,7 +57,7 @@ inputs.wrappers.wrappers.mangowc.wrap {
   sourcedFiles = [ ../resources/config/mango/config.conf ];
 
   extraConfig = ''
-    exec-once = ${lib.getExe (
+    exec_once = ${lib.getExe (
       writeShellScriptBin "mango-startup.sh" ''
         set +e
 
@@ -71,7 +71,7 @@ inputs.wrappers.wrappers.mangowc.wrap {
       ''
     )}
 
-    keymode = default
+    key_mode = default
 
     # Launcher
     bind = SUPER,r,spawn,${launcher-cmd}
@@ -87,7 +87,7 @@ inputs.wrappers.wrappers.mangowc.wrap {
     # Quick dev access. Setup specific.
     bind = SUPER,space,spawn,wezterm start session-chooser
 
-    keymode = common
+    key_mode = common
 
     # Screenshot
     bind = SUPER+SHIFT,Print,spawn_shell,${region-selector} -g "$(${pixel-data} -d)" - | ${lib.getExe' wl-clipboard "wl-copy"}
